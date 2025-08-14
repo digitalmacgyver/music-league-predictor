@@ -330,7 +330,24 @@ class MusicLeagueScraper:
         content = await self.page.content()
         soup = BeautifulSoup(content, 'lxml')
         
+        # Debug: check if page has content
+        if len(content) < 1000:  # Very basic content check
+            logger.warning(f"Page seems incomplete, content length: {len(content)}")
+            logger.debug(f"First 200 chars: {content[:200]}")
+            # Save the problematic content for debugging
+            debug_file = f"data/debug_empty_league_{league_id}.html"
+            with open(debug_file, 'w', encoding='utf-8') as f:
+                f.write(content)
+            logger.debug(f"Saved incomplete page content to {debug_file}")
+            return []
+        
         rounds = []
+        
+        # Debug: save the content when we do get it
+        debug_file = f"data/debug_league_content_{league_id}.html"
+        with open(debug_file, 'w', encoding='utf-8') as f:
+            f.write(content)
+        logger.debug(f"Saved full page content to {debug_file}")
         
         # Find all round cards based on the HTML structure
         # Round cards have class="card" and contain round information
@@ -344,7 +361,12 @@ class MusicLeagueScraper:
             try:
                 # Find the RESULTS link within this card
                 round_pattern = f'/l/{league_id}/([a-f0-9]{{32}})/'
-                results_link = card.find('a', href=re.compile(round_pattern), string='RESULTS')
+                # Look for a link with the pattern that contains "RESULTS" text (in a child element)
+                results_link = card.find('a', href=re.compile(round_pattern))
+                if results_link:
+                    # Check if this link contains "RESULTS" text anywhere within it
+                    if not results_link.find(string='RESULTS'):
+                        results_link = None
                 
                 if not results_link:
                     continue
