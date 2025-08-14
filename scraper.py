@@ -46,10 +46,14 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def normalize_league_name(name: str) -> str:
+    """Normalize league name: lowercase and keep only a-z characters"""
+    return ''.join(c for c in name.lower() if c.isalpha())
+
 class MusicLeagueScraper:
     """Main scraper class for Music League data extraction"""
     
-    def __init__(self, mode: str = "update", match_pattern: str = None):
+    def __init__(self, mode: str = "update", match_pattern: str = None, normalized_name: str = None):
         self.browser: Optional[Browser] = None
         self.context: Optional[BrowserContext] = None
         self.page: Optional[Page] = None
@@ -57,6 +61,7 @@ class MusicLeagueScraper:
         self.is_authenticated = False
         self.mode = mode
         self.match_pattern = match_pattern
+        self.normalized_name = normalized_name
         
         # Load existing leagues for update mode
         self.existing_league_ids = set()
@@ -267,6 +272,10 @@ class MusicLeagueScraper:
                 if self.mode == "match" and self.match_pattern:
                     # Match mode: only include leagues containing the pattern
                     should_include = self.match_pattern.lower() in title.lower()
+                elif self.mode == "exact" and self.normalized_name:
+                    # Exact mode: only include league with exact normalized name match
+                    normalized_title = normalize_league_name(title)
+                    should_include = normalized_title == self.normalized_name
                 elif self.mode == "update":
                     # Update mode: only include leagues not in database
                     if league_id not in self.existing_league_ids:
@@ -315,6 +324,8 @@ class MusicLeagueScraper:
         mode_info = f"{self.mode} mode"
         if self.mode == "match":
             mode_info += f" (pattern: '{self.match_pattern}')"
+        elif self.mode == "exact":
+            mode_info += f" (normalized: '{self.normalized_name}')"
         elif self.mode == "update":
             mode_info += f" (skipped {len(processed_ids) - len(leagues)} existing leagues)"
         logger.info(f"Found {len(leagues)} leagues for {mode_info}")
@@ -932,6 +943,7 @@ Modes:
   update    Default mode. Process only leagues not in database (incremental)
   clean     Full refresh. Backup database and rescan all leagues
   match     Process only leagues containing pattern (case-insensitive)
+  exact     Process only league with exact normalized name match
 
 Examples:
   ./scraper.py                    # Update mode (default)
@@ -939,6 +951,7 @@ Examples:
   ./scraper.py clean              # Full refresh with backup
   ./scraper.py match "bard"       # Only leagues containing "bard"
   ./scraper.py match "Tale 25"    # Only leagues containing "Tale 25"
+  ./scraper.py exact "bardstale"  # Only league that normalizes to "bardstale"
         """
     )
     
@@ -954,16 +967,24 @@ Examples:
     match_parser = subparsers.add_parser('match', help='Process leagues matching pattern')
     match_parser.add_argument('pattern', help='Pattern to match in league names')
     
+    # Exact mode for normalized matching
+    exact_parser = subparsers.add_parser('exact', help='Process league with exact normalized name match')
+    exact_parser.add_argument('normalized_name', help='Normalized name to match (lowercase, letters only)')
+    
     args = parser.parse_args()
     
     # Default to update if no mode specified
     if args.mode is None:
         args.mode = 'update'
         args.pattern = None
+        args.normalized_name = None
     elif args.mode == 'match' and not hasattr(args, 'pattern'):
         parser.error("match mode requires a pattern argument")
+    elif args.mode == 'exact' and not hasattr(args, 'normalized_name'):
+        parser.error("exact mode requires a normalized_name argument")
     else:
         args.pattern = getattr(args, 'pattern', None)
+        args.normalized_name = getattr(args, 'normalized_name', None)
     
     return args
 
@@ -1008,7 +1029,7 @@ async def main():
             create_database()
     
     # Run scraper with specified mode
-    scraper = MusicLeagueScraper(mode=args.mode, match_pattern=args.pattern)
+    scraper = MusicLeagueScraper(mode=args.mode, match_pattern=args.pattern, normalized_name=args.normalized_name)
     await scraper.scrape_all()
     
     print("\n" + "="*60)
