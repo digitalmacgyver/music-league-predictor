@@ -1,0 +1,885 @@
+{
+  "cookies": [
+    {
+      "name": "_GRECAPTCHA",
+      "value": "09ANMylNDke-MXgVO2-n9ZXNUXxlh_MG3tRqVyA0yEVgcs_f5GVSZoFW-Lr-3P4ECeoUoovyT3bgOpqm307PGtQqs",
+      "domain": "www.google.com",
+      "path": "/recaptcha",
+      "expires": 1770683236.550117,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__Host-device_id",
+      "value": "AQDBaCqe3EiiArDD0uApIW5vbZsm8E0sP9UYoCvEYtxbmKwkPDCFaMHNEVkboGNiGyvlXTVcP52575FHEIS691Nfn2jw-6TzhPg",
+      "domain": "accounts.spotify.com",
+      "path": "/",
+      "expires": 1789691230.563721,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "inapptestgroup",
+      "value": "",
+      "domain": ".accounts.spotify.com",
+      "path": "/",
+      "expires": 1755134848.232988,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sp_tr",
+      "value": "false",
+      "domain": ".accounts.spotify.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__Secure-TPASESSION",
+      "value": "AQClIFPLGlrB/rOumCOgE0v/X8VAKxtzwA6LWGD2abFX0VdWBhuNUe/4ip4zTfZeUr8jYIv6wpveJWBnT3+ojayxPgh+ASSdZp4=",
+      "domain": ".accounts.spotify.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sp_t",
+      "value": "dee9580a-4a44-4f0e-94ec-7dae01f8d020",
+      "domain": "accounts.spotify.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "remember",
+      "value": "mjhayward%40gmail.com",
+      "domain": "accounts.spotify.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__Host-CI-STATE",
+      "value": "AQAQ--eyJmgKAD1m-NIDu6m2IP7LS27tQ_Pr_wVMtIDV-9DfEI5X_W6syAWa_2HedHvt2-UZ2U4SINQoHyPo-YuK-B50S0QxbU1iv0JtcrXMGAeumxrVocNce-MaHY1MKgN1to0oPQ7_HeSr4p1lONPNMGYOF0j_Ub_mFVG1gNcSeNcMn6k",
+      "domain": "accounts.spotify.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sp_t",
+      "value": "456a08f1-b161-4b43-8850-1fbebcb1bef1",
+      "domain": ".spotify.com",
+      "path": "/",
+      "expires": 1786667236.941612,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sp_new",
+      "value": "1",
+      "domain": ".spotify.com",
+      "path": "/",
+      "expires": 1755217636.941875,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sp_landing",
+      "value": "https%3A%2F%2Fchallenge.spotify.com%2Fc%2Fa6ae7e82-da2b-490d-88be-e13b33b29534-3%2F36c841ec-92b0-448e-a17a-fcf2386324a2%2Femail",
+      "domain": ".spotify.com",
+      "path": "/",
+      "expires": 1755217636.941931,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sp_landingref",
+      "value": "https%3A%2F%2Faccounts.spotify.com%2F",
+      "domain": ".spotify.com",
+      "path": "/",
+      "expires": 1755217636.941963,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sp_dc",
+      "value": "AQDCxsE3ocU92bHio1ul4sIxdT-zRjDWEEntj6LoYQzCK_gZJysh01FIuLwK6t5uV1X5FB6MAxvYi1-KHBHmRI-aDW5qt74TxwHqsNjmkDo8sGrXi-x6YrY2MtPir7Tg7Glex2jEFy6BJU7cRP5pPck8K9IEVnY1Qe49fMYvyOAFC_DBvoA1QM3vAStWmRHwjry30H5ajB3WRsvCGw",
+      "domain": ".spotify.com",
+      "path": "/",
+      "expires": 1786667248.125462,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sp_sso_csrf_token",
+      "value": "013acda71902f3353b71a979fe5b7aedd11337acff31373535313331323438303834",
+      "domain": ".accounts.spotify.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sp_key",
+      "value": "27ca973e-4d81-4cf9-bfd2-c6ce1c11ecaf",
+      "domain": ".spotify.com",
+      "path": "/",
+      "expires": 1786667248.125579,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__Host-sp_csrf_sid",
+      "value": "70fb741f7829b1a00f457c97ad1ce946399357fbd6945ec5989f7224ebb15c5e",
+      "domain": "accounts.spotify.com",
+      "path": "/",
+      "expires": 1755134848.125597,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "csrf_token",
+      "value": "AQBTQ9AEF5VxY01AxkJr3UiXqkLlaVtySNkRwPcwt26uRKL6w8x8b6qqAZpiUMyGI9teO1oO9Iej9yGJGg",
+      "domain": ".accounts.spotify.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "app.musicleague.com",
+      "value": "MTc1NTEzMTI1MHwtQzZOV1h1RlY4MnI3VVVCclQyYkctQ3BJYjRiN0VVWF9fallheUtISUxNaG1iVzlLaHM2bjJKcDFxcFdUZVJCVHNVRDhxcEZ3Qk5FR1d5WVlPOWJSMGotODlreTFmbWJGWl93VUgteXVZUlYwdzdIZGt5TjQ0V2djdzJKWlpnMC1KRmpjSlNtLWtrcEh3amNpZFZ0cXhEd2N2Nk1BYzh3MGNnUTFkYWI2SnBRalNENkNqWF81YzN3NnVkQTFxcEZfTTZJOUU4S09JWVRNaHNMOWdndUNLanIwVFlVYWdlbXNlUmp6c3BnM1NYNGVNZk5Xd0prTlo4YzRPVVhzT3VOTmd0ZEV5VGJjT1Zpbkx3dkw4emp1YnQycWRIeGJndVJqeGRITnhET2pIT1VqZ0JQUmJFaDQwdHNxUVR3XzdvU0hwVkRFandsdE5ubUl4Q1AxVng5ZG1aMGxXTDExRm5Hek9lVUtvOER4VUJkS2NyZTUzejhKdGVDTFpBYXU0NzhYTzFLbkNaNzc3dlpYSE1wNnFxYldWVC1FOWp2bXJrd2pHMFpSR05wZENQRThyR0JBQXBSaGdXOUNVZGRpREtvTGlkeWdzTGxRRkRWaW1TTE5ZQ2JueUFxVUwzZ1oxTHdmZHFPektjWGdKWVJQdWJ0QUpPZFFpeWVUZWEtTHl3cGI1eTlhdnNnQjFZaHlVaENkY2tHelF6X19mYnV1b0J0VUZ6ZWZFemsyMnZ4SDVfWHVZa0pydjVaaVI0TzNVNktVMWE0R00tV2NUYUNOTzZNRlhKM1E1VUptV2plYzJuejhGT2kxbGt5OUpqcUZGSU41RFhvVWJVZzZ4SXdTeWJ4WDJyZXRzMGhfaE96Z29RSFZpTHE5R3BSVmNxWVR6MVkwMDVaWF9SWVIyd2IyR3QyV3hWMEgyTnluRXgwa0puZlhmNDBDYVFoVFRsWk5BWE1sTkdxekpQamJBZXpyN2xmU0xfM1VTVU1Wc1dzNWtMWVB4Mk5IdVhkeU5ZaUVJanhJaFRFdkhmS3ZKc28zYkl5TERPajB4TmFTbUw4R3VkRWVtX1ZfVmlnSE94T3ZIck5hT3ZmRnRKMlRVWVlKeEJYT05faXdkWkd2NVVyMXc9PXxgt-IpficLmMOsBhnuRgK0o_Fn3kl3LCNghNOS45-ylg==",
+      "domain": "app.musicleague.com",
+      "path": "/",
+      "expires": 1755476850.696969,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_lr_retry_request",
+      "value": "true",
+      "domain": "app.musicleague.com",
+      "path": "/",
+      "expires": 1755134851,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_lr_env_src_ats",
+      "value": "false",
+      "domain": "app.musicleague.com",
+      "path": "/",
+      "expires": 1757723251,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_cc_dc",
+      "value": "3",
+      "domain": ".crwdcntrl.net",
+      "path": "/",
+      "expires": 1778457899.648061,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_cc_id",
+      "value": "315b59bb8d63a1aeb725de3f74cb59eb",
+      "domain": ".crwdcntrl.net",
+      "path": "/",
+      "expires": 1778457899.648194,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_cc_cc",
+      "value": "\"ACZ4nGNQMDY0TTK1TEqySDEzTjRMTE0yNzJNSTVOMzdJBoqnJjEAQcZc3RIGBAAAYlsLGA%3D%3D\"",
+      "domain": ".crwdcntrl.net",
+      "path": "/",
+      "expires": 1778459251.648221,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_cc_aud",
+      "value": "\"ABR4nGNgYGDImKtbwgAHABTTAac%3D\"",
+      "domain": ".crwdcntrl.net",
+      "path": "/",
+      "expires": 1778459251.648238,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "TDID",
+      "value": "b3162f51-ad37-458b-971d-24d653f773c0",
+      "domain": ".adsrvr.org",
+      "path": "/",
+      "expires": 1786667252.342161,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ncmp.domain",
+      "value": "musicleague.com",
+      "domain": ".musicleague.com",
+      "path": "/",
+      "expires": 1786667251,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "panoramaId_expiry",
+      "value": "1755736052017",
+      "domain": ".musicleague.com",
+      "path": "/",
+      "expires": 1755736052,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_cc_id",
+      "value": "315b59bb8d63a1aeb725de3f74cb59eb",
+      "domain": ".musicleague.com",
+      "path": "/",
+      "expires": 1778459251,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "panoramaId",
+      "value": "5ec89701651a2c60410d317a66b2185ca02c3afdaf63f8224a434f71c9e42db5",
+      "domain": ".musicleague.com",
+      "path": "/",
+      "expires": 1755736052,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "nitro-uid",
+      "value": "%7B%22TDID%22%3A%22b3162f51-ad37-458b-971d-24d653f773c0%22%2C%22TDID_LOOKUP%22%3A%22FALSE%22%2C%22TDID_CREATED_AT%22%3A%222025-08-14T00%3A27%3A32%22%7D",
+      "domain": "app.musicleague.com",
+      "path": "/",
+      "expires": 1760315251,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "nitro-uid_cst",
+      "value": "1izpLMgsJw%3D%3D",
+      "domain": "app.musicleague.com",
+      "path": "/",
+      "expires": 1760315251,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_lr_geo_location_state",
+      "value": "CA",
+      "domain": "app.musicleague.com",
+      "path": "/",
+      "expires": 1755304051.858046,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_lr_geo_location",
+      "value": "US",
+      "domain": "app.musicleague.com",
+      "path": "/",
+      "expires": 1755304051.858162,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "33acrossIdTp",
+      "value": "PviQmFIgFQ8gXB8C08NmLCRWOqGALV5FfnbRF4whzR8%3D",
+      "domain": ".musicleague.com",
+      "path": "/",
+      "expires": 1786667251,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_au_1d",
+      "value": "AU1D-0100-001755131252-HZ3FLZMU-A35O",
+      "domain": ".musicleague.com",
+      "path": "/",
+      "expires": 1786667252.176339,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "KTPCACOOKIE",
+      "value": "true",
+      "domain": ".pubmatic.com",
+      "path": "/",
+      "expires": 1762907252.253773,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "i",
+      "value": "56167529-440c-49d9-8b94-b23b4c6f20af|1755131252",
+      "domain": ".openx.net",
+      "path": "/",
+      "expires": 1786667252.315503,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "KADUSERCOOKIE",
+      "value": "BE72046E-1904-4276-881E-41106C36B621",
+      "domain": ".pubmatic.com",
+      "path": "/",
+      "expires": 1786667252.263711,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "TapAd_TS",
+      "value": "1755131252712",
+      "domain": ".tapad.com",
+      "path": "/",
+      "expires": 1760315252.368504,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "TapAd_DID",
+      "value": "0ee6f5be-d571-48e0-b693-6b0f577db352",
+      "domain": ".tapad.com",
+      "path": "/",
+      "expires": 1760315252.368591,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cto_bundle",
+      "value": "_g3v419rbURpd2RsT1ZjYTV4Z3pZODUxMW8xRGtCeGF2JTJGekxEaEJHMjJKVHVnU1U0N0xQR3Z4cFNCV0R4Qkhnb3V6ZG5SQUdBcUhNJTJGQjd2emhBYnRkSlllMkw2NWZJOHpvY0w2a1pnZ0Y0TXozNU9WTFdaZ20lMkZwelYyN0UlMkZna096bmpX",
+      "domain": ".criteo.com",
+      "path": "/",
+      "expires": 1788827251.269964,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cto_bundle",
+      "value": "TZMqAV9TM0NsbFRSJTJGRzFQMGpFNFRNbG1FaTdLMzBhVER2V2ROZnkzb0EzdTNRRW9Ub3NTcFA5eGF2ZU5hbzRrcnV6bVF3cUM3NkJYJTJGRyUyRjVHUWxxWDIxQlZUVFNvQ001djBMOWwlMkJpZGNMaVZubHFWaVZURXZ2WU9jNUx1SGJvRjAwaCUyRlU",
+      "domain": ".musicleague.com",
+      "path": "/",
+      "expires": 1788802051,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "cto_bidid",
+      "value": "smAa0l9UcXdEQXd4UnVzWkM4dVg4VCUyRmJKWTBLSEYyaTJERzhKcVUyZEhQRXpTSklvV3NZeVhQZkJPd2FGRGFMa0ZqVm55QjRqbXVQek1lWThTM1Q5TTBPUTd3JTNEJTNE",
+      "domain": ".musicleague.com",
+      "path": "/",
+      "expires": 1788802051,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "XANDR_PANID",
+      "value": "QfuS5inEonKskfbnLGjKYLdYnZC6WnL7MpD0HmvcXvij1Ce5XiaFOrNsszrk-B1lCRuZq3vpmLKS4eag9jk048tLzRv4NKP-jYSuQ0wL5wc.",
+      "domain": ".adnxs.com",
+      "path": "/",
+      "expires": 1762907254.31655,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "uuid2",
+      "value": "8839145199641401239",
+      "domain": ".adnxs.com",
+      "path": "/",
+      "expires": 1762907254.316676,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "khaos",
+      "value": "MEANTXXM-1D-I4M3",
+      "domain": ".rubiconproject.com",
+      "path": "/",
+      "expires": 1786667252.299928,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "khaos_p",
+      "value": "MEANTXXM-1D-I4M3",
+      "domain": ".rubiconproject.com",
+      "path": "/",
+      "expires": 1786667252.299958,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__uis",
+      "value": "7b3bdbae-e774-415f-ad89-a1e7a1622f56",
+      "domain": ".go.sonobi.com",
+      "path": "/",
+      "expires": 1786667252.315804,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "HAPLB3G",
+      "value": "s35123|aJ0td",
+      "domain": ".go.sonobi.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "au_id",
+      "value": "AU1D-0100-001755131252-HZ3FLZMU-A35O",
+      "domain": ".ad.gt",
+      "path": "/",
+      "expires": 1786667254.707728,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "au_3p_check",
+      "value": "1",
+      "domain": ".ad.gt",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "TDCPM",
+      "value": "CAESFAoFdGFwYWQSCwiihYzJ7LStPhAFGAEgASgCMgsIpPqO9oK1rT4QBTgBWgV0YXBhZGAC",
+      "domain": ".adsrvr.org",
+      "path": "/",
+      "expires": 1786667252.342211,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "uid",
+      "value": "3355941372134143259",
+      "domain": ".turn.com",
+      "path": "/",
+      "expires": 1770683252.351495,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "TapAd_3WAY_SYNCS",
+      "value": "1!5424",
+      "domain": ".tapad.com",
+      "path": "/",
+      "expires": 1760315252.368754,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "id5",
+      "value": "c57063c5-6ba6-7566-817b-9ecc1c59c9f1#1755131252742#3",
+      "domain": ".id5-sync.com",
+      "path": "/",
+      "expires": 1762907253.645677,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "tuuid",
+      "value": "bb30b352-abc4-4587-9d0a-77b66ba64ebb",
+      "domain": ".360yield.com",
+      "path": "/",
+      "expires": 1762907253.978074,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "tuuid_lu",
+      "value": "1755131254",
+      "domain": ".360yield.com",
+      "path": "/",
+      "expires": 1762907253.978271,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "um",
+      "value": "!313,8qj0wBK36Lxxu-MvOMZeluC-bZG6gyT2CY4943UzWkUi4-Ep2cqAFhi9hrSin9wWESkgNsMY1Gp-u.KvYUd9TiuwkGXElLSNgdmiRqJDbvc.3yHl,1762907254",
+      "domain": ".360yield.com",
+      "path": "/",
+      "expires": 1762907254.146517,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "umeh",
+      "value": "!313,0,1817339254,-1",
+      "domain": ".360yield.com",
+      "path": "/",
+      "expires": 1762907254.146646,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "3pi",
+      "value": "2#1755131255184#-1649864431|124#1755131254871#1226241283",
+      "domain": ".id5-sync.com",
+      "path": "/",
+      "expires": 1762907254.578622,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cf",
+      "value": "gif",
+      "domain": ".id5-sync.com",
+      "path": "/",
+      "expires": 1755131554.578717,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cip",
+      "value": "1528",
+      "domain": ".id5-sync.com",
+      "path": "/",
+      "expires": 1755131554.578738,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cnac",
+      "value": "5",
+      "domain": ".id5-sync.com",
+      "path": "/",
+      "expires": 1755131554.578752,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "car",
+      "value": "4",
+      "domain": ".id5-sync.com",
+      "path": "/",
+      "expires": 1755131554.578766,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "gdpr",
+      "value": "0|",
+      "domain": ".id5-sync.com",
+      "path": "/",
+      "expires": 1755131554.57878,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "gpp",
+      "value": "DBABT~1YNY|6",
+      "domain": ".id5-sync.com",
+      "path": "/",
+      "expires": 1755131554.578793,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "audit_p",
+      "value": "1|q7xVOpC2TzD5/QNZsd5WhxY8b91M8QXOTrj0ufvVhXlpbkpKu2oazzhHdxrKmOAGSl13KL8/fhtBK03vAHceEHP0swe0RknJoRjbyWWLTN4j5+SvyefVPNJ1k+rxG9KA5DroqYK5X21tMd+90jwbkfUtPUKexbMCzY7yoJVHQ3jeJRBGYIPH7rKpUjWTmmg0",
+      "domain": ".rubiconproject.com",
+      "path": "/",
+      "expires": 1786667254.688343,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "audit",
+      "value": "1|q7xVOpC2TzD5/QNZsd5WhxY8b91M8QXOTrj0ufvVhXlpbkpKu2oazzhHdxrKmOAGSl13KL8/fhtBK03vAHceEHP0swe0RknJoRjbyWWLTN4j5+SvyefVPNJ1k+rxG9KA5DroqYK5X21tMd+90jwbkfUtPUKexbMCzY7yoJVHQ3jeJRBGYIPH7rKpUjWTmmg0",
+      "domain": ".rubiconproject.com",
+      "path": "/",
+      "expires": 1786667254.688428,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://app.musicleague.com",
+      "localStorage": [
+        {
+          "name": "aps:da657530-03e5-4306-95bc-d4eb370426c9:idVendors/enabled",
+          "value": "[\"liveintent\",\"pair\",\"33across\",\"publink\",\"ddb_key_638\",\"criteo\",\"yahoo\",\"growthcode\",\"uid\",\"liveRamp\",\"id5\",\"unifiedid\",\"ddb_key_1047\",\"testy_mctest\",\"pubcommon\",\"audigent\",\"lightPublisherAudiences\",\"lotame\"]"
+        },
+        {
+          "name": "au/sid",
+          "value": "{\"v\":\"AU1S-0100-001755131252-M7SQ69AN-MTP3\",\"e\":1755133052249}"
+        },
+        {
+          "name": "cto_bidid",
+          "value": "smAa0l9UcXdEQXd4UnVzWkM4dVg4VCUyRmJKWTBLSEYyaTJERzhKcVUyZEhQRXpTSklvV3NZeVhQZkJPd2FGRGFMa0ZqVm55QjRqbXVQek1lWThTM1Q5TTBPUTd3JTNEJTNE"
+        },
+        {
+          "name": "BT_AA_DETECTION",
+          "value": "{\"ab\":false,\"acceptable\":true,\"nlf\":false}"
+        },
+        {
+          "name": "cto_bundle",
+          "value": "TZMqAV9TM0NsbFRSJTJGRzFQMGpFNFRNbG1FaTdLMzBhVER2V2ROZnkzb0EzdTNRRW9Ub3NTcFA5eGF2ZU5hbzRrcnV6bVF3cUM3NkJYJTJGRyUyRjVHUWxxWDIxQlZUVFNvQ001djBMOWwlMkJpZGNMaVZubHFWaVZURXZ2WU9jNUx1SGJvRjAwaCUyRlU"
+        },
+        {
+          "name": "33acrossId_last",
+          "value": "Thu, 14 Aug 2025 00:27:31 GMT"
+        },
+        {
+          "name": "nitro.mv.5.iiq",
+          "value": "58"
+        },
+        {
+          "name": "nitro.mv.5.consent-config",
+          "value": "76"
+        },
+        {
+          "name": "id5id_exp",
+          "value": "Wed, 12 Nov 2025 00:27:33 GMT"
+        },
+        {
+          "name": "33acrossIdTp",
+          "value": "PviQmFIgFQ8gXB8C08NmLCRWOqGALV5FfnbRF4whzR8="
+        },
+        {
+          "name": "htmx-history-cache",
+          "value": "[{\"url\":\"/home/\",\"content\":\"\\n\\n<nav class=\\\"navbar navbar-dark\\\" style=\\\"background-color: #9E00C4;\\\">\\n    <div class=\\\"container\\\">\\n        <a href=\\\"/\\\" class=\\\"navbar-brand\\\" hx-boost=\\\"false\\\">\\n            <img src=\\\"https://musicleague.b-cdn.net/images/adaptive-icon.png\\\" alt=\\\"Music League logo\\\" style=\\\"height: 75px; margin: -20px 0 -20px 0;\\\">\\n        </a>\\n        <div class=\\\"d-flex align-items-center\\\">\\n            \\n            <a class=\\\"d-none d-sm-inline-block\\\" href=\\\"/user/0e458378610e47c184f629494ac365ad/\\\">\\n                <img class=\\\"rounded-circle d-inline-block\\\" style=\\\"height: 36px; width: 36px;\\\" src=\\\"https://musicleague-user-assets.b-cdn.net/users/0e458378610e47c184f629494ac365ad/images/profile?aspect_ratio=1%3A1&amp;height=300&amp;optimizer=image&amp;quality=70&amp;v=d97330a8-45c0-41cf-a4f7-f11170d16048&amp;width=300\\\" alt=\\\"Profile image\\\">\\n            </a>\\n            <a href=\\\"#\\\" class=\\\"d-inline-block d-sm-none\\\" data-bs-toggle=\\\"offcanvas\\\" data-bs-target=\\\"#offcanvas-nav\\\" aria-controls=\\\"offcanvas-nav\\\" aria-label=\\\"Toggle navigation\\\">\\n                <img class=\\\"rounded-circle d-inline-block\\\" style=\\\"height: 36px; width: 36px;\\\" src=\\\"https://musicleague-user-assets.b-cdn.net/users/0e458378610e47c184f629494ac365ad/images/profile?aspect_ratio=1%3A1&amp;height=300&amp;optimizer=image&amp;quality=70&amp;v=d97330a8-45c0-41cf-a4f7-f11170d16048&amp;width=300\\\" alt=\\\"Profile image\\\">\\n            </a>\\n            \\n            <button class=\\\"d-none d-sm-inline-block text-body-light navbar-toggler ms-3\\\" type=\\\"button\\\" data-bs-toggle=\\\"offcanvas\\\" data-bs-target=\\\"#offcanvas-nav\\\" aria-controls=\\\"offcanvas-nav\\\" aria-label=\\\"Toggle navigation\\\">\\n                <span class=\\\"navbar-toggler-icon\\\"></span>\\n            </button>\\n        </div>\\n        <div class=\\\"offcanvas offcanvas-end\\\" id=\\\"offcanvas-nav\\\" tabindex=\\\"-1\\\" aria-labelledby=\\\"offcanvas-nav-label\\\" hx-boost=\\\"false\\\">\\n            <div class=\\\"offcanvas-header\\\">\\n                <h5 class=\\\"offcanvas-title\\\" id=\\\"offcanvas-nav-label\\\">Menu</h5>\\n                <button type=\\\"button\\\" class=\\\"btn-close\\\" data-bs-dismiss=\\\"offcanvas\\\" aria-label=\\\"Close\\\"></button>\\n            </div>\\n            <div class=\\\"offcanvas-body\\\">\\n                <div class=\\\"mb-3\\\">\\n                    <div class=\\\"row\\\">\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n                        <div class=\\\"col-auto\\\">\\n                            <div class=\\\"card bg-body-tertiary\\\">\\n                                <div class=\\\"card-body\\\">\\n                                    <a href=\\\"#\\\" title=\\\"Toggle color mode\\\" hx-put=\\\"/settings/-/color-mode\\\" hx-swap=\\\"none\\\" class=\\\"stretched-link text-body\\\" hx-on::after-settle=\\\"{\\n                                        const currentTheme = document.querySelector('html').getAttribute('data-bs-theme');\\n                                        if (currentTheme === 'dark')\\n                                            document.querySelector('html').setAttribute('data-bs-theme', 'light');\\n                                        else\\n                                            document.querySelector('html').setAttribute('data-bs-theme', 'dark');\\n                                    }\\\">\\n                                        <i class=\\\"bi bi-moon-fill\\\"></i>\\n                                    </a>\\n                                </div>\\n                            </div>\\n                        </div>\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n                    </div>\\n                </div>\\n                <ul class=\\\"navbar-nav justify-content-end flex-grow-1 pe-3\\\">\\n                    <li class=\\\"nav-item\\\">\\n                        <a href=\\\"/\\\" class=\\\"fs-6 nav-link text-body\\\">Home</a>\\n                    </li>\\n                    \\n                    <li class=\\\"nav-item\\\">\\n                        <a href=\\\"/user/0e458378610e47c184f629494ac365ad/\\\" class=\\\"fs-6 nav-link text-body\\\">View Profile</a>\\n                    </li>\\n                    \\n                    <li class=\\\"nav-item\\\">\\n                        <a href=\\\"/l/create/\\\" class=\\\"fs-6 nav-link text-body\\\">Create League</a>\\n                    </li>\\n                    <li class=\\\"nav-item\\\">\\n                        <a href=\\\"/open/\\\" class=\\\"fs-6 nav-link text-body\\\">Open Leagues</a>\\n                    </li>\\n                    <li class=\\\"nav-item\\\">\\n                        <a href=\\\"/completed/\\\" class=\\\"fs-6 nav-link text-body\\\">Completed Leagues</a>\\n                    </li>\\n                    <li class=\\\"nav-item\\\">\\n                        <a href=\\\"/settings/\\\" class=\\\"fs-6 nav-link text-body\\\">Settings</a>\\n                    </li>\\n                    <li class=\\\"nav-item\\\">\\n                        <a href=\\\"https://install.page/musicleague\\\" class=\\\"fs-6 nav-link text-body\\\" target=\\\"_blank\\\">\\n                            <div class=\\\"row align-items-center\\\">\\n                                <div class=\\\"col\\\">\\n                                    <span>Install App</span>\\n                                </div>\\n                                <div class=\\\"col-auto\\\">\\n                                    <i class=\\\"bi bi-chevron-right flex-stretch-0\\\"></i>\\n                                </div>\\n                            </div>\\n                        </a>\\n                    </li>\\n                    <li class=\\\"nav-item\\\">\\n                        <a href=\\\"https://store.musicleague.com\\\" class=\\\"fs-6 nav-link text-body\\\" target=\\\"_blank\\\">\\n                            <div class=\\\"row align-items-center\\\">\\n                                <div class=\\\"col\\\">\\n                                    <span>Store</span>\\n                                </div>\\n                                <div class=\\\"col-auto\\\">\\n                                    <i class=\\\"bi bi-chevron-right flex-stretch-0\\\"></i>\\n                                </div>\\n                            </div>\\n                        </a>\\n                    </li>\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n                    <li class=\\\"card mt-3\\\">\\n                        <div class=\\\"card-body rounded\\\">\\n                            <div class=\\\"card-title fw-semibold\\\">\\n                                <b class=\\\"text-turquoise\\\"><i class=\\\"bi bi-chat flex-stretch-0 me-2\\\"></i>Contact Us</b>\\n                            </div>\\n                            <ul class=\\\"navbar-nav\\\">\\n                                <li class=\\\"nav-item\\\">\\n                                    <a href=\\\"#\\\" class=\\\"fs-6 nav-link text-body\\\" x-on:click=\\\"console.log('get support'); Beacon('prefill', {subject: 'In-App Support'}); Beacon('session-data', {'User ID': '0e458378610e47c184f629494ac365ad'}); Beacon('open');\\\">\\n                                        Get Support\\n                                    </a>\\n                                </li>\\n                                <li class=\\\"nav-item\\\">\\n                                    <a href=\\\"#\\\" class=\\\"fs-6 nav-link text-body\\\" x-on:click=\\\"console.log('request feature'); Beacon('prefill', {subject: 'Feature Request'}); Beacon('session-data', {'User ID': '0e458378610e47c184f629494ac365ad'}); Beacon('open'); Beacon('navigate', 'ask/message/');\\\">Request a Feature</a>\\n                                </li>\\n                            </ul>\\n                        </div>\\n                    </li>\\n                    \\n                    <li class=\\\"card mt-3\\\">\\n                        <div class=\\\"card-body rounded\\\">\\n                            <div class=\\\"card-title fw-semibold\\\">\\n                                <b class=\\\"text-turquoise\\\"><i class=\\\"bi bi-megaphone flex-stretch-0 me-2\\\"></i>Ads</b>\\n                            </div>\\n                            <ul class=\\\"navbar-nav\\\">\\n                                <li class=\\\"nav-item\\\">\\n                                    <button data-bs-target=\\\"#why-ads\\\" data-bs-toggle=\\\"collapse\\\" class=\\\"fs-6 nav-link text-body\\\">Why are there ads?</button>\\n                                    <p id=\\\"why-ads\\\" class=\\\"text-body-secondary collapse\\\">\\n                                        Music League is a small team helping to build a community around music. We use ads to help pay for the costs of running the site and to help us grow.\\n                                        If you'd like to support us in our mission and play without ads, you can subscribe to Music League by clicking below.\\n                                    </p>\\n                                </li>\\n                                <li class=\\\"nav-item\\\">\\n                                    <a href=\\\"/subscription/about/\\\" target=\\\"_blank\\\" class=\\\"fs-6 nav-link text-body\\\">\\n                                        <div class=\\\"row align-items-center\\\">\\n                                            <div class=\\\"col\\\">\\n                                                <span>Remove ads</span>\\n                                            </div>\\n                                            <div class=\\\"col-auto\\\">\\n                                                <i class=\\\"bi bi-chevron-right flex-stretch-0\\\"></i>\\n                                            </div>\\n                                        </div>\\n                                    </a>\\n                                </li>\\n                            </ul>\\n                        </div>\\n                    </li>\\n                    \\n                    <li class=\\\"nav-item my-3\\\">\\n                        <a href=\\\"/logout/\\\" class=\\\"fs-6 nav-link text-fuschia fw-semibold\\\" hx-boost=\\\"false\\\">Sign Out</a>\\n                    </li>\\n                </ul>\\n            </div>\\n        </div>\\n    </div>\\n</nav>\\n<nav class=\\\"navbar-expand navbar-dark fixed-bottom d-sm-none border-0 text-white safe-bottom\\\" style=\\\"background-color: #9E00C4;\\\">\\n    <div class=\\\"container-fluid\\\">\\n        <div class=\\\"row py-3 align-items-start row-cols-4\\\">\\n            <div class=\\\"col text-center position-relative\\\">\\n                <a href=\\\"/\\\" class=\\\"stretched-link text-decoration-none text-white\\\">\\n                    <i class=\\\"bi bi-house-door fs-3\\\"></i>\\n                </a>\\n\\n            </div>\\n            <div class=\\\"col text-center position-relative\\\">\\n                <a href=\\\"/completed/\\\" class=\\\"stretched-link text-decoration-none text-white\\\">\\n                    <i class=\\\"bi bi-clock-history fs-3\\\"></i>\\n                </a>\\n\\n            </div>\\n            <div class=\\\"col text-center position-relative\\\">\\n                <a href=\\\"/l/create/\\\" class=\\\"stretched-link text-decoration-none text-white\\\" hx-boost=\\\"false\\\">\\n                    <i class=\\\"bi bi-plus-lg fs-3\\\"></i>\\n                </a>\\n\\n            </div>\\n            <div class=\\\"col text-center position-relative\\\">\\n                <a href=\\\"/open/\\\" class=\\\"stretched-link text-decoration-none text-white\\\">\\n                    <i class=\\\"bi bi-grid fs-3\\\"></i>\\n                </a>\\n\\n            </div>\\n\\n\\n\\n\\n\\n        </div>\\n    </div>\\n</nav>\\n\\n\\n<div class=\\\"has-ads container pb-5\\\" hx-ext=\\\"json-enc\\\" x-data=\\\"{showInvitations: false}\\\">\\n<div id=\\\"nitro-rail-left\\\" class=\\\"ad d-none d-lg-block position-fixed top-50 start-0 translate-middle-y\\\"></div>\\n\\n    <div id=\\\"main\\\" class=\\\"container\\\">\\n        <div class=\\\"row mt-4 mb-2 align-items-center\\\" x-show=\\\"showInvitations\\\" style=\\\"display: none;\\\">\\n            <div class=\\\"col\\\">\\n                <h3 class=\\\"mb-0\\\">Invitations</h3>\\n            </div>\\n        </div>\\n        <div id=\\\"league-invitations\\\" class=\\\"row\\\" x-show=\\\"showInvitations\\\" style=\\\"display: none;\\\">\\n            <div class=\\\"col-12\\\">\\n                <div class=\\\"row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-3\\\" hx-get=\\\"-/invitations\\\" hx-trigger=\\\"load\\\" hx-indicator=\\\"#invitationsSpinner\\\"></div>\\n                <div id=\\\"invitationsSpinner\\\" class=\\\"col-12 htmx-indicator text-center my-2\\\">\\n                    <div class=\\\"spinner-grow\\\" role=\\\"status\\\">\\n                        <span class=\\\"visually-hidden\\\">Loading...</span>\\n                    </div>\\n                </div>\\n            </div>\\n        </div>\\n        <div class=\\\"row mt-4 mb-2\\\">\\n            <div class=\\\"col-12 offset-\\\">\\n                <div class=\\\"card border-purple\\\">\\n                    <div class=\\\"card-body text-purple\\\">\\n                        <div class=\\\"row\\\">\\n                            <div class=\\\"col text-center\\\">\\n                                <div class=\\\"row mb-4 row-cols-1 row-cols-md-3 gy-3 fs-6\\\">\\n                                    <div class=\\\"col text-center\\\">\\n                                        <i class=\\\"bi bi-bar-chart-steps flex-shrink-0 d-none d-md-block mb-3 fs-2\\\"></i>\\n                                        <i class=\\\"bi bi-bar-chart-steps flex-shrink-0 me-1 d-md-none\\\"></i>\\n                                        <span class=\\\"fw-semibold\\\">Dive deeper into your stats</span>\\n                                    </div>\\n                                    <div class=\\\"col text-center\\\">\\n                                        <i class=\\\"bi bi-graph-up-arrow flex-shrink-0 d-none d-md-block mb-3 fs-2\\\"></i>\\n                                        <i class=\\\"bi bi-graph-up-arrow flex-shrink-0 me-1 d-md-none\\\"></i>\\n                                        <span class=\\\"fw-semibold\\\">Analyze trends and patterns</span>\\n                                    </div>\\n                                    <div class=\\\"col text-center\\\">\\n                                        <i class=\\\"bi bi-stars flex-shrink-0 d-none d-md-block mb-3 fs-2\\\"></i>\\n                                        <i class=\\\"bi bi-stars flex-shrink-0 me-1 d-md-none\\\"></i>\\n                                        <span class=\\\"fw-semibold\\\">Impress friends with your data skills</span>\\n                                    </div>\\n                                </div>\\n                                <div class=\\\"text-center text-purple mb-1\\\">Music League subscription now includes league\\n                                    data export\\n                                </div>\\n                                <a href=\\\"/subscription/about/\\\" target=\\\"_blank\\\" class=\\\"btn btn-sm bg-purple text-white w-100\\\">Subscribe to get\\n                                    started</a>\\n                            </div>\\n                        </div>\\n                    </div>\\n                </div>\\n            </div>\\n        </div>\\n\\n        <div x-data=\\\"{hasContent: false, hasLoaded: false}\\\" x-on:htmx:after-settle=\\\"hasLoaded = true\\\">\\n            <div class=\\\"row mt-4 mb-2 align-items-end\\\">\\n                <div class=\\\"col\\\">\\n                    <h3 class=\\\"mb-0\\\">Current Leagues</h3>\\n                </div>\\n                <div class=\\\"col-auto\\\">\\n                    <a href=\\\"/completed/\\\" class=\\\"fw-semibold text-purple text-decoration-none\\\">View completed</a>\\n                </div>\\n            </div>\\n            <div x-show=\\\"!hasContent &amp;&amp; hasLoaded\\\" class=\\\"row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-3\\\" style=\\\"display: none;\\\">\\n                <div class=\\\"col text-center\\\">\\n                    <div class=\\\"card border-1\\\">\\n                        <div class=\\\"card-body\\\">\\n                            <img src=\\\"https://musicleague.b-cdn.net/images/newleague.png\\\" alt=\\\"\\\" class=\\\"mb-3\\\">\\n                            <h5 class=\\\"card-title\\\">Have a great idea for a theme?</h5>\\n                            <p class=\\\"card-text text-body-secondary\\\">Create your own league and get in on all the\\n                                fun!</p>\\n                            <a href=\\\"/l/create/\\\" class=\\\"btn bg-purple text-white w-100 placeholder-wave\\\">Start A New League</a>\\n                        </div>\\n                    </div>\\n                </div>\\n            </div>\\n            <div id=\\\"current-leagues\\\" class=\\\"row\\\">\\n                <div class=\\\"col-12\\\">\\n                    <div class=\\\"row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-3\\\" hx-get=\\\"./-/currentLeagues\\\" hx-trigger=\\\"load\\\" hx-indicator=\\\"#currentLeaguesSpinner\\\"><div class=\\\"col league-tile\\\" x-init=\\\"hasContent = true\\\">\\n    <div class=\\\"card h-100 shadow-sm\\\">\\n        <div class=\\\"card-header bg-body text-body-secondary\\\">\\n            <div class=\\\"row g-0 fs-p7em\\\">\\n    <div class=\\\"col-4 text-start\\\">\\n        \\n        <svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"10\\\" height=\\\"10\\\" fill=\\\"currentColor\\\" class=\\\"bi bi-lock-fill\\\" viewBox=\\\"0 0 16 16\\\">\\n            <path d=\\\"M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z\\\"></path>\\n        </svg>\\n        \\n        UNLISTED\\n    </div>\\n    <div class=\\\"col-4 text-center\\\">\\n        \\n        <i class=\\\"bi bi-play-fill flex-shrink-0\\\"></i>\\n        \\n        ACCELERATED\\n    </div>\\n    <div class=\\\"col-4 text-end\\\">\\n        \\n    </div>\\n</div>\\n\\n        </div>\\n        <div class=\\\"row g-0\\\">\\n            <div class=\\\"col-3\\\">\\n                <img src=\\\"https://musicleague-static-assets.b-cdn.net/images/league/10.png?aspect_ratio=1%3A1&amp;height=300&amp;optimizer=image&amp;quality=70&amp;width=300\\\" alt=\\\"League image\\\" class=\\\"object-fit-cover w-100\\\" style=\\\"min-height: 100%\\\">\\n            </div>\\n            <div class=\\\"col-9\\\">\\n                <div class=\\\"card-body px-2 pt-2 pb-3\\\">\\n                    <h6 class=\\\"card-title text-truncate\\\"><a href=\\\"/l/d79d0eca78cd49de8e78302419f84122/\\\" class=\\\"text-decoration-none text-body stretched-link\\\">Bard's Tale 27: Metropolis</a></h6>\\n                    <p class=\\\"card-text fw-light\\\" style=\\\"line-height: 1.2em; height: 2.4em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;\\\">\\n                        Think of Music League like Show and Tell: remember that someone is sharing something they cherish with you - so in the words of Bill &amp; Ted: Be Excellent to Each Other!\\n\\nA few tips - Try not to:\\nPick \u2018obvious\u2019 songs;\\nBe the last to submit a song or to vote;\\nSubmit previously used songs (prior song lists at https://open.spotify.com/playlist/1heU7Y11z5Ei5AVWLgbn30?si=89cef5f947034acc\\n)\\n                    </p>\\n                    <div class=\\\"card-text row fs-p8em\\\">\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">6</strong><span class=\\\"fw-light\\\">ROUNDS</span></div>\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">1</strong><span class=\\\"fw-light\\\">SONG/ROUND</span></div>\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">12 / 15</strong><span class=\\\"fw-light\\\">PLAYERS</span></div>\\n                    </div>\\n                </div>\\n            </div>\\n            \\n            <div class=\\\"card-footer bg-body text-body-secondary\\\" x-data=\\\"{outstanding: false}\\\" :class=\\\"{outstanding: outstanding}\\\">\\n                <div class=\\\"row\\\">\\n                    \\n                    <div class=\\\"col\\\">\\n                        <i class=\\\"bi bi-clock flex-shrink-0 me-1\\\"></i>Songs due in <span x-text=\\\"dateFns.distanceInWordsToNow(dateFns.parse('2025-08-16T00:00:00Z'))\\\">2 days</span>\\n                    </div>\\n                    <div class=\\\"col-auto\\\">\\n                        \\n                        <i class=\\\"bi bi-check-circle me-1\\\"></i>Songs submitted\\n                        \\n                    </div>\\n                    \\n                </div>\\n            \\n            </div>\\n        </div>\\n    </div>\\n</div><div class=\\\"ad-content ./-/currentLeagues\\\" id=\\\"nitro-ad-content-1\\\"></div>\\n\\n\\n</div>\\n                    <div id=\\\"currentLeaguesSpinner\\\" class=\\\"col-12 htmx-indicator text-center my-2\\\">\\n                        <div class=\\\"spinner-grow\\\" role=\\\"status\\\">\\n                            <span class=\\\"visually-hidden\\\">Loading...</span>\\n                        </div>\\n                    </div>\\n                </div>\\n            </div>\\n        </div>\\n\\n        <div x-data=\\\"{hasContent: false, hasLoaded: false}\\\" x-on:htmx:after-settle=\\\"hasLoaded = true\\\">\\n            <div x-show=\\\"hasLoaded &amp;&amp; hasContent\\\" class=\\\"row mt-4 mb-2 align-items-end\\\" style=\\\"display: none;\\\">\\n                <div class=\\\"col\\\">\\n                    <h3 class=\\\"mb-0\\\">Recently Completed</h3>\\n                </div>\\n                <div class=\\\"col-auto\\\">\\n                    <a href=\\\"/completed/\\\" class=\\\"fw-semibold text-purple text-decoration-none\\\">View all</a>\\n                </div>\\n            </div>\\n            <div x-show=\\\"hasLoaded &amp;&amp; hasContent\\\" id=\\\"recent-leagues\\\" class=\\\"row\\\" style=\\\"display: none;\\\">\\n                <div class=\\\"col-12\\\">\\n                    <div class=\\\"row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-3\\\" hx-get=\\\"-/recentLeagues\\\" hx-trigger=\\\"load\\\" hx-indicator=\\\"#recentLeaguesSpinner\\\"></div>\\n                    <div id=\\\"recentLeaguesSpinner\\\" class=\\\"col-12 htmx-indicator text-center my-2\\\">\\n                        <div class=\\\"spinner-grow\\\" role=\\\"status\\\">\\n                            <span class=\\\"visually-hidden\\\">Loading...</span>\\n                        </div>\\n                    </div>\\n                </div>\\n            </div>\\n        </div>\\n\\n        <div class=\\\"row mt-4 mb-2 align-items-end\\\">\\n            <div class=\\\"col\\\">\\n                <h3 class=\\\"mb-0\\\">Open Leagues</h3>\\n            </div>\\n            <div class=\\\"col-auto\\\">\\n                <a href=\\\"/open/\\\" class=\\\"fw-semibold text-purple text-decoration-none\\\">View all</a>\\n            </div>\\n        </div>\\n        <div class=\\\"row\\\">\\n            <div class=\\\"col-12\\\">\\n                <div class=\\\"row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-3\\\" hx-get=\\\"-/recommendedLeagues\\\" hx-trigger=\\\"load\\\" hx-indicator=\\\"#recommendedLeaguesSpinner\\\"><div class=\\\"col league-tile\\\" x-init=\\\"hasContent = true\\\">\\n    <div class=\\\"card h-100 shadow-sm\\\">\\n        <div class=\\\"card-header bg-body text-body-secondary\\\">\\n            <div class=\\\"row g-0 fs-p7em\\\">\\n    <div class=\\\"col-4 text-start\\\">\\n        \\n        <svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"10\\\" height=\\\"10\\\" fill=\\\"currentColor\\\" class=\\\"bi bi-unlock\\\" viewBox=\\\"0 0 16 16\\\">\\n            <path d=\\\"M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z\\\"></path>\\n        </svg>\\n        \\n        OPEN\\n    </div>\\n    <div class=\\\"col-4 text-center\\\">\\n        \\n        <i class=\\\"bi bi-play-fill flex-shrink-0\\\"></i>\\n        \\n        ACCELERATED\\n    </div>\\n    <div class=\\\"col-4 text-end\\\">\\n        \\n    </div>\\n</div>\\n\\n        </div>\\n        <div class=\\\"row g-0\\\">\\n            <div class=\\\"col-3\\\">\\n                <img src=\\\"https://musicleague-static-assets.b-cdn.net/images/league/open15.png?aspect_ratio=1%3A1&amp;height=300&amp;optimizer=image&amp;quality=70&amp;width=300\\\" alt=\\\"League image\\\" class=\\\"object-fit-cover w-100\\\" style=\\\"min-height: 100%\\\">\\n            </div>\\n            <div class=\\\"col-9\\\">\\n                <div class=\\\"card-body px-2 pt-2 pb-3\\\">\\n                    <h6 class=\\\"card-title text-truncate\\\"><a href=\\\"/l/8cbf083442294f55836c8528c6f8e8ea/\\\" class=\\\"text-decoration-none text-body stretched-link\\\">I had this on CD</a></h6>\\n                    <p class=\\\"card-text fw-light\\\" style=\\\"line-height: 1.2em; height: 2.4em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;\\\">\\n                        We start with the song playing when you pick up your date, and end with the song that gets you over the breakup. \\nAll songs released during the CD era. \\n                    </p>\\n                    <div class=\\\"card-text row fs-p8em\\\">\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">5</strong><span class=\\\"fw-light\\\">ROUNDS</span></div>\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">1</strong><span class=\\\"fw-light\\\">SONG/ROUND</span></div>\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">2 / 15</strong><span class=\\\"fw-light\\\">PLAYERS</span></div>\\n                    </div>\\n                </div>\\n            </div>\\n            \\n            <div class=\\\"card-footer bg-body text-body-secondary\\\">\\n                <i class=\\\"bi bi-hourglass-split flex-shrink-0 me-1\\\"></i>\\n                Created <span x-text=\\\"dateFns.distanceInWordsToNow(dateFns.parse('2025-08-13 23:47:29.066996 +0000 UTC'))\\\">about 6 hours</span> ago\\n                \\n            </div>\\n        </div>\\n    </div>\\n</div>\\n\\n\\n\\n<div class=\\\"col league-tile\\\" x-init=\\\"hasContent = true\\\">\\n    <div class=\\\"card h-100 shadow-sm\\\">\\n        <div class=\\\"card-header bg-body text-body-secondary\\\">\\n            <div class=\\\"row g-0 fs-p7em\\\">\\n    <div class=\\\"col-4 text-start\\\">\\n        \\n        <svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"10\\\" height=\\\"10\\\" fill=\\\"currentColor\\\" class=\\\"bi bi-unlock\\\" viewBox=\\\"0 0 16 16\\\">\\n            <path d=\\\"M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z\\\"></path>\\n        </svg>\\n        \\n        OPEN\\n    </div>\\n    <div class=\\\"col-4 text-center\\\">\\n        \\n        <i class=\\\"bi bi-play flex-shrink-0\\\"></i>\\n        \\n        STEADY\\n    </div>\\n    <div class=\\\"col-4 text-end\\\">\\n        \\n    </div>\\n</div>\\n\\n        </div>\\n        <div class=\\\"row g-0\\\">\\n            <div class=\\\"col-3\\\">\\n                <img src=\\\"https://musicleague-static-assets.b-cdn.net/images/league/open17.png?aspect_ratio=1%3A1&amp;height=300&amp;optimizer=image&amp;quality=70&amp;width=300\\\" alt=\\\"League image\\\" class=\\\"object-fit-cover w-100\\\" style=\\\"min-height: 100%\\\">\\n            </div>\\n            <div class=\\\"col-9\\\">\\n                <div class=\\\"card-body px-2 pt-2 pb-3\\\">\\n                    <h6 class=\\\"card-title text-truncate\\\"><a href=\\\"/l/52fcb9edcf2c4881ac99fb79bdb7459e/\\\" class=\\\"text-decoration-none text-body stretched-link\\\">Major Arcana in Tarot \ud83d\udc9c\u2728</a></h6>\\n                    <p class=\\\"card-text fw-light\\\" style=\\\"line-height: 1.2em; height: 2.4em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;\\\">\\n                        A song per card along the fool\u2019s journey \\n                    </p>\\n                    <div class=\\\"card-text row fs-p8em\\\">\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">22</strong><span class=\\\"fw-light\\\">ROUNDS</span></div>\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">1</strong><span class=\\\"fw-light\\\">SONG/ROUND</span></div>\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">7 / 22</strong><span class=\\\"fw-light\\\">PLAYERS</span></div>\\n                    </div>\\n                </div>\\n            </div>\\n            \\n            <div class=\\\"card-footer bg-body text-body-secondary\\\">\\n                <i class=\\\"bi bi-hourglass-split flex-shrink-0 me-1\\\"></i>\\n                Created <span x-text=\\\"dateFns.distanceInWordsToNow(dateFns.parse('2025-08-13 23:13:58.022493 +0000 UTC'))\\\">about 6 hours</span> ago\\n                \\n            </div>\\n        </div>\\n    </div>\\n</div>\\n\\n\\n\\n<div class=\\\"col league-tile\\\" x-init=\\\"hasContent = true\\\">\\n    <div class=\\\"card h-100 shadow-sm\\\">\\n        <div class=\\\"card-header bg-body text-body-secondary\\\">\\n            <div class=\\\"row g-0 fs-p7em\\\">\\n    <div class=\\\"col-4 text-start\\\">\\n        \\n        <svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"10\\\" height=\\\"10\\\" fill=\\\"currentColor\\\" class=\\\"bi bi-unlock\\\" viewBox=\\\"0 0 16 16\\\">\\n            <path d=\\\"M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z\\\"></path>\\n        </svg>\\n        \\n        OPEN\\n    </div>\\n    <div class=\\\"col-4 text-center\\\">\\n        \\n        <i class=\\\"bi bi-fast-forward-fill flex-shrink-0\\\"></i>\\n        \\n        SPEEDY\\n    </div>\\n    <div class=\\\"col-4 text-end\\\">\\n        \\n        <svg width=\\\"10\\\" height=\\\"10\\\" viewBox=\\\"0 0 24 24\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\"><g><path fill=\\\"none\\\" d=\\\"M0 0h24v24H0z\\\"></path><path fill=\\\"currentColor\\\" d=\\\"M22 15h-3V3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zm-5.293 1.293l-6.4 6.4a.5.5 0 0 1-.654.047L8.8 22.1a1.5 1.5 0 0 1-.553-1.57L9.4 16H3a2 2 0 0 1-2-2v-2.104a2 2 0 0 1 .15-.762L4.246 3.62A1 1 0 0 1 5.17 3H16a1 1 0 0 1 1 1v11.586a1 1 0 0 1-.293.707z\\\"></path></g></svg>\\n        DOWNVOTES ON\\n        \\n    </div>\\n</div>\\n\\n        </div>\\n        <div class=\\\"row g-0\\\">\\n            <div class=\\\"col-3\\\">\\n                <img src=\\\"https://musicleague-static-assets.b-cdn.net/images/league/open6.png?aspect_ratio=1%3A1&amp;height=300&amp;optimizer=image&amp;quality=70&amp;width=300\\\" alt=\\\"League image\\\" class=\\\"object-fit-cover w-100\\\" style=\\\"min-height: 100%\\\">\\n            </div>\\n            <div class=\\\"col-9\\\">\\n                <div class=\\\"card-body px-2 pt-2 pb-3\\\">\\n                    <h6 class=\\\"card-title text-truncate\\\"><a href=\\\"/l/ba8004efc7ba4c9b91621cd08583f6eb/\\\" class=\\\"text-decoration-none text-body stretched-link\\\">One Hitter</a></h6>\\n                    <p class=\\\"card-text fw-light\\\" style=\\\"line-height: 1.2em; height: 2.4em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;\\\">\\n                        Fast paced.\\nSnail submitters will be bounced.\\nBlind voters will be bounced.\\n                    </p>\\n                    <div class=\\\"card-text row fs-p8em\\\">\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">1</strong><span class=\\\"fw-light\\\">ROUND</span></div>\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">1</strong><span class=\\\"fw-light\\\">SONG/ROUND</span></div>\\n                        <div class=\\\"col text-center\\\"><strong class=\\\"d-block\\\">18 / 20</strong><span class=\\\"fw-light\\\">PLAYERS</span></div>\\n                    </div>\\n                </div>\\n            </div>\\n            \\n            <div class=\\\"card-footer bg-body text-body-secondary\\\">\\n                <i class=\\\"bi bi-hourglass-split flex-shrink-0 me-1\\\"></i>\\n                Created <span x-text=\\\"dateFns.distanceInWordsToNow(dateFns.parse('2025-08-13 22:46:28.530924 +0000 UTC'))\\\">about 5 hours</span> ago\\n                \\n            </div>\\n        </div>\\n    </div>\\n</div><div class=\\\"ad-content -/recommendedLeagues\\\" id=\\\"nitro-ad-content-2\\\"></div>\\n\\n\\n</div>\\n                <div id=\\\"recommendedLeaguesSpinner\\\" class=\\\"col-12 htmx-indicator text-center my-2\\\">\\n                    <div class=\\\"spinner-grow\\\" role=\\\"status\\\">\\n                        <span class=\\\"visually-hidden\\\">Loading...</span>\\n                    </div>\\n                </div>\\n            </div>\\n        </div>\\n\\n        <div id=\\\"ccpa-container\\\" class=\\\"row mt-4 mb-2 show\\\">\\n            <div class=\\\"col-12 offset-\\\">\\n                <div class=\\\"card\\\">\\n                    <div class=\\\"card-body text-purple\\\">\\n                        <div class=\\\"row\\\">\\n                            <div class=\\\"col text-center\\\">\\n                                <button class=\\\"btn btn-sm bg-purple text-white w-100\\\" data-ccpa-link=\\\"1\\\"><a href=\\\"javascript:;\\\"><span>Do Not Sell My Personal Information</span></a></button>\\n                            </div>\\n                        </div>\\n                    </div>\\n                </div>\\n            </div>\\n        </div>\\n\\n        <div id=\\\"infinite-scroll-indicator\\\" class=\\\"htmx-indicator text-center my-2\\\">\\n            <div class=\\\"spinner-grow\\\" role=\\\"status\\\">\\n                <span class=\\\"visually-hidden\\\">Loading...</span>\\n            </div>\\n        </div>\\n    </div>\\n<div id=\\\"nitro-rail-right\\\" class=\\\"ad d-none d-lg-block position-fixed top-50 end-0 translate-middle-y\\\"></div>\\n</div>\\n\\n<div class=\\\"offcanvas offcanvas-end\\\" :class=\\\"{show: (new URLSearchParams(window.location.search)).get('signup') === '1'}\\\" id=\\\"signup-modal\\\">\\n    <div class=\\\"offcanvas-header\\\">\\n        <h5 class=\\\"offcanvas-title text-purple\\\" id=\\\"offcanvasTopLabel\\\">Welcome to Music League</h5>\\n        <button type=\\\"button\\\" class=\\\"btn-close\\\" data-bs-dismiss=\\\"offcanvas\\\" aria-label=\\\"Close\\\"></button>\\n    </div>\\n    <div class=\\\"offcanvas-body\\\">\\n        <div class=\\\"mb-5 text-center\\\">\\n            <img src=\\\"https://musicleague.b-cdn.net/images/signup.png\\\" alt=\\\"\\\" class=\\\"img-auto\\\" style=\\\"max-height: 250px;\\\">\\n        </div>\\n        <p class=\\\"fw-semibold\\\">We're glad that you're here!</p>\\n        <p>When you sign up, the information below is provided by Spotify. Please take a moment to make sure that it is\\n            correct.</p>\\n        <p>\\n            You can change your profile image and configure email notifications by going to <a href=\\\"/settings/\\\" target=\\\"_blank\\\" class=\\\"text-turquoise fw-semibold\\\">Settings</a>.\\n        </p>\\n\\n        <div class=\\\"card my-3\\\">\\n            <div class=\\\"card-body\\\" x-data=\\\"{changed: false}\\\" id=\\\"signup-settings\\\">\\n                <div class=\\\"form-floating mb-3\\\">\\n                    <input type=\\\"text\\\" class=\\\"form-control\\\" name=\\\"name\\\" id=\\\"name\\\" value=\\\"legion1996a\\\" @input=\\\"changed = true\\\">\\n                    <label for=\\\"name\\\">Name</label>\\n                </div>\\n\\n                <div class=\\\"form-floating mb-3\\\">\\n                    <input type=\\\"email\\\" class=\\\"form-control\\\" name=\\\"email\\\" id=\\\"email\\\" value=\\\"mjhayward@gmail.com\\\" @input=\\\"changed = true\\\">\\n                    <label for=\\\"email\\\">Email (optional)</label>\\n                </div>\\n\\n                <button type=\\\"button\\\" class=\\\"btn btn-outline text-purple border-purple bg-hover-purple text-hover-white disabled\\\" :class=\\\"{disabled: !changed}\\\" :disabled=\\\"!changed\\\" hx-put=\\\"-/signup/settings\\\" hx-include=\\\"#signup-settings\\\" hx-swap=\\\"none\\\" hx-indicator=\\\"#update-spinner\\\" disabled=\\\"disabled\\\">\\n                    Update\\n                    <div id=\\\"update-spinner\\\" class=\\\"htmx-indicator spinner-border spinner-border-sm\\\" style=\\\"color: inherit\\\" role=\\\"status\\\">\\n                        <span class=\\\"visually-hidden\\\">Updating...</span>\\n                    </div>\\n                </button>\\n            </div>\\n            <div class=\\\"card-footer\\\">\\n                <i class=\\\"bi bi-info-circle me-1 flex-shrink-0\\\"></i>\\n                Changes here only apply inside of Music League.\\n            </div>\\n        </div>\\n    </div>\\n</div>\\n\\n<script type=\\\"text/javascript\\\">\\n    window.addEventListener(\\\"load\\\", function () {\\n        progressier.add({\\n            id: \\\"0e458378610e47c184f629494ac365ad\\\"\\n        });\\n    });\\n</script>\\n\\n<script type=\\\"text/javascript\\\">!function(e,t,n){function a(){var e=t.getElementsByTagName(\\\"script\\\")[0],n=t.createElement(\\\"script\\\");n.type=\\\"text/javascript\\\",n.async=!0,n.src=\\\"https://beacon-v2.helpscout.net\\\",e.parentNode.insertBefore(n,e)}if(e.Beacon=n=function(t,n,a){e.Beacon.readyQueue.push({method:t,options:n,data:a})},n.readyQueue=[],\\\"complete\\\"===t.readyState)return a();e.attachEvent?e.attachEvent(\\\"onload\\\",a):e.addEventListener(\\\"load\\\",a,!1)}(window,document,window.Beacon||function(){});</script>\\n<script type=\\\"text/javascript\\\">window.Beacon('init', 'c91a8d73-f05b-4f0c-8784-580657395c7e')</script>\\n\\n\\n\\n\\n<iframe marginwidth=\\\"0\\\" marginheight=\\\"0\\\" scrolling=\\\"no\\\" frameborder=\\\"0\\\" id=\\\"1eec94f9a7f141\\\" width=\\\"0\\\" height=\\\"0\\\" src=\\\"about:blank\\\" name=\\\"__pb_locator__\\\" style=\\\"display: none; height: 0px; width: 0px; border: 0px;\\\"></iframe><iframe name=\\\"__uspapiLocator\\\" style=\\\"display: none;\\\"></iframe><div id=\\\"nitro-anchor\\\" class=\\\"na-anchor-bottom\\\" style=\\\"z-index: 99997; position: fixed; width: 100%; max-width: 100vw; font-size: 0px; background-color: rgba(255, 255, 255, 0.8); bottom: 0px; left: 0px; padding-top: 10px; transition: bottom 0.15s linear;\\\"></div><div id=\\\"nitro-anchor-close\\\" style=\\\"position: fixed; left: calc(50% + 501px); display: none; align-items: center; justify-content: center; font-size: 0px; cursor: pointer; z-index: 99999; opacity: 0.8; width: 44px; height: 44px; transition: bottom 0.15s linear;\\\"><img src=\\\"https://s.nitropay.com/assets/close2.svg\\\" style=\\\"width: 16px;\\\"></div><style id=\\\"progressier-backdrop\\\">\\n\\t\\t.progressier-backdrop{position:fixed;z-index: 2147483642;left:0px;top:0px;width:100vw;height:100vh;background:var(--progressierBackdrop);transition:0.4s ease-out opacity; opacity: 1;}\\n\\t\\t.progressier-backdrop.removing{opacity:0;}\\n\\t\\tbody:not(.progressier-blurring)  .progressier-backdrop{display:none !important;z-index:-1 !important;}\\n\\t\\t.progressier-backdrop svg{display:none !important;}\\n\\t\\tbody.progressier-blurring > *:not(.no-blurring){-webkit-backdrop-filter:blur(3px) brightness(0.7) contrast(0.8);filter: blur(3px) brightness(0.7) contrast(0.8);pointer-events:none;z-index: 888 !important;}\\n\\t\\tbody.progressier-blurring::-webkit-scrollbar{ width:0px !important; height:0px !important;}\\n\\t\\tbody.progressier-blurring *::-webkit-scrollbar{ width:0px !important; height:0px !important;}\\n\\t\\tbody.progressier-blurring .progressier-push-banner{display:none !important;}\\n\\t\\t@media (min-width:992px){\\n\\t\\t\\tbody.progressier-blurring > *:not(.no-blurring){pointer-events:none;z-index: 888 !important;}\\t\\n\\t\\t}\\n\\t\\t@media (max-width:991px){\\n\\t\\t\\thtml.lock-scroll-overflow, html.lock-scroll-overflow body{overflow:hidden !important;height:100vw !important;width:100vw !important;}\\n\\t\\t}\\n\\t\\t@supports (-webkit-touch-callout: none) {\\n\\t\\t  -webkit-filter:grayscale(1)  blur(3px);filter: grayscale(1) blur(3px);\\n\\t\\t}\\n\\t</style><div class=\\\"progressier-backdrop no-blurring\\\"></div><img src=\\\"https://ad-delivery.net/px.gif?ch=2\\\" style=\\\"display: none !important; width: 1px !important; height: 1px !important;\\\"><img src=\\\"https://ad.doubleclick.net/favicon.ico?ad=300x250&amp;ad_box_=1&amp;adnet=1&amp;showad=1&amp;size=250x250\\\" style=\\\"display: none !important; width: 1px !important; height: 1px !important;\\\"><img src=\\\"https://ad-delivery.net/px.gif?ch=1&amp;e=0.07702713005347439\\\" style=\\\"display: none !important; width: 1px !important; height: 1px !important;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://ids4.ad.gt/api/v1/ip_match?id=AU1D-0100-001755131252-HZ3FLZMU-A35O\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://secure.adnxs.com/getuid?https://ids.ad.gt/api/v1/match?id=AU1D-0100-001755131252-HZ3FLZMU-A35O&amp;adnxs_id=$UID&amp;gdpr=0\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://u.openx.net/w/1.0/cm?id=998eaf06-9905-4eae-9e26-9fac75960c53&amp;r=https%3A%2F%2Fids.ad.gt%2Fapi%2Fv1%2Fopenx%3Fopenx_id%3D%7BOPENX_ID%7D%26id%3DAU1D-0100-001755131252-HZ3FLZMU-A35O%26auid%3DAU1D-0100-001755131252-HZ3FLZMU-A35O&amp;gdpr=0\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://image2.pubmatic.com/AdServer/UCookieSetPug?rd=https%3A%2F%2Fids.ad.gt%2Fapi%2Fv1%2Fpbm_match%3Fpbm%3D%23PM_USER_ID%26id%3DAU1D-0100-001755131252-HZ3FLZMU-A35O&amp;gdpr=0\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://token.rubiconproject.com/token?pid=50242&amp;puid=AU1D-0100-001755131252-HZ3FLZMU-A35O&amp;gdpr=0\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://match.adsrvr.org/track/cmf/generic?ttd_pid=8gkxb6n&amp;ttd_tpi=1&amp;ttd_puid=AU1D-0100-001755131252-HZ3FLZMU-A35O&amp;gdpr=0\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://pixel.tapad.com/idsync/ex/receive?partner_id=3185&amp;partner_device_id=AU1D-0100-001755131252-HZ3FLZMU-A35O&amp;partner_url=https://ids.ad.gt%2Fapi%2Fv1%2Ftapad_match%3Fid%3DAU1D-0100-001755131252-HZ3FLZMU-A35O%26tapad_id%3D%24%7BTA_DEVICE_ID%7D&amp;gdpr=0\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://cm.g.doubleclick.net/pixel?google_nid=audigent_w_appnexus_3985&amp;google_cm&amp;google_sc&amp;google_ula=450542624&amp;id=AU1D-0100-001755131252-HZ3FLZMU-A35O&amp;gdpr=0\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://d.turn.com/r/dd/id/L2NzaWQvMS9jaWQvMTc0ODI0MTY1OC90LzA/url/https%3A%2F%2Fids.ad.gt%2Fapi%2Fv1%2Famo_match%3Fturn_id%3D%24!{TURN_UUID}%26id%3DAU1D-0100-001755131252-HZ3FLZMU-A35O\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://sync.go.sonobi.com/us?https://ids.ad.gt/api/v1/son_match?id=AU1D-0100-001755131252-HZ3FLZMU-A35O&amp;uid=[UID]&amp;gdpr=0\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><img height=\\\"1\\\" width=\\\"1\\\" src=\\\"https://ids.ad.gt/api/v1/g_hosted?id=AU1D-0100-001755131252-HZ3FLZMU-A35O&amp;gdpr=0\\\" alt=\\\"\\\" style=\\\"display: none;\\\"><div id=\\\"beacon-container\\\"><div class=\\\"hsds-beacon\\\"><div class=\\\"Beacon\\\"></div></div></div><script type=\\\"text/javascript\\\" src=\\\"https://pixels.ad.gt/api/v1/getpixels?tagger_id=9cc03ffb950a56873e95961765457796&amp;url=https%3A%2F%2Fapp.musicleague.com%2Fhome%2F&amp;code='none'\\\" async=\\\"\\\"></script>\",\"title\":\"Music League\",\"scroll\":0}]"
+        },
+        {
+          "name": "id5id",
+          "value": "%7B%22signature%22%3A%22ID5_AjxJG1ToD8bZU6HJ9Y4YdLjlPCjNG5fPPb80jBgLtrv_Iqw3inMn595dqhMJF8QS6UZfX_QfzDdMsKjuyDX2bM_Y2nWH6EMQCb4q2Q3hduoYrPOro7Qd4JyPBgjhHBcpzinxmDhrQ5vXgow_ldDrgR_idw3tecyRoejGDZnKLdFBbbrR7GM%22%2C%22created_at%22%3A%222025-08-14T00%3A27%3A32.742Z%22%2C%22id5_consent%22%3Atrue%2C%22original_uid%22%3A%22ID5*sfeuA29m35C-QS_5lymCpfKECfH0wi-MA01Z-v9Tpk4862zCOcaj4zq9BZyhcrPB%22%2C%22universal_uid%22%3A%22ID5*KWXKvh7ErLZ0AxW7Q85OXfl-A7yotCGIBWOtwIQifjM860BrOIXYoHJND8deRYGA%22%2C%22link_type%22%3A2%2C%22cascade_needed%22%3Atrue%2C%22privacy%22%3A%7B%22jurisdiction%22%3A%22other%22%2C%22id5_consent%22%3Atrue%7D%2C%22ext%22%3A%7B%22linkType%22%3A2%2C%22pba%22%3A%220ei0JqhA7DPkZ%2FQIsLXjvYPNDTh3%2BG9v0REecR3XxGeQ%2FbuBdUIcWkB%2BXKLGvr1M%22%7D%2C%22cache_control%22%3A%7B%22max_age_sec%22%3A7200%7D%2C%22ids%22%3A%7B%22id5id%22%3A%7B%22eid%22%3A%7B%22source%22%3A%22id5-sync.com%22%2C%22uids%22%3A%5B%7B%22id%22%3A%22ID5*KWXKvh7ErLZ0AxW7Q85OXfl-A7yotCGIBWOtwIQifjM860BrOIXYoHJND8deRYGA%22%2C%22atype%22%3A1%2C%22ext%22%3A%7B%22linkType%22%3A2%2C%22pba%22%3A%220ei0JqhA7DPkZ%2FQIsLXjvYPNDTh3%2BG9v0REecR3XxGeQ%2FbuBdUIcWkB%2BXKLGvr1M%22%7D%7D%5D%7D%7D%7D%7D"
+        },
+        {
+          "name": "loglevel",
+          "value": "SILENT"
+        },
+        {
+          "name": "_pubcid_cst",
+          "value": "zix7LPQsHA=="
+        },
+        {
+          "name": "_cc_id",
+          "value": "315b59bb8d63a1aeb725de3f74cb59eb"
+        },
+        {
+          "name": "aps:da657530-03e5-4306-95bc-d4eb370426c9:deviceSignal/sua",
+          "value": "{\"architecture\":\"x64\",\"bitness\":\"64\",\"mobile\":0,\"model\":\"\",\"source\":2,\"platform\":{\"brand\":\"Windows\",\"version\":[\"10\",\"0\"]},\"browsers\":[{\"brand\":\"Not?A_Brand\",\"version\":[\"99\",\"0\",\"0\",\"0\"]},{\"brand\":\"Chromium\",\"version\":[\"130\",\"0\",\"6723\",\"31\"]}]}"
+        },
+        {
+          "name": "apstagCxMEnabled",
+          "value": "1"
+        },
+        {
+          "name": "au/1d",
+          "value": "{\"v\":\"AU1D-0100-001755131252-HZ3FLZMU-A35O\",\"e\":0}"
+        },
+        {
+          "name": "panoramaId_expiry",
+          "value": "1755736052017"
+        },
+        {
+          "name": "loglevel:nitro",
+          "value": "INFO"
+        },
+        {
+          "name": "panoramaId",
+          "value": "5ec89701651a2c60410d317a66b2185ca02c3afdaf63f8224a434f71c9e42db5"
+        },
+        {
+          "name": "id5id_cached_consent_data",
+          "value": "1143379603515778"
+        },
+        {
+          "name": "_pubcid_exp",
+          "value": "Fri, 14 Aug 2026 00:27:31 GMT"
+        },
+        {
+          "name": "id5id_v2_signature",
+          "value": "{\"data\":{\"signature\":\"ID5_AjxJG1ToD8bZU6HJ9Y4YdLjlPCjNG5fPPb80jBgLtrv_Iqw3inMn595dqhMJF8QS6UZfX_QfzDdMsKjuyDX2bM_Y2nWH6EMQCb4q2Q3hduoYrPOro7Qd4JyPBgjhHBcpzinxmDhrQ5vXgow_ldDrgR_idw3tecyRoejGDZnKLdFBbbrR7GM\"},\"expireAt\":1756427253493}"
+        },
+        {
+          "name": "id5id_v2_4352522230773121",
+          "value": "{\"data\":{\"response\":{\"signature\":\"ID5_AjxJG1ToD8bZU6HJ9Y4YdLjlPCjNG5fPPb80jBgLtrv_Iqw3inMn595dqhMJF8QS6UZfX_QfzDdMsKjuyDX2bM_Y2nWH6EMQCb4q2Q3hduoYrPOro7Qd4JyPBgjhHBcpzinxmDhrQ5vXgow_ldDrgR_idw3tecyRoejGDZnKLdFBbbrR7GM\",\"created_at\":\"2025-08-14T00:27:32.742Z\",\"id5_consent\":true,\"original_uid\":\"ID5*kUh8N0_ZDaSe_v3Nt5ZQkdI728XUff24I_KLzt_sdHo869A-otlUOyQ3xgPrqNfX\",\"universal_uid\":\"ID5*st9nR4V-AU_vubhC2HTjpGLErkUzDoxxntkAOR-Y08o869wSCVxFwHXcc0yVeNAZ\",\"link_type\":2,\"cascade_needed\":true,\"privacy\":{\"jurisdiction\":\"other\",\"id5_consent\":true},\"ext\":{\"linkType\":2,\"pba\":\"0ei0JqhA7DPkZ/QIsLXjvYPNDTh3+G9v0REecR3XxGfWCagiEuuC4BUDUt4VO6N4\"},\"cache_control\":{\"max_age_sec\":7200},\"ids\":{\"id5id\":{\"eid\":{\"source\":\"id5-sync.com\",\"uids\":[{\"id\":\"ID5*st9nR4V-AU_vubhC2HTjpGLErkUzDoxxntkAOR-Y08o869wSCVxFwHXcc0yVeNAZ\",\"atype\":1,\"ext\":{\"linkType\":2,\"pba\":\"0ei0JqhA7DPkZ/QIsLXjvYPNDTh3+G9v0REecR3XxGfWCagiEuuC4BUDUt4VO6N4\"}}]}}}},\"responseTimestamp\":1755131253491,\"consents\":{\"gdpr\":false,\"us_privacy\":\"1YNY\",\"gpp\":\"DBABT~1YNY\",\"gpp_sid\":\"6\"}},\"expireAt\":1756427253494}"
+        },
+        {
+          "name": "au/last_seen_pixels",
+          "value": "{\"v\":{\"apn\":1755131252,\"openx\":1755131252,\"pub\":1755131252,\"rub\":1755131252,\"ttd\":1755131252,\"tapad\":1755131252,\"adx\":1755131252,\"amo\":1755131252,\"son\":1755131252,\"goo\":1755131252},\"e\":0}"
+        },
+        {
+          "name": "au/seg",
+          "value": "{\"v\":{\"segments\":[]},\"e\":1755152852249}"
+        },
+        {
+          "name": "au/tid",
+          "value": "{\"v\":\"9cc03ffb950a56873e95961765457796\",\"e\":1755134852249}"
+        },
+        {
+          "name": "nitro.mv.5.floors",
+          "value": "21"
+        },
+        {
+          "name": "id5id_extensions",
+          "value": "{\"data\":{\"lbCDN\":\"%%LB_CDN%%\",\"lb\":\"R5opddqUDWtlvcDCO10tXQ==\",\"ttl\":28800,\"bounce\":{\"setCookie\":false},\"lbs\":\"vA3TtHKyjKWCkYC9iLJZ3bJh5CGpUS4Q7fPcPIFr428=\"},\"expireAt\":1755160053196}"
+        },
+        {
+          "name": "id5id_cst",
+          "value": "1izpLMgsJw=="
+        },
+        {
+          "name": "hs-beacon-c91a8d73-f05b-4f0c-8784-580657395c7e-shown-animation",
+          "value": "true"
+        },
+        {
+          "name": "id5id_privacy",
+          "value": "{\"jurisdiction\":\"other\",\"id5_consent\":true}"
+        },
+        {
+          "name": "_pubcid",
+          "value": "8af60459-c0d8-46f1-8fb9-10cb9db6523b"
+        },
+        {
+          "name": "id5id_last",
+          "value": "Thu, 14 Aug 2025 00:27:33 GMT"
+        },
+        {
+          "name": "33acrossId_exp",
+          "value": "Wed, 12 Nov 2025 00:27:31 GMT"
+        },
+        {
+          "name": "33acrossId",
+          "value": "v1.0010b00002VqwyFAAR.1044.HxZ8rfWnA47tvVZZb8VVj1Gs6wdn++FoiTWfX5FjsuQdIsxfjzfb1Ltcc7aejKtAjWYVniVKST9DpgPtR1mcpUlEndtxs4GqcRvlSFAaNJ63KHEdY9Mg+HROzVZsKQcz/zfQJJmP/XO7Zd/MT+PGUtviL/RYuOmztfrgGrS/9mFMnRP/FBfchjQTxgqPUlGceYDd49Z52soHmHMAEqMi9PYz7HGE1X6tcU50V95UQY1yRrYqq+bZ9OYsmcv2soasN29Zjb42ZuS2eRRj+5cubU45M4y17afJxXSWA9wvkDY+L6QstKlkVJsGkCtwmKJYMbs05w58NFDVinwfjO1FpbmQpF0xT8cn/amKAbimy9eDJZPUgulo9qLwKdYcM2aAVoc4834+ZG9QSsO+5CTpD2wtGVAbQPtV1m+0ufneXsq9q0f6LYFSHSZWInPhOuEhObCxkY5xJq1FOLBcJHp3WZM/4Ae5b1dxXAxLlNs/rH6bsV+KN02Yngyft6lPjtAC0Elo9oYBMYmOyE/momshrlXrCRC7W8tBwwnO9Sxalu0+g1H3jlwmO7lwrDmmzwoG4eimo+gYVrigewwmXATri0QkXdvgmJ/PqYcNoA2znAeWfOu5PpgdepxOuXNp/4nQnj8zNwrpob71BKzCYWv01jL1aKUR20/YquuxrqRa+cYdEvmXK20o+sEwsYuJMuemjJ2i1ujNt+6v/PnYHozEoGOZXFp3JAXkkhYAU+6lPwLqYhtQMokTFaNcCSurppfkouHTLNqfmfwIwzJwLA5Tp35bT22QdMR9TMyDLBNybFa0MKsGQIIDZUDVDL5TdmfZ4FWGHvElMAqd+v155U9blJHQcEOM6mjuq/2hGA4a+WnVrKBUe51pB6VcOHK0CnbqEeBpGWEytVlEdej3UojqexEXZqMJzRjo0LqW7yMiz6zrE07Yw9PEwfz3F+Wgfmq1qmgXTKuaTA3H/MGO6dY0wQKzykK4BimPHeoUDULc7AAQgXa5PhTXID5uOkZM4r3ol36pWjwmALfbOq3r+/BvkBt6b7+d6OxOotnR1DBzcfMvKutudYp+bbRq0XKUJMNfPyHeRBNzHBZhY3TB5kpE9vyxEoadZ8QbJXbqSOkzBZ8="
+        },
+        {
+          "name": "id5id_privacy_exp",
+          "value": "Sat, 13 Sep 2025 00:27:33 GMT"
+        },
+        {
+          "name": "33acrossId_csti",
+          "value": "6158203196586298:8687874382807498:27846025878842:0"
+        },
+        {
+          "name": "id5id_cached_consent_data_exp",
+          "value": "Sat, 13 Sep 2025 00:27:32 GMT"
+        },
+        {
+          "name": "np.fp",
+          "value": "1ll57cr"
+        },
+        {
+          "name": "id5id_v2_1122535588191854",
+          "value": "{\"data\":{\"response\":{\"signature\":\"ID5_AjxJG1ToD8bZU6HJ9Y4YdLjlPCjNG5fPPb80jBgLtrv_Iqw3inMn595dqhMJF8QS6UZfX_QfzDdMsKjuyDX2bM_Y2nWH6EMQCb4q2Q3hduoYrPOro7Qd4JyPBgjhHBcpzinxmDhrQ5vXgow_ldDrgR_idw3tecyRoejGDZnKLdFBbbrR7GM\",\"created_at\":\"2025-08-14T00:27:32.742Z\",\"id5_consent\":true,\"original_uid\":\"ID5*sfeuA29m35C-QS_5lymCpfKECfH0wi-MA01Z-v9Tpk4862zCOcaj4zq9BZyhcrPB\",\"universal_uid\":\"ID5*KWXKvh7ErLZ0AxW7Q85OXfl-A7yotCGIBWOtwIQifjM860BrOIXYoHJND8deRYGA\",\"link_type\":2,\"cascade_needed\":true,\"privacy\":{\"jurisdiction\":\"other\",\"id5_consent\":true},\"ext\":{\"linkType\":2,\"pba\":\"0ei0JqhA7DPkZ/QIsLXjvYPNDTh3+G9v0REecR3XxGeQ/buBdUIcWkB+XKLGvr1M\"},\"cache_control\":{\"max_age_sec\":7200},\"ids\":{\"id5id\":{\"eid\":{\"source\":\"id5-sync.com\",\"uids\":[{\"id\":\"ID5*KWXKvh7ErLZ0AxW7Q85OXfl-A7yotCGIBWOtwIQifjM860BrOIXYoHJND8deRYGA\",\"atype\":1,\"ext\":{\"linkType\":2,\"pba\":\"0ei0JqhA7DPkZ/QIsLXjvYPNDTh3+G9v0REecR3XxGeQ/buBdUIcWkB+XKLGvr1M\"}}]}}}},\"responseTimestamp\":1755131253491,\"consents\":{\"gdpr\":false,\"us_privacy\":\"1YNY\",\"gpp\":\"DBABT~1YNY\",\"gpp_sid\":\"6\"}},\"expireAt\":1756427253494}"
+        }
+      ]
+    },
+    {
+      "origin": "https://accounts.spotify.com",
+      "localStorage": [
+        {
+          "name": "_grecaptcha",
+          "value": "09ANMylNAMXYul-hm_ud8nffyf4LQsEyWKey3khnGUflxufeyKMgE3qKnUbn1IDR1y4DcF90GVeMYLUB7NeKFsVsAFqwRI_qvH34_Y9iB5rzcJ6ILGILOqj4U5Z8R4nEqO"
+        },
+        {
+          "name": "com.spotify.single.item.cache:accounts-sso",
+          "value": "{\"key\":\"9cba7f12545cd45a\",\"value\":{\"#v\":\"1\",\"passwordless\":true,\"#configurationAssignmentId\":\"548d3e31-06ef-a8ba-f189-d5690bffc9fc:0\",\"#groupIds\":{\"passwordless\":1243118},\"#fetchTimeMillis\":1755131230217}}"
+        }
+      ]
+    },
+    {
+      "origin": "https://www.google.com",
+      "localStorage": [
+        {
+          "name": "rc::a",
+          "value": "anJocmlyaThjZDQ4"
+        },
+        {
+          "name": "rc::f",
+          "value": "0aAJ3Gg0ZpcZ434_F5DTKSTzXrgZnTM6pzE4gge_Ay1jEa1JPNfq8RwIBZMFEp9tvUPTINoBA"
+        }
+      ]
+    }
+  ]
+}
