@@ -22,6 +22,7 @@ from preference_forecaster import GroupPreferenceForecaster
 from ensemble_forecasting import EnsembleForecaster
 from lyrics_discovery import LyricsDiscoveryEngine
 from playlist_discovery import SpotifyPlaylistDiscovery
+from candidate_verification import CandidateVerifier
 
 logger = logging.getLogger(__name__)
 
@@ -42,6 +43,7 @@ class SongScout:
         self.use_legacy_scoring = use_legacy_scoring
         self.lyrics_discovery = None
         self.playlist_discovery = None
+        self.candidate_verifier = None
         
         # Initialize voter preference modeling if requested
         if enable_voter_preferences:
@@ -121,6 +123,18 @@ class SongScout:
                 if self.verbose:
                     print(f"   ❌ Playlist discovery initialization failed: {e}")
                 self.playlist_discovery = None
+        
+        # Initialize candidate verification (always enabled for quality control)
+        if self.verbose:
+            print("🔍 Initializing candidate verification system...")
+        try:
+            self.candidate_verifier = CandidateVerifier()
+            if self.verbose:
+                print(f"   ✅ Candidate verification initialized")
+        except Exception as e:
+            if self.verbose:
+                print(f"   ❌ Candidate verification initialization failed: {e}")
+            self.candidate_verifier = None
         
         # Song discovery databases
         self.genre_keywords = {
@@ -294,8 +308,20 @@ class SongScout:
                 filtered_count = pre_filter_count - len(candidates)
                 print(f"   Filtered out {filtered_count} mainstream songs")
         
+        # Apply candidate verification for quality control
+        if self.candidate_verifier:
+            pre_verification_count = len(candidates)
+            candidates = self.candidate_verifier.validate_candidate_list(
+                candidates, 
+                verify_external=True, 
+                verbose=self.verbose
+            )
+            if self.verbose and len(candidates) != pre_verification_count:
+                removed_count = pre_verification_count - len(candidates)
+                print(f"   🔍 Verification removed {removed_count} invalid/duplicate candidates")
+        
         if self.verbose:
-            print(f"   Found {len(candidates)} unique candidates from all strategies")
+            print(f"   Found {len(candidates)} verified candidates from all strategies")
         
         return candidates[:target_count]  # Limit to prevent overwhelming the scoring system
 
@@ -1103,7 +1129,21 @@ Example format:
         return predictions
 
     def close(self):
-        """Clean up resources"""
+        """Clean up resources and show verification stats"""
+        if self.candidate_verifier and self.verbose:
+            stats = self.candidate_verifier.get_statistics()
+            if stats['total_candidates'] > 0:
+                print(f"\n🔍 Candidate Verification Summary:")
+                print(f"   Total candidates processed: {stats['total_candidates']}")
+                if stats['spotify_verified'] > 0:
+                    print(f"   Spotify verified: {stats['spotify_verified']}")
+                if stats['spotify_corrected'] > 0:
+                    print(f"   Spotify corrected: {stats['spotify_corrected']}")
+                if stats['duplicates_removed'] > 0:
+                    print(f"   Duplicates removed: {stats['duplicates_removed']}")
+                if stats['invalid_removed'] > 0:
+                    print(f"   Invalid candidates removed: {stats['invalid_removed']}")
+        
         if self.forecaster:
             self.forecaster.close()
         if self.voter_modeler:
