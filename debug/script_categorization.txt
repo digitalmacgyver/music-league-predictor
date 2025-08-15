@@ -1,0 +1,76 @@
+MUSIC LEAGUE PYTHON SCRIPT CATEGORIZATION
+==========================================
+
+CORE USER WORKFLOWS (KEEP):
+---------------------------
+✅ login.py - User authentication to Music League
+✅ scraper.py - Main data collection from Music League
+✅ scout.py - Song recommendation engine (main product)
+✅ reports.py - Generate reports from collected data
+✅ setup_db.py - Database initialization
+✅ config.py - Configuration management
+
+SETUP & VALIDATION (KEEP):
+--------------------------
+✅ setup_anthropic.py - Configure Anthropic API
+✅ setup_spotify.py - Configure Spotify API  
+✅ validate_anthropic.py - Test Anthropic API
+✅ validate_spotify.py - Test Spotify API
+✅ validate_full_system.py - End-to-end system test
+
+CORE LIBRARIES (KEEP):
+----------------------
+✅ forecasting.py - Core prediction engine
+✅ voter_preferences.py - Voter modeling system
+✅ historical_patterns.py - Historical analysis
+✅ preference_forecaster.py - Group preference prediction
+✅ audio_features_fallback.py - Spotify fallback system
+
+USEFUL UTILITIES (KEEP):
+------------------------
+✅ predict_theme_template.py - Template for predictions
+✅ monitor.py - System monitoring
+
+DEBUG/DEVELOPMENT SCRIPTS (MOVE TO debug/):
+-------------------------------------------
+🔄 debug_comments.py - Debug comment parsing
+🔄 debug_page.py - Debug page scraping
+🔄 debug_round.py - Debug round parsing
+🔄 debug_rounds.py - Debug rounds parsing
+🔄 debug_spotify.py - Debug Spotify API
+🔄 debug_spotify_permissions.py - Debug Spotify permissions
+🔄 debug_spotipy_url.py - Debug Spotipy URL issues
+🔄 debug_submitters.py - Debug submitter parsing
+🔄 debug_theme_analysis.py - Debug theme analysis
+🔄 debug_vote_parsing.py - Debug vote parsing
+🔄 debug_voter_similarity.py - Debug voter similarity
+🔄 debug_votes.py - Debug vote processing
+🔄 debug_vote_structure.py - Debug vote structure
+
+ANALYSIS/RESEARCH SCRIPTS (MOVE TO debug/):
+-------------------------------------------
+🔄 analyze_bt26_voters.py - One-time BT26 analysis
+🔄 analyze_voter_patterns.py - One-time voter analysis
+🔄 corrected_bt26_analysis.py - Corrected BT26 analysis
+🔄 demo_voter_preferences.py - Demo script
+🔄 generate_similarity_data.py - Generate similarity data
+🔄 recent_leagues_analysis.py - Recent leagues analysis
+
+TEST SCRIPTS (MOVE TO debug/):
+------------------------------
+🔄 test_improved_semantic_analysis.py - Test semantic analysis
+🔄 test_mainstream_filter.py - Test mainstream filtering
+🔄 test_vote_parsing.py - Test vote parsing
+
+ONE-OFF SCRIPTS (MOVE TO debug/):
+---------------------------------
+🔄 add_spotify_creds.py - One-time credential setup
+🔄 predict_food_theme.py - Specific food theme prediction
+🔄 run.py - Generic runner script
+
+SUMMARY:
+--------
+✅ KEEP (16): Core user workflows, setup/validation, libraries
+🔄 MOVE TO debug/ (27): Debug, test, analysis, one-off scripts
+
+This reduces root directory from 43 to 16 scripts (63% reduction)

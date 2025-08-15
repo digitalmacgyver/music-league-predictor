@@ -131,6 +131,22 @@ users (
 - Batch database insertions
 - Monitor rate limits to avoid blocking
 
+## Development Guidelines
+
+### Code Organization
+- **Core scripts**: Keep main user workflows in root directory (login, scraper, scout, reports)
+- **Debug scripts**: All troubleshooting, testing, and ad-hoc analysis scripts go in `debug/` directory
+- **Libraries**: Core functionality modules stay in root (forecasting.py, voter_preferences.py, etc.)
+
+### Debug Directory Usage
+When creating scripts for:
+- Debugging specific issues (e.g., `debug_spotify.py`)
+- One-time analysis tasks (e.g., `analyze_bt26_voters.py`)
+- Testing specific functionality (e.g., `test_vote_parsing.py`)
+- Temporary troubleshooting (e.g., `debug_spotipy_url.py`)
+
+**ALWAYS create them in the `debug/` directory** to keep the root clean and organized.
+
 ## Success Metrics
 - Complete data capture from all 27 Bard's Tale leagues
 - Zero data loss or corruption
