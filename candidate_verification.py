@@ -66,11 +66,12 @@ class CandidateVerifier:
         if not title:
             return ""
         
-        # Remove surrounding quotes
-        title = re.sub(r'^["\'""]|["\'""]$', '', title.strip())
+        # Remove surrounding quotes (all quote types)
+        title = re.sub(r'^["\'""`''""„‚]+|["\'""`''""„‚]+$', '', title.strip())
         
-        # Remove common prefixes/suffixes
-        title = re.sub(r'\s*-\s*(remaster|live|remix|acoustic|demo|single version|radio edit|explicit).*$', '', title, flags=re.IGNORECASE)
+        # Remove common prefixes/suffixes (expanded list)
+        suffixes_pattern = r'\s*[-\(\[]?\s*(remaster|remastered|live|remix|acoustic|demo|single version|radio edit|explicit|deluxe|extended|instrumental|karaoke|clean|dirty|uncensored|album version|single|ep version|bonus track|\d{4}\s*remaster|\d{4}|stereo|mono).*?[\)\]]?$'
+        title = re.sub(suffixes_pattern, '', title, flags=re.IGNORECASE)
         
         # Standardize punctuation
         title = re.sub(r'\s*[&]\s*', ' & ', title)  # Standardize ampersands
