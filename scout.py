@@ -21,6 +21,7 @@ from voter_preferences import VoterPreferenceModeler
 from preference_forecaster import GroupPreferenceForecaster
 from ensemble_forecasting import EnsembleForecaster
 from lyrics_discovery import LyricsDiscoveryEngine
+from playlist_discovery import SpotifyPlaylistDiscovery
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,8 @@ class SongScout:
     
     def __init__(self, verbose: bool = False, enable_voter_preferences: bool = False, 
                  enable_historical_patterns: bool = False, enable_ensemble_models: bool = True,
-                 use_legacy_scoring: bool = False, enable_lyrics_discovery: bool = True):
+                 use_legacy_scoring: bool = False, enable_lyrics_discovery: bool = True,
+                 enable_playlist_discovery: bool = True):
         self.forecaster = MusicForecaster()
         self.conn = get_db_connection()
         self.verbose = verbose
@@ -39,6 +41,7 @@ class SongScout:
         self.ensemble_forecaster = None
         self.use_legacy_scoring = use_legacy_scoring
         self.lyrics_discovery = None
+        self.playlist_discovery = None
         
         # Initialize voter preference modeling if requested
         if enable_voter_preferences:
@@ -105,6 +108,19 @@ class SongScout:
                 if self.verbose:
                     print(f"   ❌ Lyrics discovery initialization failed: {e}")
                 self.lyrics_discovery = None
+        
+        # Initialize playlist-based discovery if requested
+        if enable_playlist_discovery:
+            if self.verbose:
+                print("📋 Initializing playlist-based discovery...")
+            try:
+                self.playlist_discovery = SpotifyPlaylistDiscovery()
+                if self.verbose:
+                    print(f"   ✅ Playlist discovery initialized")
+            except Exception as e:
+                if self.verbose:
+                    print(f"   ❌ Playlist discovery initialization failed: {e}")
+                self.playlist_discovery = None
         
         # Song discovery databases
         self.genre_keywords = {
@@ -260,10 +276,15 @@ class SongScout:
         pattern_candidates = self._discover_by_patterns(theme, description)
         candidates.extend(self._dedupe_candidates(pattern_candidates, seen_songs))
         
-        # Strategy 8: Lyrics-based discovery (NEW!)
+        # Strategy 8: Lyrics-based discovery
         if self.lyrics_discovery:
             lyrics_candidates = self._discover_via_lyrics(theme, description, target_count // 4)
             candidates.extend(self._dedupe_candidates(lyrics_candidates, seen_songs))
+        
+        # Strategy 9: Playlist-based discovery (NEW!)
+        if self.playlist_discovery:
+            playlist_candidates = self._discover_via_playlists(theme, description, target_count // 3)
+            candidates.extend(self._dedupe_candidates(playlist_candidates, seen_songs))
         
         # Apply mainstream filtering if requested
         if exclude_mainstream:
@@ -517,6 +538,46 @@ Example format:
         
         if self.verbose:
             print(f"   🎵 Lyrics discovery found {len(candidates)} candidates")
+        
+        return candidates
+
+    def _discover_via_playlists(self, theme: str, description: str, target_count: int) -> List[Dict[str, Any]]:
+        """Discover candidates through Spotify playlist analysis"""
+        candidates = []
+        
+        if not self.playlist_discovery:
+            return candidates
+            
+        try:
+            if self.verbose:
+                print(f"   📋 Searching public playlists for theme matches...")
+            
+            # Search for playlists that match the theme
+            search_query = f"{theme} {description}".strip()
+            playlist_candidates = self.playlist_discovery.discover_candidates_from_playlists(
+                search_query, max_candidates=target_count, max_playlists=5
+            )
+            
+            if self.verbose:
+                print(f"   📋 Playlist discovery found {len(playlist_candidates)} candidates")
+            
+            # Convert to our candidate format  
+            for pc in playlist_candidates:
+                candidates.append({
+                    'title': pc['title'],
+                    'artist': pc['artist'],
+                    'source': pc['source'],
+                    'confidence': 0.8,  # High confidence for human-curated playlists
+                    'reasoning': f"Found in curated playlist: {pc['source'].split(':', 1)[1] if ':' in pc['source'] else pc['source']}"
+                })
+                
+                if self.verbose:
+                    playlist_name = pc['source'].split(':', 1)[1] if ':' in pc['source'] else pc['source']
+                    print(f"     📋 Playlist match: {pc['title']} by {pc['artist']} (from: {playlist_name})")
+        
+        except Exception as e:
+            if self.verbose:
+                print(f"   ❌ Playlist discovery failed: {e}")
         
         return candidates
 
@@ -1253,6 +1314,8 @@ Examples (ensemble models and lyrics discovery enabled by default):
                        help='Enable historical pattern analysis to adapt recommendations to group evolution')
     parser.add_argument('--no-lyrics-discovery', action='store_true',
                        help='Disable lyrics-based candidate discovery (enabled by default)')
+    parser.add_argument('--no-playlist-discovery', action='store_true',
+                       help='Disable Spotify playlist-based candidate discovery (enabled by default)')
     parser.add_argument('--legacy', action='store_true',
                        help='Use legacy scoring instead of advanced ensemble models (ensemble models are now default)')
     parser.add_argument('--allow-artist-duplicates', action='store_true',
@@ -1277,12 +1340,14 @@ Examples (ensemble models and lyrics discovery enabled by default):
         enable_historical = args.historical_patterns
         enable_ensemble = not args.legacy
         enable_lyrics = not args.no_lyrics_discovery
+        enable_playlists = not args.no_playlist_discovery
         scout = SongScout(verbose=args.verbose, 
                          enable_voter_preferences=enable_voter_prefs,
                          enable_historical_patterns=enable_historical,
                          enable_ensemble_models=enable_ensemble,
                          use_legacy_scoring=args.legacy,
-                         enable_lyrics_discovery=enable_lyrics)
+                         enable_lyrics_discovery=enable_lyrics,
+                         enable_playlist_discovery=enable_playlists)
         
         if args.verbose:
             print(f"🚀 Music League Scout initialized")
@@ -1306,6 +1371,10 @@ Examples (ensemble models and lyrics discovery enabled by default):
                 print(f"   Using lyrics-based discovery")
             else:
                 print(f"   Lyrics discovery disabled")
+            if not args.no_playlist_discovery:
+                print(f"   Using playlist-based discovery")
+            else:
+                print(f"   Playlist discovery disabled")
             if not args.legacy:
                 print(f"   Using advanced ensemble models")
             else:
