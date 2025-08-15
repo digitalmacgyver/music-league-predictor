@@ -1054,6 +1054,116 @@ Example format:
         if self.conn:
             self.conn.close()
 
+def apply_artist_diversity_filter(recommendations: List[SongMatch], target_count: int, 
+                                 allow_duplicates: bool = False, verbose: bool = False) -> List[SongMatch]:
+    """Apply artist diversity filter to recommendations"""
+    
+    if allow_duplicates:
+        return recommendations[:target_count]
+    
+    # Calculate max songs per artist: 1 + floor(target_count/10)
+    max_per_artist = 1 + target_count // 10
+    
+    if verbose:
+        print(f"   Applying artist diversity filter: max {max_per_artist} songs per artist")
+    
+    artist_counts = {}
+    filtered_recommendations = []
+    
+    for rec in recommendations:
+        artist_key = rec.artist.lower().strip()
+        current_count = artist_counts.get(artist_key, 0)
+        
+        if current_count < max_per_artist:
+            filtered_recommendations.append(rec)
+            artist_counts[artist_key] = current_count + 1
+            
+            if len(filtered_recommendations) >= target_count:
+                break
+    
+    if verbose and len(filtered_recommendations) != len(recommendations):
+        removed_count = len(recommendations) - len(filtered_recommendations)
+        print(f"   Filtered out {removed_count} songs to ensure artist diversity")
+    
+    return filtered_recommendations
+
+def iterative_search_for_recommendations(scout, args, target_count: int, max_iterations: int = 3) -> List[SongMatch]:
+    """Iteratively search for recommendations until we have enough"""
+    
+    all_recommendations = []
+    iteration = 1
+    candidate_multiplier = 3
+    
+    while len(all_recommendations) < target_count and iteration <= max_iterations:
+        if args.verbose:
+            print(f"🔄 Search iteration {iteration} (need {target_count - len(all_recommendations)} more songs)")
+        
+        # Increase search breadth with each iteration
+        search_count = max((target_count - len(all_recommendations)) * candidate_multiplier, 50)
+        
+        # Discover candidates
+        candidates = scout.discover_candidates(
+            theme=args.theme,
+            description=args.description,
+            era=args.era,
+            genre=args.genre,
+            include_obscure=args.include_obscure,
+            exclude_mainstream=args.exclude_mainstream,
+            target_count=search_count
+        )
+        
+        if not candidates:
+            if args.verbose:
+                print(f"   No new candidates found in iteration {iteration}")
+            break
+        
+        # Score and rank candidates
+        if scout.use_legacy_scoring or not scout.ensemble_forecaster:
+            new_recommendations = scout.score_and_rank(
+                theme=args.theme,
+                description=args.description,
+                candidates=candidates,
+                min_score=args.min_score,
+                voter=args.voter
+            )
+        else:
+            new_recommendations = scout.score_and_rank_with_ensemble(
+                theme=args.theme,
+                description=args.description,
+                candidates=candidates,
+                min_score=args.min_score,
+                voter=args.voter
+            )
+        
+        # Filter out songs we already have
+        existing_songs = {(rec.title.lower(), rec.artist.lower()) for rec in all_recommendations}
+        unique_new_recs = [
+            rec for rec in new_recommendations 
+            if (rec.title.lower(), rec.artist.lower()) not in existing_songs
+        ]
+        
+        # Add new unique recommendations
+        all_recommendations.extend(unique_new_recs)
+        
+        if args.verbose:
+            print(f"   Added {len(unique_new_recs)} new unique recommendations")
+        
+        # Increase multiplier for next iteration to cast a wider net
+        candidate_multiplier += 2
+        iteration += 1
+    
+    # Sort all recommendations by score
+    all_recommendations.sort(key=lambda x: x.combined_score, reverse=True)
+    
+    if args.verbose:
+        found_count = len(all_recommendations)
+        if found_count < target_count:
+            print(f"⚠️  Found {found_count} recommendations (requested {target_count})")
+        else:
+            print(f"✅ Found {found_count} recommendations")
+    
+    return all_recommendations
+
 def output_recommendations(recommendations: List[SongMatch], output_format: str, 
                          theme: str, verbose: bool = False):
     """Output recommendations in the specified format"""
@@ -1114,6 +1224,8 @@ Examples (ensemble models and lyrics discovery enabled by default):
   ./scout.py "Songs about heartbreak" --verbose  # Lyrics discovery enabled by default
   ./scout.py "Simple search" --no-lyrics-discovery  # Disable lyrics discovery
   ./scout.py "Ominous themes" --legacy  # Use legacy scoring instead of ensemble models
+  ./scout.py "Rock songs" --number 20 --allow-artist-duplicates  # Allow multiple songs per artist
+  ./scout.py "Beatles songs" --allow-artist-duplicates  # When you want multiple from same artist
         """
     )
     
@@ -1143,6 +1255,8 @@ Examples (ensemble models and lyrics discovery enabled by default):
                        help='Disable lyrics-based candidate discovery (enabled by default)')
     parser.add_argument('--legacy', action='store_true',
                        help='Use legacy scoring instead of advanced ensemble models (ensemble models are now default)')
+    parser.add_argument('--allow-artist-duplicates', action='store_true',
+                       help='Allow multiple songs from the same artist in recommendations (default: limited to 1+floor(N/10) per artist)')
     parser.add_argument('-v', '--verbose', action='store_true',
                        help='Show detailed discovery and scoring process')
     parser.add_argument('-o', '--output', choices=['text', 'json', 'csv'], default='text',
@@ -1196,47 +1310,33 @@ Examples (ensemble models and lyrics discovery enabled by default):
                 print(f"   Using advanced ensemble models")
             else:
                 print(f"   Using legacy scoring")
+            if not args.allow_artist_duplicates:
+                max_per_artist = 1 + args.number // 10
+                print(f"   Artist diversity: max {max_per_artist} songs per artist")
+            else:
+                print(f"   Artist diversity: unlimited (duplicates allowed)")
             print()
         
-        # Discover candidates
-        candidates = scout.discover_candidates(
-            theme=args.theme,
-            description=args.description,
-            era=args.era,
-            genre=args.genre,
-            include_obscure=args.include_obscure,
-            exclude_mainstream=args.exclude_mainstream,
-            target_count=max(args.number * 3, 50)  # Get extra to account for filtering
+        # Use iterative search to ensure we get enough recommendations
+        all_recommendations = iterative_search_for_recommendations(scout, args, args.number)
+        
+        if not all_recommendations:
+            print("❌ No recommendations found. Try a different theme or lower the minimum score.")
+            return 1
+        
+        # Apply artist diversity filter
+        if args.verbose:
+            print(f"📊 Applying final filters...")
+        
+        filtered_recommendations = apply_artist_diversity_filter(
+            all_recommendations, 
+            args.number, 
+            args.allow_artist_duplicates, 
+            args.verbose
         )
         
-        if not candidates:
-            print("❌ No candidates discovered. Try a different theme or parameters.")
-            return 1
-        
-        # Score and rank candidates (ensemble models are default, unless legacy mode)
-        if scout.use_legacy_scoring or not scout.ensemble_forecaster:
-            recommendations = scout.score_and_rank(
-                theme=args.theme,
-                description=args.description,
-                candidates=candidates,
-                min_score=args.min_score,
-                voter=args.voter
-            )
-        else:
-            recommendations = scout.score_and_rank_with_ensemble(
-                theme=args.theme,
-                description=args.description,
-                candidates=candidates,
-                min_score=args.min_score,
-                voter=args.voter
-            )
-        
-        if not recommendations:
-            print("❌ No recommendations above minimum score threshold.")
-            return 1
-        
-        # Limit to requested number
-        final_recommendations = recommendations[:args.number]
+        # Ensure we have the exact number requested (or as close as possible)
+        final_recommendations = filtered_recommendations[:args.number]
         
         # Output results
         output_recommendations(final_recommendations, args.output, args.theme, args.verbose)

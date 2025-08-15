@@ -1,0 +1,144 @@
+🤖 Initializing ensemble prediction models...
+   ✅ Ensemble models initialized
+🎵 Initializing lyrics-based discovery...
+   ✅ Lyrics discovery initialized
+🚀 Music League Scout initialized
+   Theme: 'Ominous rock'
+   Description: 'What is Ominous Rock? I'm not sure - I didn't author this category, however the people demanded it be a theme this league. Let's all find out together!'
+   Target count: 20
+   Genre focus: rock
+   Excluding mainstream hits
+   Including obscure songs
+   Using lyrics-based discovery
+   Using advanced ensemble models
+
+🔍 Discovering candidates for theme: 'Ominous rock'
+   Searching for keywords: ['ominous', 'rock', 'ominous', 'rock', 'category']
+     Found 5 songs with 'rock' in title
+     Found 5 songs with 'rock' in title
+   🧠 Using LLM musical knowledge for thematic discovery...
+   📝 LLM suggested 25 thematic candidates
+     🆕 External suggestion: Dead End Kings by Katatonia
+     🆕 External suggestion: Black Smoke Rising by Greta Van Fleet
+     🆕 External suggestion: Hand of Doom by Black Sabbath
+     🆕 External suggestion: She's So Heavy by The Beatles
+     🆕 External suggestion: Mars, The Bringer of War by King Crimson
+     🆕 External suggestion: Dead Wings by Porcupine Tree
+     🆕 External suggestion: No Quarter by Led Zeppelin
+     🆕 External suggestion: The Thing That Should Not Be by Metallica
+     ✅ Found in DB: Red Right Hand - 2011 Remastered Version by Nick Cave & The Bad Seeds
+     🆕 External suggestion: Don't Fear The Reaper by Blue Öyster Cult
+     🆕 External suggestion: Wolves at Night by Manchester Orchestra
+     🆕 External suggestion: Black Mathematics by The Dillinger Escape Plan
+     🆕 External suggestion: The Prophet's Song by Queen
+     🆕 External suggestion: Careful With That Axe, Eugene by Pink Floyd
+     🆕 External suggestion: Dead Skin Mask by Slayer
+     🆕 External suggestion: Tracking the Rain by Russian Circles
+     🆕 External suggestion: Black Angels Death Song by The Velvet Underground
+     🆕 External suggestion: The Beautiful People by Marilyn Manson
+     🆕 External suggestion: Climbing Up the Walls by Radiohead
+     🆕 External suggestion: Death Valley '69 by Sonic Youth
+   🎵 LLM discovery found 20 thematic candidates
+   Searching Spotify for: 'ominous'
+   Searching Spotify for: 'rock'
+   Searching Spotify for: 'ominous'
+   🎵 Searching for songs with thematically relevant lyrics...
+   📝 Lyrics engine found 0 potential candidates
+   🎵 Lyrics discovery found 0 candidates
+   Filtered out 0 mainstream songs
+   Found 61 unique candidates from all strategies
+🤖 Scoring 60 candidates with ensemble models...
+   Ranked 17 candidates with ensemble models (min_score >= 0.4)
+   🎯 Top pick: The Beautiful People by Marilyn Manson (score: 0.558)
+
+🎵 MUSIC LEAGUE SCOUT RECOMMENDATIONS
+Theme: Ominous rock
+============================================================
+
+1. The Beautiful People by Marilyn Manson
+   Combined Score: 0.558
+   Theme Match: 0.900 | Audio Features: 0.331
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.558 (conf: 0.50), Theme: 0.90, Audio: 0.33, Lyrics: 0.50
+
+2. Climbing Up the Walls by Radiohead
+   Combined Score: 0.510
+   Theme Match: 0.900 | Audio Features: 0.170
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.510 (conf: 0.50), Theme: 0.90, Audio: 0.17, Lyrics: 0.50
+
+3. Hand of Doom by Black Sabbath
+   Combined Score: 0.509
+   Theme Match: 0.900 | Audio Features: 0.198
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.509 (conf: 0.50), Theme: 0.90, Audio: 0.20, Lyrics: 0.45
+
+4. Mars, The Bringer of War by King Crimson
+   Combined Score: 0.504
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.504 (conf: 0.50), Theme: 0.90, Audio: 0.30, Lyrics: 0.27
+
+5. Careful With That Axe, Eugene by Pink Floyd
+   Combined Score: 0.492
+   Theme Match: 0.900 | Audio Features: 0.141
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.492 (conf: 0.50), Theme: 0.90, Audio: 0.14, Lyrics: 0.45
+
+6. OMINOUS by Dozy Doe
+   Combined Score: 0.490
+   Theme Match: 1.000 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.490 (conf: 0.50), Theme: 1.00, Audio: 0.30
+
+7. She's So Heavy by The Beatles
+   Combined Score: 0.478
+   Theme Match: 0.800 | Audio Features: 0.271
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.478 (conf: 0.50), Theme: 0.80, Audio: 0.27, Lyrics: 0.39
+
+8. Dead End Kings by Katatonia
+   Combined Score: 0.475
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.475 (conf: 0.50), Theme: 0.90, Audio: 0.30, Lyrics: 0.12
+
+9. The Thing That Should Not Be by Metallica
+   Combined Score: 0.473
+   Theme Match: 0.900 | Audio Features: 0.046
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.473 (conf: 0.50), Theme: 0.90, Audio: 0.05, Lyrics: 0.50
+
+10. Black Angels Death Song by The Velvet Underground
+   Combined Score: 0.466
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.466 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.28
+
+11. No Quarter by Led Zeppelin
+   Combined Score: 0.457
+   Theme Match: 0.900 | Audio Features: 0.082
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.457 (conf: 0.50), Theme: 0.90, Audio: 0.08, Lyrics: 0.36
+
+12. The Prophet's Song by Queen
+   Combined Score: 0.443
+   Theme Match: 0.800 | Audio Features: 0.169
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.443 (conf: 0.50), Theme: 0.80, Audio: 0.17, Lyrics: 0.36
+
+13. Don't Fear The Reaper by Blue Öyster Cult
+   Combined Score: 0.430
+   Theme Match: 0.700 | Audio Features: 0.141
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.430 (conf: 0.50), Theme: 0.70, Audio: 0.14, Lyrics: 0.54
+
+14. Ominous Cloud by Broadcast
+   Combined Score: 0.425
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.425 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.07
+
+15. Dead Wings by Porcupine Tree
+   Combined Score: 0.414
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.414 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.02
+
+16. Death Valley '69 by Sonic Youth
+   Combined Score: 0.411
+   Theme Match: 0.800 | Audio Features: 0.088
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.411 (conf: 0.50), Theme: 0.80, Audio: 0.09, Lyrics: 0.32
+
+17. Tracking the Rain by Russian Circles
+   Combined Score: 0.410
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.410 (conf: 0.50), Theme: 0.80, Audio: 0.30
+
+📊 Average Score: 0.467
+🎯 Best Pick: The Beautiful People by Marilyn Manson

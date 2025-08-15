@@ -25,6 +25,7 @@ from dotenv import load_dotenv
 from config import DATABASE_PATH
 from setup_db import get_db_connection
 from audio_features_fallback import AudioFeatureEstimator, FallbackAudioFeatures
+from enhanced_audio_features import EnhancedAudioFeaturesProvider
 from lyrics_analysis import LyricsThemeAnalyzer
 
 # Load environment variables
@@ -100,6 +101,7 @@ class MusicForecaster:
         
         # Initialize fallback audio features
         self.audio_estimator = AudioFeatureEstimator()
+        self.enhanced_audio_provider = EnhancedAudioFeaturesProvider()
         
         # Initialize lyrics analysis (optional)
         self.lyrics_analyzer = None
@@ -280,24 +282,24 @@ class MusicForecaster:
                 else:
                     logger.error(f"Spotify API error for {song_title} by {artist}: {e}")
         
-        # Fallback to estimation
-        logger.info(f"Using estimated features for {song_title} by {artist}")
-        fallback_features = self.audio_estimator.estimate_features(song_title, artist)
+        # Enhanced fallback: Try historical dataset first, then estimation
+        logger.info(f"Using enhanced audio features for {song_title} by {artist}")
+        enhanced_features = self.enhanced_audio_provider.get_audio_features(song_title, artist)
         
-        if fallback_features:
+        if enhanced_features:
             return SongFeatures(
-                energy=fallback_features.energy,
-                danceability=fallback_features.danceability,
-                valence=fallback_features.valence,
-                acousticness=fallback_features.acousticness,
-                instrumentalness=fallback_features.instrumentalness,
-                liveness=fallback_features.liveness,
-                speechiness=fallback_features.speechiness,
-                tempo=fallback_features.tempo,
-                loudness=fallback_features.loudness,
-                key=fallback_features.key,
-                mode=fallback_features.mode,
-                time_signature=fallback_features.time_signature
+                energy=enhanced_features.energy,
+                danceability=enhanced_features.danceability,
+                valence=enhanced_features.valence,
+                acousticness=enhanced_features.acousticness,
+                instrumentalness=enhanced_features.instrumentalness,
+                liveness=enhanced_features.liveness,
+                speechiness=enhanced_features.speechiness,
+                tempo=enhanced_features.tempo,
+                loudness=enhanced_features.loudness,
+                key=enhanced_features.key,
+                mode=enhanced_features.mode,
+                time_signature=enhanced_features.time_signature
             )
         
         return None
