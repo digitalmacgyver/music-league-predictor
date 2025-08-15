@@ -46,7 +46,8 @@ class LyricsFetcher:
     """Multi-source lyrics fetching with caching and fallbacks"""
     
     def __init__(self):
-        self.genius_token = os.getenv('GENIUS_ACCESS_TOKEN')
+        # Try both possible token names for compatibility
+        self.genius_token = os.getenv('GENIUS_CLIENT_ACCESS_TOKEN') or os.getenv('GENIUS_ACCESS_TOKEN')
         self.session = requests.Session()
         self.session.headers.update({
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
@@ -132,30 +133,50 @@ class LyricsFetcher:
             return None
             
         try:
-            # Try to use lyricsgenius if available
-            try:
-                import lyricsgenius
-                genius = lyricsgenius.Genius(self.genius_token, timeout=15, retries=2)
-                genius.verbose = False
-                genius.remove_section_headers = True
+            # Direct API approach since lyricsgenius has endpoint issues
+            headers = {'Authorization': f'Bearer {self.genius_token}'}
+            
+            # Search for the song
+            search_response = self.session.get(
+                'https://api.genius.com/search',
+                params={'q': f'{title} {artist}'},
+                headers=headers,
+                timeout=10
+            )
+            
+            if search_response.status_code == 200:
+                data = search_response.json()
+                hits = data.get('response', {}).get('hits', [])
                 
-                song = genius.search_song(title, artist)
-                if song and song.lyrics:
-                    # Clean up lyrics
-                    lyrics = song.lyrics.strip()
-                    if lyrics and len(lyrics) > 50:  # Basic quality check
-                        return LyricsResult(
-                            lyrics=lyrics,
-                            source="genius_api",
-                            confidence=0.9
-                        )
-            except ImportError:
-                logger.info("lyricsgenius not installed, skipping Genius API")
-            except Exception as e:
-                logger.warning(f"Genius API failed: {e}")
-                
+                if hits:
+                    # Get the best match
+                    song_url = hits[0]['result']['url']
+                    
+                    # Scrape lyrics from the Genius page
+                    page_response = self.session.get(song_url, timeout=10)
+                    if page_response.status_code == 200:
+                        soup = BeautifulSoup(page_response.content, 'html.parser')
+                        
+                        # Find lyrics container
+                        lyrics_divs = soup.find_all('div', {'data-lyrics-container': 'true'})
+                        if lyrics_divs:
+                            lyrics_parts = []
+                            for div in lyrics_divs:
+                                # Get text and preserve line breaks
+                                text = div.get_text(separator='\n', strip=True)
+                                lyrics_parts.append(text)
+                            
+                            lyrics = '\n\n'.join(lyrics_parts)
+                            
+                            if lyrics and len(lyrics) > 50:
+                                return LyricsResult(
+                                    lyrics=lyrics,
+                                    source="genius_api",
+                                    confidence=0.9
+                                )
+                        
         except Exception as e:
-            logger.error(f"Genius API error: {e}")
+            logger.warning(f"Genius API error: {e}")
             
         return None
 

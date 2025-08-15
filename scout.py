@@ -104,7 +104,7 @@ class SongScout:
             if self.verbose:
                 print("🎵 Initializing lyrics-based discovery...")
             try:
-                self.lyrics_discovery = LyricsDiscoveryEngine(enable_scraping=False)
+                self.lyrics_discovery = LyricsDiscoveryEngine(enable_scraping=True)
                 if self.verbose:
                     print(f"   ✅ Lyrics discovery initialized")
             except Exception as e:
