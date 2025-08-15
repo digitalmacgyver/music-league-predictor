@@ -25,6 +25,7 @@ from dotenv import load_dotenv
 from config import DATABASE_PATH
 from setup_db import get_db_connection
 from audio_features_fallback import AudioFeatureEstimator, FallbackAudioFeatures
+from lyrics_analysis import LyricsThemeAnalyzer
 
 # Load environment variables
 load_dotenv()
@@ -67,6 +68,8 @@ class SongMatch:
     audio_feature_score: float
     combined_score: float
     reasoning: str
+    lyrical_score: float = 0.0
+    lyrical_analysis: Optional[Dict[str, Any]] = None
 
 class MusicForecaster:
     """Phase 1: LLM-Enhanced Theme Matching System"""
@@ -97,6 +100,14 @@ class MusicForecaster:
         
         # Initialize fallback audio features
         self.audio_estimator = AudioFeatureEstimator()
+        
+        # Initialize lyrics analysis (optional)
+        self.lyrics_analyzer = None
+        try:
+            self.lyrics_analyzer = LyricsThemeAnalyzer(enable_scraping=False)
+            logger.info("Lyrics analyzer initialized")
+        except Exception as e:
+            logger.warning(f"Lyrics analyzer initialization failed: {e}")
         
         logger.info("Music Forecaster initialized")
 
@@ -456,6 +467,29 @@ Respond with just the score (0.0-1.0) followed by a concise explanation of your 
         
         return min(score, 1.0)  # Cap at 1.0
 
+    def calculate_lyrical_theme_score(self, song_title: str, artist: str, 
+                                     theme_title: str, theme_description: str = "") -> Tuple[float, Optional[Dict[str, Any]]]:
+        """Calculate lyrical theme matching score"""
+        
+        if not self.lyrics_analyzer:
+            return 0.0, None
+        
+        try:
+            analysis = self.lyrics_analyzer.analyze_song_lyrics(
+                song_title, artist, theme_title, theme_description
+            )
+            
+            if analysis['lyrics_found']:
+                # Weight the score by overall confidence
+                lyrical_score = analysis['theme_relevance_score'] * analysis['overall_confidence']
+                return lyrical_score, analysis
+            else:
+                return 0.0, analysis
+                
+        except Exception as e:
+            logger.warning(f"Lyrical analysis failed for {song_title} by {artist}: {e}")
+            return 0.0, None
+
     def filter_previous_submissions(self, candidate_songs: List[Dict[str, str]]) -> List[Dict[str, str]]:
         """Remove songs that have already been submitted in previous rounds"""
         cursor = self.conn.cursor()
@@ -502,11 +536,21 @@ Respond with just the score (0.0-1.0) followed by a concise explanation of your 
             spotify_features = self.get_spotify_features(song['title'], song['artist'])
             audio_score = self.calculate_audio_feature_score(spotify_features, theme_analysis)
             
-            # Combined score (weighted average)
-            combined_score = theme_score * 0.6 + audio_score * 0.4
+            # Calculate lyrical theme score
+            lyrical_score, lyrical_analysis = self.calculate_lyrical_theme_score(
+                song['title'], song['artist'], round_info['title'], round_info.get('description', '')
+            )
             
-            # Generate reasoning
-            reasoning = f"Theme match: {theme_score:.2f}, Audio features: {audio_score:.2f}"
+            # Combined score with lyrical analysis (if available)
+            if lyrical_score > 0:
+                # Include lyrics in scoring: theme 40%, audio 30%, lyrics 30%
+                combined_score = theme_score * 0.4 + audio_score * 0.3 + lyrical_score * 0.3
+                reasoning = f"Theme: {theme_score:.2f}, Audio: {audio_score:.2f}, Lyrics: {lyrical_score:.2f}"
+            else:
+                # Fallback to original weighting
+                combined_score = theme_score * 0.6 + audio_score * 0.4
+                reasoning = f"Theme: {theme_score:.2f}, Audio: {audio_score:.2f}, Lyrics: N/A"
+            
             if spotify_features:
                 reasoning += f" (Energy: {spotify_features.energy:.2f}, Valence: {spotify_features.valence:.2f})"
             
@@ -517,7 +561,9 @@ Respond with just the score (0.0-1.0) followed by a concise explanation of your 
                 theme_match_score=theme_score,
                 audio_feature_score=audio_score,
                 combined_score=combined_score,
-                reasoning=reasoning
+                reasoning=reasoning,
+                lyrical_score=lyrical_score,
+                lyrical_analysis=lyrical_analysis
             ))
         
         # Sort by combined score (descending)

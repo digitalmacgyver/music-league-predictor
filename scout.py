@@ -19,6 +19,8 @@ from forecasting import MusicForecaster, SongMatch
 from setup_db import get_db_connection
 from voter_preferences import VoterPreferenceModeler
 from preference_forecaster import GroupPreferenceForecaster
+from ensemble_forecasting import EnsembleForecaster
+from lyrics_discovery import LyricsDiscoveryEngine
 
 logger = logging.getLogger(__name__)
 
@@ -26,13 +28,17 @@ class SongScout:
     """Intelligent song discovery and recommendation system"""
     
     def __init__(self, verbose: bool = False, enable_voter_preferences: bool = False, 
-                 enable_historical_patterns: bool = False):
+                 enable_historical_patterns: bool = False, enable_ensemble_models: bool = True,
+                 use_legacy_scoring: bool = False, enable_lyrics_discovery: bool = True):
         self.forecaster = MusicForecaster()
         self.conn = get_db_connection()
         self.verbose = verbose
         self.voter_modeler = None
         self.preference_forecaster = None
         self.group_forecast = None
+        self.ensemble_forecaster = None
+        self.use_legacy_scoring = use_legacy_scoring
+        self.lyrics_discovery = None
         
         # Initialize voter preference modeling if requested
         if enable_voter_preferences:
@@ -71,6 +77,34 @@ class SongScout:
                 if self.verbose:
                     print(f"   ❌ Historical pattern initialization failed: {e}")
                 self.preference_forecaster = None
+        
+        # Initialize ensemble models if requested
+        if enable_ensemble_models:
+            if self.verbose:
+                print("🤖 Initializing ensemble prediction models...")
+            try:
+                self.ensemble_forecaster = EnsembleForecaster()
+                if self.verbose:
+                    print(f"   ✅ Ensemble models initialized")
+                    if enable_voter_preferences or enable_historical_patterns:
+                        print(f"   🎯 Will attempt ensemble training with historical data")
+            except Exception as e:
+                if self.verbose:
+                    print(f"   ❌ Ensemble model initialization failed: {e}")
+                self.ensemble_forecaster = None
+        
+        # Initialize lyrics-based discovery if requested
+        if enable_lyrics_discovery:
+            if self.verbose:
+                print("🎵 Initializing lyrics-based discovery...")
+            try:
+                self.lyrics_discovery = LyricsDiscoveryEngine(enable_scraping=False)
+                if self.verbose:
+                    print(f"   ✅ Lyrics discovery initialized")
+            except Exception as e:
+                if self.verbose:
+                    print(f"   ❌ Lyrics discovery initialization failed: {e}")
+                self.lyrics_discovery = None
         
         # Song discovery databases
         self.genre_keywords = {
@@ -225,6 +259,11 @@ class SongScout:
         # Strategy 7: Theme pattern matching
         pattern_candidates = self._discover_by_patterns(theme, description)
         candidates.extend(self._dedupe_candidates(pattern_candidates, seen_songs))
+        
+        # Strategy 8: Lyrics-based discovery (NEW!)
+        if self.lyrics_discovery:
+            lyrics_candidates = self._discover_via_lyrics(theme, description, target_count // 4)
+            candidates.extend(self._dedupe_candidates(lyrics_candidates, seen_songs))
         
         # Apply mainstream filtering if requested
         if exclude_mainstream:
@@ -437,6 +476,47 @@ Example format:
         
         if self.verbose:
             print(f"   🎵 LLM discovery found {len(candidates)} thematic candidates")
+        
+        return candidates
+
+    def _discover_via_lyrics(self, theme: str, description: str, target_count: int) -> List[Dict[str, Any]]:
+        """Discover candidates through lyrical content analysis"""
+        candidates = []
+        
+        if not self.lyrics_discovery:
+            return candidates
+            
+        try:
+            if self.verbose:
+                print(f"   🎵 Searching for songs with thematically relevant lyrics...")
+            
+            # Get lyrical candidates from the discovery engine
+            lyrical_candidates = self.lyrics_discovery.get_all_lyrical_candidates(
+                theme, description, limit=target_count
+            )
+            
+            if self.verbose:
+                print(f"   📝 Lyrics engine found {len(lyrical_candidates)} potential candidates")
+            
+            # Convert to our candidate format
+            for lc in lyrical_candidates:
+                candidates.append({
+                    'title': lc.title,
+                    'artist': lc.artist,
+                    'source': f'lyrics_{lc.discovery_method}',
+                    'confidence': lc.lyrical_relevance * lc.confidence,
+                    'reasoning': f"Lyrical analysis ({', '.join(lc.key_themes[:3])})"
+                })
+                
+                if self.verbose:
+                    print(f"     🎯 Lyrical match: {lc.title} by {lc.artist} (relevance: {lc.lyrical_relevance:.2f})")
+        
+        except Exception as e:
+            if self.verbose:
+                print(f"   ❌ Lyrics discovery failed: {e}")
+        
+        if self.verbose:
+            print(f"   🎵 Lyrics discovery found {len(candidates)} candidates")
         
         return candidates
 
@@ -722,6 +802,107 @@ Example format:
         
         return unique_candidates
 
+    def score_and_rank_with_ensemble(self, theme: str, description: str, candidates: List[Dict[str, Any]],
+                                   min_score: float = 0.0, voter: Optional[str] = None) -> List[SongMatch]:
+        """Score candidates using ensemble models for enhanced accuracy"""
+        
+        if not self.ensemble_forecaster:
+            # Fallback to regular scoring
+            return self.score_and_rank(theme, description, candidates, min_score, voter)
+        
+        if self.verbose:
+            print(f"🤖 Scoring {len(candidates)} candidates with ensemble models...")
+        
+        # Prepare songs for ensemble prediction
+        songs = []
+        for candidate in candidates:
+            songs.append({
+                'title': candidate['title'],
+                'artist': candidate['artist']
+            })
+        
+        # Filter out previous submissions
+        songs = self.forecaster.filter_previous_submissions(songs)
+        
+        if not songs:
+            if self.verbose:
+                print("   No new candidates remaining after filtering previous submissions")
+            return []
+        
+        # Get voter preference scores if available
+        voter_scores = {}
+        if voter and self.voter_modeler:
+            try:
+                voter_predictions = self.voter_modeler.predict_voter_preferences_for_candidates(voter, songs)
+                for i, pred in enumerate(voter_predictions):
+                    if i < len(songs):
+                        song_key = f"{songs[i]['title'].lower()}_{songs[i]['artist'].lower()}"
+                        # Normalize to 0-1 scale
+                        voter_scores[song_key] = (pred.predicted_score - 1) / 4
+            except Exception as e:
+                if self.verbose:
+                    print(f"   ⚠️ Voter preference scoring failed: {e}")
+        
+        # Get historical adjustment
+        historical_adj = 1.0
+        if self.group_forecast:
+            predicted_shift = self.group_forecast['predicted_generosity_shift']
+            confidence = self.group_forecast['confidence']
+            
+            if predicted_shift < -0.15 and confidence > 0.7:
+                historical_adj = 1.1  # Boost for conservative groups
+            elif predicted_shift > 0.15 and confidence > 0.7:
+                historical_adj = 0.95  # Slight penalty for generous groups
+        
+        # Get ensemble predictions
+        try:
+            ensemble_predictions = self.ensemble_forecaster.train_and_predict(
+                songs, theme, description
+            )
+        except Exception as e:
+            if self.verbose:
+                print(f"   ❌ Ensemble prediction failed: {e}")
+            # Fallback to regular scoring
+            return self.score_and_rank(theme, description, candidates, min_score, voter)
+        
+        # Convert to SongMatch format and filter by minimum score
+        predictions = []
+        for i, pred in enumerate(ensemble_predictions):
+            if pred.ensemble_score >= min_score:
+                # Generate comprehensive reasoning
+                reasoning = f"Ensemble: {pred.ensemble_method}, "
+                reasoning += f"Score: {pred.ensemble_score:.3f} (conf: {pred.ensemble_confidence:.2f}), "
+                reasoning += f"Theme: {pred.theme_match_score:.2f}, Audio: {pred.audio_feature_score:.2f}"
+                
+                if pred.lyrical_score > 0:
+                    reasoning += f", Lyrics: {pred.lyrical_score:.2f}"
+                
+                if pred.voter_preference_score > 0:
+                    reasoning += f", Voter: {pred.voter_preference_score:.2f}"
+                
+                if abs(pred.historical_adjustment - 1.0) > 0.05:
+                    reasoning += f", Historical: {pred.historical_adjustment:.2f}"
+                
+                predictions.append(SongMatch(
+                    song_id=i,
+                    title=pred.title,
+                    artist=pred.artist,
+                    theme_match_score=pred.theme_match_score,
+                    audio_feature_score=pred.audio_feature_score,
+                    combined_score=pred.ensemble_score,
+                    reasoning=reasoning,
+                    lyrical_score=pred.lyrical_score,
+                    lyrical_analysis=None  # Could add this if needed
+                ))
+        
+        if self.verbose:
+            print(f"   Ranked {len(predictions)} candidates with ensemble models (min_score >= {min_score})")
+            if predictions:
+                best = predictions[0]
+                print(f"   🎯 Top pick: {best.title} by {best.artist} (score: {best.combined_score:.3f})")
+        
+        return predictions
+
     def score_and_rank(self, theme: str, description: str, candidates: List[Dict[str, Any]],
                       min_score: float = 0.0, voter: Optional[str] = None) -> List[SongMatch]:
         """Score candidates using the forecasting system and rank them"""
@@ -866,6 +1047,10 @@ Example format:
             self.forecaster.close()
         if self.voter_modeler:
             self.voter_modeler.close()
+        if self.ensemble_forecaster:
+            self.ensemble_forecaster.close()
+        if self.lyrics_discovery:
+            self.lyrics_discovery.close()
         if self.conn:
             self.conn.close()
 
@@ -919,12 +1104,16 @@ def main():
         description="Scout: Intelligent Music League song recommendation system",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-Examples:
+Examples (ensemble models and lyrics discovery enabled by default):
   ./scout.py "Songs about travel"
-  ./scout.py "Summer songs" --number 15 --era 80s
-  ./scout.py "Sad songs" --genre rock --min-score 0.5
+  ./scout.py "Summer songs" --number 15 --era 80s --voter "Drew"
+  ./scout.py "Sad songs" --genre rock --min-score 0.5 --historical-patterns
   ./scout.py "Songs with colors" --description "Songs that mention colors" --verbose
-  ./scout.py "Love songs" --exclude-mainstream --number 10
+  ./scout.py "Love songs" --exclude-mainstream --number 10 --voter "Joe Hayward"
+  ./scout.py "Epic rock anthems" --historical-patterns --verbose
+  ./scout.py "Songs about heartbreak" --verbose  # Lyrics discovery enabled by default
+  ./scout.py "Simple search" --no-lyrics-discovery  # Disable lyrics discovery
+  ./scout.py "Ominous themes" --legacy  # Use legacy scoring instead of ensemble models
         """
     )
     
@@ -950,6 +1139,10 @@ Examples:
                        help='Personalize recommendations for a specific voter (enables collaborative filtering)')
     parser.add_argument('--historical-patterns', action='store_true',
                        help='Enable historical pattern analysis to adapt recommendations to group evolution')
+    parser.add_argument('--no-lyrics-discovery', action='store_true',
+                       help='Disable lyrics-based candidate discovery (enabled by default)')
+    parser.add_argument('--legacy', action='store_true',
+                       help='Use legacy scoring instead of advanced ensemble models (ensemble models are now default)')
     parser.add_argument('-v', '--verbose', action='store_true',
                        help='Show detailed discovery and scoring process')
     parser.add_argument('-o', '--output', choices=['text', 'json', 'csv'], default='text',
@@ -965,12 +1158,17 @@ Examples:
     
     scout = None
     try:
-        # Initialize scout with voter preferences and historical patterns if requested
+        # Initialize scout with voter preferences, historical patterns, and ensemble models if requested
         enable_voter_prefs = bool(args.voter)
         enable_historical = args.historical_patterns
+        enable_ensemble = not args.legacy
+        enable_lyrics = not args.no_lyrics_discovery
         scout = SongScout(verbose=args.verbose, 
                          enable_voter_preferences=enable_voter_prefs,
-                         enable_historical_patterns=enable_historical)
+                         enable_historical_patterns=enable_historical,
+                         enable_ensemble_models=enable_ensemble,
+                         use_legacy_scoring=args.legacy,
+                         enable_lyrics_discovery=enable_lyrics)
         
         if args.verbose:
             print(f"🚀 Music League Scout initialized")
@@ -990,6 +1188,14 @@ Examples:
                 print(f"   Personalizing for voter: {args.voter}")
             if args.historical_patterns:
                 print(f"   Using historical pattern analysis")
+            if not args.no_lyrics_discovery:
+                print(f"   Using lyrics-based discovery")
+            else:
+                print(f"   Lyrics discovery disabled")
+            if not args.legacy:
+                print(f"   Using advanced ensemble models")
+            else:
+                print(f"   Using legacy scoring")
             print()
         
         # Discover candidates
@@ -1007,14 +1213,23 @@ Examples:
             print("❌ No candidates discovered. Try a different theme or parameters.")
             return 1
         
-        # Score and rank candidates
-        recommendations = scout.score_and_rank(
-            theme=args.theme,
-            description=args.description,
-            candidates=candidates,
-            min_score=args.min_score,
-            voter=args.voter
-        )
+        # Score and rank candidates (ensemble models are default, unless legacy mode)
+        if scout.use_legacy_scoring or not scout.ensemble_forecaster:
+            recommendations = scout.score_and_rank(
+                theme=args.theme,
+                description=args.description,
+                candidates=candidates,
+                min_score=args.min_score,
+                voter=args.voter
+            )
+        else:
+            recommendations = scout.score_and_rank_with_ensemble(
+                theme=args.theme,
+                description=args.description,
+                candidates=candidates,
+                min_score=args.min_score,
+                voter=args.voter
+            )
         
         if not recommendations:
             print("❌ No recommendations above minimum score threshold.")

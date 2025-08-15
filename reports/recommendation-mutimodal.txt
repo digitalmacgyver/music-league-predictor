@@ -1,0 +1,78 @@
+🤖 Initializing ensemble prediction models...
+   ✅ Ensemble models initialized
+🚀 Music League Scout initialized
+   Theme: 'Ominous rock'
+   Description: 'What is Ominous Rock? I'm not sure - I didn't author this category, however the people demanded it be a theme this league. Let's all find out together!'
+   Target count: 20
+   Genre focus: rock
+   Excluding mainstream hits
+   Including obscure songs
+   Using advanced ensemble models
+
+🔍 Discovering candidates for theme: 'Ominous rock'
+   Searching for keywords: ['ominous', 'rock', 'ominous', 'rock', 'category']
+     Found 5 songs with 'rock' in title
+     Found 5 songs with 'rock' in title
+   🧠 Using LLM musical knowledge for thematic discovery...
+   📝 LLM suggested 25 thematic candidates
+     🆕 External suggestion: Black Smoke Rising by Greta Van Fleet
+     🆕 External suggestion: Rats by Ghost
+     🆕 External suggestion: No One Knows by Queens of the Stone Age
+     🆕 External suggestion: Dead Leaves and the Dirty Ground by The White Stripes
+     🆕 External suggestion: Figure It Out by Royal Blood
+     🆕 External suggestion: Are You Mine? by Arctic Monkeys
+     🆕 External suggestion: Wolf Like Me by TV On The Radio
+     🆕 External suggestion: Blood Like Cream by Red Fang
+     🆕 External suggestion: Death Valley Queen by Flogging Molly
+     ✅ Found in DB: Seven Nation Army by The White Stripes
+     🆕 External suggestion: Little Dark Age by MGMT
+     🆕 External suggestion: Cirice by Ghost
+     🆕 External suggestion: Do I Wanna Know? by Arctic Monkeys
+     🆕 External suggestion: Evil by Interpol
+     🆕 External suggestion: Sixteen Saltines by Jack White
+     🆕 External suggestion: Black Math by The White Stripes
+     🆕 External suggestion: Kiss With A Fist by Florence + The Machine
+     🆕 External suggestion: I Appear Missing by Queens of the Stone Age
+     🆕 External suggestion: Death By Diamonds And Pearls by Band of Skulls
+     🆕 External suggestion: The Evil Has Landed by Queens of the Stone Age
+   🎵 LLM discovery found 20 thematic candidates
+   Searching Spotify for: 'ominous'
+   Searching Spotify for: 'rock'
+   Searching Spotify for: 'ominous'
+   Filtered out 0 mainstream songs
+   Found 61 unique candidates from all strategies
+🤖 Scoring 60 candidates with ensemble models...
+   Ranked 5 candidates with ensemble models (min_score >= 0.4)
+   🎯 Top pick: Cirice by Ghost (score: 0.450)
+
+🎵 MUSIC LEAGUE SCOUT RECOMMENDATIONS
+Theme: Ominous rock
+============================================================
+
+1. Cirice by Ghost
+   Combined Score: 0.450
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.450 (conf: 0.50), Theme: 0.90, Audio: 0.30
+
+2. I Appear Missing by Queens of the Stone Age
+   Combined Score: 0.446
+   Theme Match: 0.900 | Audio Features: 0.285
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.446 (conf: 0.50), Theme: 0.90, Audio: 0.29
+
+3. Rats by Ghost
+   Combined Score: 0.410
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.410 (conf: 0.50), Theme: 0.80, Audio: 0.30
+
+4. Do I Wanna Know? by Arctic Monkeys
+   Combined Score: 0.410
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.410 (conf: 0.50), Theme: 0.80, Audio: 0.30
+
+5. Little Dark Age by MGMT
+   Combined Score: 0.401
+   Theme Match: 0.800 | Audio Features: 0.270
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.401 (conf: 0.50), Theme: 0.80, Audio: 0.27
+
+📊 Average Score: 0.423
+🎯 Best Pick: Cirice by Ghost

@@ -20,7 +20,106 @@ Scout is now enhanced with historical pattern analysis that adapts recommendatio
 ./scout.py "Love songs" --voter "Joe Hayward" --historical-patterns --number 5
 ```
 
+### Basic Usage (Ensemble Models Enabled by Default)
+```bash
+./scout.py "Epic rock anthems" --verbose
+```
+
+### Legacy Scoring (Disable Ensemble Models)
+```bash
+./scout.py "Songs about time" --legacy --verbose
+```
+
+### Basic Usage (Lyrics Discovery Enabled by Default)
+```bash
+./scout.py "Songs about heartbreak" --verbose
+```
+
+### Disable Lyrics Discovery
+```bash
+./scout.py "Simple search" --no-lyrics-discovery
+```
+
+### All Features Combined
+```bash
+./scout.py "Songs about time" --voter "Drew" --historical-patterns --number 5
+```
+
 ## New Features
+
+### Advanced Ensemble Models (Enabled by Default)
+
+**What it does:**
+- **Default behavior** - combines multiple scoring approaches using sophisticated machine learning
+- Uses weighted ensembles, stacked models, and voting systems
+- **Includes lyrical content analysis** - analyzes song lyrics for theme relevance using LLM
+- Provides enhanced accuracy and confidence scoring
+- Adapts predictions based on component reliability
+- Use `--legacy` flag to disable and use simple scoring instead
+
+**How it works:**
+- **Weighted Ensemble**: Learns optimal weights for theme, audio, lyrical, voter, and historical scores
+- **Stacked Models**: Meta-learners that combine predictions intelligently  
+- **Lyrical Analysis**: Fetches song lyrics and analyzes theme relevance using LLM
+- **Dynamic Weighting**: Adjusts weights based on component confidence levels
+- **Voting Systems**: Multiple ensemble methods vote on final rankings
+
+**Example Output:**
+```
+🤖 Initializing ensemble prediction models...
+   ✅ Ensemble models initialized
+   🎯 Will attempt ensemble training with historical data
+
+🤖 Scoring 24 candidates with ensemble models...
+   🎯 Top pick: 2112 by Rush (score: 0.847)
+
+Ensemble: StackedEnsemble_rf, Score: 0.847 (conf: 0.95), Theme: 1.00, Audio: 0.75, Lyrics: 0.92
+```
+
+### Lyrical Content Analysis (Automatic)
+
+**What it does:**
+- **Automatically fetches song lyrics** from multiple sources (Genius API, fallback scraping)
+- **LLM-powered analysis** - uses Claude to analyze how well lyrics match the theme
+- **Intelligent caching** - stores lyrics to avoid repeated API calls
+- **Graceful degradation** - continues without lyrics if unavailable
+
+**How it works:**
+- **Multi-source fetching**: Tries Genius API first, then fallback methods
+- **LLM theme matching**: Analyzes lyrical content for theme relevance
+- **Confidence weighting**: Adjusts lyrical score based on analysis confidence
+- **Integrated scoring**: Adds lyrics as 25-30% of final prediction score
+
+**Example Output:**
+```
+🎵 Analyzing lyrics for Hotel California by Eagles...
+   ✅ Lyrics found via: genius_api  
+   🎯 Lyrical theme relevance: 0.92 (confidence: 0.85)
+   📝 Key themes: California, hotel setting, place-based narrative
+```
+
+### Lyrics-Based Discovery (Enabled by Default)
+
+**What it does:**
+- **Default behavior** - enhanced candidate discovery through lyrical content analysis
+- **Multi-method search**: Historical lyrical patterns, reverse search, thematic associations
+- **Hidden gems discovery** - finds thematically relevant songs missed by title-based search
+- **LLM-powered suggestions** - generates thematically appropriate song candidates
+- **Use `--no-lyrics-discovery` to disable** if you want faster, simpler discovery
+
+**How it works:**
+- **Historical Patterns**: Analyzes past successful songs to find similar lyrical themes
+- **Reverse Search**: Searches cached lyrics for thematic keywords and content
+- **Thematic Associations**: Uses LLM to suggest songs with relevant lyrical content
+- **Integration**: Adds lyrics-discovered candidates to existing discovery methods
+
+**Example Output:**
+```
+🎵 Searching for songs with thematically relevant lyrics...
+   📝 Lyrics engine found 12 potential candidates
+   🎯 Lyrical match: Trans-Europe Express by Kraftwerk (relevance: 0.70)
+   🎯 Lyrical match: Ramblin' Man by The Allman Brothers Band (relevance: 0.90)
+```
 
 ### Historical Pattern Analysis (`--historical-patterns`)
 
@@ -47,20 +146,23 @@ Scout is now enhanced with historical pattern analysis that adapts recommendatio
 
 ### Enhanced Scoring Weights
 
-**Without historical patterns:**
-- Theme Match: 60%
-- Audio Features: 40%
-
-**With voter preferences:**
+**Without historical patterns (with lyrics):**
 - Theme Match: 40%
 - Audio Features: 30%
-- Voter Preference: 30%
+- Lyrical Analysis: 30%
 
-**With historical patterns + voter preferences:**
-- Theme Match: 35%
-- Audio Features: 25%  
-- Voter Preference: 25%
-- Historical Adjustment: 15%
+**With voter preferences + lyrics:**
+- Theme Match: 30%
+- Audio Features: 25%
+- Lyrical Analysis: 25%
+- Voter Preference: 20%
+
+**With historical patterns + voter preferences + lyrics:**
+- Theme Match: 25%
+- Audio Features: 20%
+- Lyrical Analysis: 25%
+- Voter Preference: 20%
+- Historical Adjustment: 10%
 
 ## Key Insights from Historical Analysis
 
