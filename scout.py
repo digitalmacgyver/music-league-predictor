@@ -23,6 +23,7 @@ from ensemble_forecasting import EnsembleForecaster
 from lyrics_discovery import LyricsDiscoveryEngine
 from playlist_discovery import SpotifyPlaylistDiscovery
 from candidate_verification import CandidateVerifier
+from spotify_playlist_creator import SpotifyPlaylistCreator
 
 logger = logging.getLogger(__name__)
 
@@ -1327,6 +1328,8 @@ Examples (ensemble models and lyrics discovery enabled by default):
   ./scout.py "Ominous themes" --legacy  # Use legacy scoring instead of ensemble models
   ./scout.py "Rock songs" --number 20 --allow-artist-duplicates  # Allow multiple songs per artist
   ./scout.py "Beatles songs" --allow-artist-duplicates  # When you want multiple from same artist
+  ./scout.py "Chill vibes" --create-playlist  # Generate recommendations + Spotify playlist
+  ./scout.py "Summer hits" --create-playlist --playlist-public --playlist-description "Perfect summer vibes"
         """
     )
     
@@ -1360,6 +1363,12 @@ Examples (ensemble models and lyrics discovery enabled by default):
                        help='Use legacy scoring instead of advanced ensemble models (ensemble models are now default)')
     parser.add_argument('--allow-artist-duplicates', action='store_true',
                        help='Allow multiple songs from the same artist in recommendations (default: limited to 1+floor(N/10) per artist)')
+    parser.add_argument('--create-playlist', action='store_true',
+                       help='Create a Spotify playlist from the recommendations (requires Spotify user authorization)')
+    parser.add_argument('--playlist-public', action='store_true',
+                       help='Make the created playlist public (default: private)')
+    parser.add_argument('--playlist-description', type=str,
+                       help='Custom description for the created playlist')
     parser.add_argument('-v', '--verbose', action='store_true',
                        help='Show detailed discovery and scoring process')
     parser.add_argument('-o', '--output', choices=['text', 'json', 'csv'], default='text',
@@ -1449,6 +1458,56 @@ Examples (ensemble models and lyrics discovery enabled by default):
         
         # Output results
         output_recommendations(final_recommendations, args.output, args.theme, args.verbose)
+        
+        # Create Spotify playlist if requested
+        if args.create_playlist and final_recommendations:
+            print(f"\n🎵 Creating Spotify Playlist...")
+            try:
+                # Initialize playlist creator
+                playlist_creator = SpotifyPlaylistCreator()
+                
+                # Authenticate with Spotify
+                print("🔐 Authenticating with Spotify (this will open a browser window)...")
+                if playlist_creator.authenticate():
+                    print("✅ Spotify authentication successful")
+                    
+                    # Convert recommendations to format expected by playlist creator
+                    playlist_recs = []
+                    for rec in final_recommendations:
+                        playlist_recs.append({
+                            'title': rec.title,
+                            'artist': rec.artist
+                        })
+                    
+                    # Create the playlist
+                    description = args.playlist_description or f"Scout recommendations for '{args.theme}'"
+                    result = playlist_creator.create_playlist_from_recommendations(
+                        recommendations=playlist_recs,
+                        theme=args.theme,
+                        description_suffix=description,
+                        public=args.playlist_public
+                    )
+                    
+                    if result.success:
+                        print(f"✅ Playlist created successfully!")
+                        print(f"   📋 Name: {result.playlist_name}")
+                        print(f"   🔗 URL: {result.playlist_url}")
+                        print(f"   🎵 Tracks added: {result.tracks_added}/{len(final_recommendations)}")
+                        
+                        if result.failed_tracks:
+                            print(f"   ❌ Tracks not found on Spotify:")
+                            for track in result.failed_tracks:
+                                print(f"      • {track['title']} by {track['artist']}")
+                    else:
+                        print(f"❌ Playlist creation failed: {result.error_message}")
+                else:
+                    print("❌ Spotify authentication failed")
+                    
+            except Exception as e:
+                print(f"❌ Playlist creation error: {e}")
+                if args.verbose:
+                    import traceback
+                    traceback.print_exc()
         
         return 0
         
