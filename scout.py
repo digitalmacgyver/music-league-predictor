@@ -17,16 +17,60 @@ import re
 
 from forecasting import MusicForecaster, SongMatch
 from setup_db import get_db_connection
+from voter_preferences import VoterPreferenceModeler
+from preference_forecaster import GroupPreferenceForecaster
 
 logger = logging.getLogger(__name__)
 
 class SongScout:
     """Intelligent song discovery and recommendation system"""
     
-    def __init__(self, verbose: bool = False):
+    def __init__(self, verbose: bool = False, enable_voter_preferences: bool = False, 
+                 enable_historical_patterns: bool = False):
         self.forecaster = MusicForecaster()
         self.conn = get_db_connection()
         self.verbose = verbose
+        self.voter_modeler = None
+        self.preference_forecaster = None
+        self.group_forecast = None
+        
+        # Initialize voter preference modeling if requested
+        if enable_voter_preferences:
+            if self.verbose:
+                print("🧠 Initializing voter preference modeling...")
+            self.voter_modeler = VoterPreferenceModeler()
+            try:
+                df = self.voter_modeler.load_voting_data()
+                self.voter_modeler.build_voter_song_matrix(df)
+                self.voter_modeler.build_voter_profiles(df)
+                self.voter_modeler.calculate_voter_similarity()
+                if self.verbose:
+                    print(f"   ✅ Voter preferences loaded for {len(self.voter_modeler.voter_profiles)} voters")
+            except Exception as e:
+                if self.verbose:
+                    print(f"   ❌ Voter preference initialization failed: {e}")
+                self.voter_modeler = None
+        
+        # Initialize historical pattern analysis if requested
+        if enable_historical_patterns:
+            if self.verbose:
+                print("📊 Initializing historical pattern analysis...")
+            try:
+                self.preference_forecaster = GroupPreferenceForecaster()
+                self.preference_forecaster.calculate_voter_influence_scores()
+                self.preference_forecaster.build_turnover_impact_model()
+                
+                # Get current group forecast
+                self.group_forecast = self.preference_forecaster.predict_preference_shift()
+                
+                if self.verbose:
+                    tendency = 'conservative' if self.group_forecast['predicted_generosity_shift'] < -0.1 else 'generous' if self.group_forecast['predicted_generosity_shift'] > 0.1 else 'balanced'
+                    print(f"   ✅ Historical patterns loaded - Group tendency: {tendency}")
+                    print(f"   📈 Confidence: {self.group_forecast['confidence']:.1%}")
+            except Exception as e:
+                if self.verbose:
+                    print(f"   ❌ Historical pattern initialization failed: {e}")
+                self.preference_forecaster = None
         
         # Song discovery databases
         self.genre_keywords = {
@@ -679,7 +723,7 @@ Example format:
         return unique_candidates
 
     def score_and_rank(self, theme: str, description: str, candidates: List[Dict[str, Any]],
-                      min_score: float = 0.0) -> List[SongMatch]:
+                      min_score: float = 0.0, voter: Optional[str] = None) -> List[SongMatch]:
         """Score candidates using the forecasting system and rank them"""
         
         if self.verbose:
@@ -734,14 +778,67 @@ Example format:
             spotify_features = self.forecaster.get_spotify_features(song['title'], song['artist'])
             audio_score = self.forecaster.calculate_audio_feature_score(spotify_features, theme_analysis)
             
-            # Combined score
-            combined_score = theme_score * 0.6 + audio_score * 0.4
+            # Get voter preference score if available
+            voter_score = 0.5  # Default neutral score
+            voter_confidence = 0.0
+            
+            if voter and self.voter_modeler:
+                voter_predictions = self.voter_modeler.predict_voter_preferences_for_candidates(
+                    voter, [song]
+                )
+                if voter_predictions:
+                    prediction = voter_predictions[0]
+                    # Normalize to 0-1 scale (from 1-5 point scale)
+                    voter_score = (prediction.predicted_score - 1) / 4
+                    voter_confidence = prediction.confidence
+                    if self.verbose and voter_confidence > 0.5:
+                        print(f"     🎯 Voter prediction: {prediction.predicted_score:.2f}/5 ({prediction.reasoning})")
+            
+            # Apply historical pattern adjustments
+            historical_adjustment = 1.0
+            if self.group_forecast:
+                # Adjust scoring based on group tendency prediction
+                predicted_shift = self.group_forecast['predicted_generosity_shift']
+                confidence = self.group_forecast['confidence']
+                
+                # Conservative groups: boost high-quality songs, penalize risky ones
+                if predicted_shift < -0.15 and confidence > 0.7:
+                    # For conservative groups, boost songs with strong theme match
+                    if theme_score > 0.8:
+                        historical_adjustment = 1.2  # Boost excellent theme matches
+                    elif theme_score < 0.5:
+                        historical_adjustment = 0.7  # Penalize weak theme matches
+                
+                # Generous groups: boost creative/interesting songs
+                elif predicted_shift > 0.15 and confidence > 0.7:
+                    # For generous groups, boost diverse/creative selections
+                    if audio_score > 0.7:
+                        historical_adjustment = 1.1  # Boost interesting audio features
+                
+                # Apply confidence scaling
+                adjustment_strength = confidence * 0.3  # Max 30% adjustment
+                historical_adjustment = 1.0 + (historical_adjustment - 1.0) * adjustment_strength
+            
+            # Combined score with historical patterns and voter preferences
+            if voter and voter_confidence > 0.3:
+                # Weight: theme (35%) + audio (25%) + voter preference (25%) + historical (15%)
+                base_score = theme_score * 0.35 + audio_score * 0.25 + voter_score * 0.25
+                combined_score = base_score * historical_adjustment
+            else:
+                # Weight: theme (50%) + audio (35%) + historical (15%)
+                base_score = theme_score * 0.5 + audio_score * 0.35
+                combined_score = base_score * historical_adjustment
             
             # Apply minimum score filter
             if combined_score >= min_score:
                 # Generate reasoning
                 reasoning = f"Discovery: {candidates[i].get('source', 'unknown')}, "
                 reasoning += f"Theme: {theme_score:.2f}, Audio: {audio_score:.2f}"
+                if voter and voter_confidence > 0.3:
+                    reasoning += f", Voter: {voter_score:.2f} (conf: {voter_confidence:.2f})"
+                if self.group_forecast and abs(historical_adjustment - 1.0) > 0.05:
+                    tendency = 'conservative' if self.group_forecast['predicted_generosity_shift'] < -0.1 else 'generous'
+                    reasoning += f", Historical: {historical_adjustment:.2f} ({tendency} group)"
                 if spotify_features:
                     reasoning += f" (Energy: {spotify_features.energy:.2f}, Valence: {spotify_features.valence:.2f})"
                 
@@ -767,6 +864,8 @@ Example format:
         """Clean up resources"""
         if self.forecaster:
             self.forecaster.close()
+        if self.voter_modeler:
+            self.voter_modeler.close()
         if self.conn:
             self.conn.close()
 
@@ -847,6 +946,10 @@ Examples:
                        help='Include less mainstream songs in discovery')
     parser.add_argument('--exclude-mainstream', action='store_true',
                        help='Exclude extremely popular songs (1B+ streams, radio classics, etc.)')
+    parser.add_argument('--voter', 
+                       help='Personalize recommendations for a specific voter (enables collaborative filtering)')
+    parser.add_argument('--historical-patterns', action='store_true',
+                       help='Enable historical pattern analysis to adapt recommendations to group evolution')
     parser.add_argument('-v', '--verbose', action='store_true',
                        help='Show detailed discovery and scoring process')
     parser.add_argument('-o', '--output', choices=['text', 'json', 'csv'], default='text',
@@ -862,8 +965,12 @@ Examples:
     
     scout = None
     try:
-        # Initialize scout
-        scout = SongScout(verbose=args.verbose)
+        # Initialize scout with voter preferences and historical patterns if requested
+        enable_voter_prefs = bool(args.voter)
+        enable_historical = args.historical_patterns
+        scout = SongScout(verbose=args.verbose, 
+                         enable_voter_preferences=enable_voter_prefs,
+                         enable_historical_patterns=enable_historical)
         
         if args.verbose:
             print(f"🚀 Music League Scout initialized")
@@ -879,6 +986,10 @@ Examples:
                 print(f"   Excluding mainstream hits")
             if args.include_obscure:
                 print(f"   Including obscure songs")
+            if args.voter:
+                print(f"   Personalizing for voter: {args.voter}")
+            if args.historical_patterns:
+                print(f"   Using historical pattern analysis")
             print()
         
         # Discover candidates
@@ -901,7 +1012,8 @@ Examples:
             theme=args.theme,
             description=args.description,
             candidates=candidates,
-            min_score=args.min_score
+            min_score=args.min_score,
+            voter=args.voter
         )
         
         if not recommendations:

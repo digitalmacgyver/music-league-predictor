@@ -88,7 +88,7 @@ def test_spotify_credentials(client_id, client_secret):
             
             # Test audio features
             track_id = track['id']
-            features = sp.audio_features(track_id)[0]
+            features = sp.audio_features([track_id])[0]
             if features:
                 print(f"✅ Audio features working! Energy: {features['energy']:.2f}, Valence: {features['valence']:.2f}")
             else:

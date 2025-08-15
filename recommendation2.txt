@@ -1,0 +1,89 @@
+RESULTS WITH EXCLUDE MAINSTREAM, I THINK.
+
+
+🎵 MUSIC LEAGUE SCOUT RECOMMENDATIONS
+Theme: Ominous rock
+============================================================
+
+1. Iron Man by Black Sabbath
+   Combined Score: 0.660
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.90, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+2. Black Planet by Sisters of Mercy
+   Combined Score: 0.660
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.90, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+3. The Beautiful People by Marilyn Manson
+   Combined Score: 0.660
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.90, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+4. Dead Flag Blues by Godspeed You! Black Emperor
+   Combined Score: 0.660
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Discovery: genre_rock, Theme: 0.90, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+5. Paranoid Android by Radiohead
+   Combined Score: 0.624
+   Theme Match: 0.900 | Audio Features: 0.210
+   Details: Discovery: historical_match_rock, Theme: 0.90, Audio: 0.21 (Energy: 0.60, Valence: 0.30)
+
+6. Sheep by Pink Floyd
+   Combined Score: 0.600
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Discovery: keyword_rock, Theme: 0.80, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+7. Hallowed Be Thy Name by Iron Maiden
+   Combined Score: 0.600
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Discovery: artist_keyword_rock, Theme: 0.80, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+8. I Appear Missing by Queens of the Stone Age
+   Combined Score: 0.594
+   Theme Match: 0.800 | Audio Features: 0.285
+   Details: Discovery: genre_rock, Theme: 0.80, Audio: 0.29 (Energy: 0.80, Valence: 0.75)
+
+9. Ominous Cloud by Broadcast
+   Combined Score: 0.576
+   Theme Match: 0.800 | Audio Features: 0.240
+   Details: Discovery: genre_rock, Theme: 0.80, Audio: 0.24 (Energy: 0.80, Valence: 0.60)
+
+10. Love Like Blood by Killing Joke
+   Combined Score: 0.552
+   Theme Match: 0.700 | Audio Features: 0.330
+   Details: Discovery: historical_match_rock, Theme: 0.70, Audio: 0.33 (Energy: 0.70, Valence: 0.80)
+
+11. Dead Skin Mask by Slayer
+   Combined Score: 0.540
+   Theme Match: 0.700 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.70, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+12. Closer by Kings of Leon
+   Combined Score: 0.540
+   Theme Match: 0.700 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.70, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+13. Do I Wanna Know? by Arctic Monkeys
+   Combined Score: 0.540
+   Theme Match: 0.700 | Audio Features: 0.300
+   Details: Discovery: keyword_rock, Theme: 0.70, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+14. March of the Pigs by Nine Inch Nails
+   Combined Score: 0.480
+   Theme Match: 0.600 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.60, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+15. Black Mathematics by At The Drive-In
+   Combined Score: 0.480
+   Theme Match: 0.600 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.60, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+16. Duality by Slipknot
+   Combined Score: 0.420
+   Theme Match: 0.500 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.50, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+📊 Average Score: 0.574
+🎯 Best Pick: Iron Man by Black Sabbath

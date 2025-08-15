@@ -51,7 +51,7 @@ def main():
         track_results = sp.search(q="Come Together The Beatles", type='track', limit=1)
         if track_results['tracks']['items']:
             track = track_results['tracks']['items'][0]
-            features = sp.audio_features(track['id'])[0]
+            features = sp.audio_features([track['id']])[0]
             if features:
                 print(f"✅ Audio features work! Come Together - Energy: {features['energy']:.2f}, Tempo: {features['tempo']:.0f}")
             else:

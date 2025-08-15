@@ -1,0 +1,86 @@
+🎵 MUSIC LEAGUE SCOUT RECOMMENDATIONS
+Theme: Ominous rock
+============================================================
+
+1. Black Sabbath by Black Sabbath
+   Combined Score: 0.660
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.90, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+2. Paranoid by Black Sabbath
+   Combined Score: 0.660
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.90, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+3. 21st Century Schizoid Man by King Crimson
+   Combined Score: 0.660
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Discovery: keyword_rock, Theme: 0.90, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+4. In the Court of the Crimson King by King Crimson
+   Combined Score: 0.600
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.80, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+5. Helter Skelter by The Beatles
+   Combined Score: 0.600
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Discovery: keyword_rock, Theme: 0.80, Audio: 0.30 (Energy: 0.75, Valence: 0.75)
+
+6. Careful with That Axe, Eugene by Pink Floyd
+   Combined Score: 0.600
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Discovery: artist_keyword_rock, Theme: 0.80, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+7. ominous by Blksmiith
+   Combined Score: 0.600
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Discovery: genre_rock, Theme: 0.80, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+8. Dazed and Confused by Led Zeppelin
+   Combined Score: 0.582
+   Theme Match: 0.800 | Audio Features: 0.255
+   Details: Discovery: historical_match_rock, Theme: 0.80, Audio: 0.25 (Energy: 0.85, Valence: 0.70)
+
+9. Paint It Black by The Rolling Stones
+   Combined Score: 0.522
+   Theme Match: 0.700 | Audio Features: 0.255
+   Details: Discovery: historical_match_rock, Theme: 0.70, Audio: 0.25 (Energy: 0.60, Valence: 0.45)
+
+10. Achilles Last Stand by Led Zeppelin
+   Combined Score: 0.522
+   Theme Match: 0.700 | Audio Features: 0.255
+   Details: Discovery: keyword_rock, Theme: 0.70, Audio: 0.25 (Energy: 0.85, Valence: 0.70)
+
+11. Season of the Witch by Donovan
+   Combined Score: 0.480
+   Theme Match: 0.600 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.60, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+12. Child in Time by Deep Purple
+   Combined Score: 0.480
+   Theme Match: 0.600 | Audio Features: 0.300
+   Details: Discovery: keyword_rock, Theme: 0.60, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+13. ominous by insensible
+   Combined Score: 0.480
+   Theme Match: 0.600 | Audio Features: 0.300
+   Details: Discovery: genre_rock, Theme: 0.60, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+14. Gimme Shelter by The Rolling Stones
+   Combined Score: 0.474
+   Theme Match: 0.600 | Audio Features: 0.285
+   Details: Discovery: historical_match_rock, Theme: 0.60, Audio: 0.28 (Energy: 0.70, Valence: 0.65)
+
+15. Bad Moon Rising by Creedence Clearwater Revival
+   Combined Score: 0.420
+   Theme Match: 0.500 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.50, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+16. Riders on the Storm by The Doors
+   Combined Score: 0.420
+   Theme Match: 0.500 | Audio Features: 0.300
+   Details: Discovery: historical_match_rock, Theme: 0.50, Audio: 0.30 (Energy: 0.60, Valence: 0.60)
+
+📊 Average Score: 0.548
+🎯 Best Pick: Black Sabbath by Black Sabbath

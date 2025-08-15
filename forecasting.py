@@ -244,8 +244,8 @@ class MusicForecaster:
                     track = results['tracks']['items'][0]
                     track_id = track['id']
                     
-                    # Get audio features
-                    features = self.spotify.audio_features(track_id)[0]
+                    # Get audio features (spotipy expects a list of track IDs)
+                    features = self.spotify.audio_features([track_id])[0]
                     if features:
                         logger.info(f"Got Spotify features for {song_title} by {artist}")
                         return SongFeatures(

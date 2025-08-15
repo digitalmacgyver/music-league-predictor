@@ -1,0 +1,195 @@
+======================================================================
+       MUSIC LEAGUE VOTER SIMILARITY ANALYSIS
+       Bard's Tale 26: Don Juan Participants
+======================================================================
+
+This analysis examines the musical compatibility of the 13 voters who 
+participated in Bard's Tale 26: Don Juan, using their complete voting 
+history across all Music League rounds (9,658 total votes).
+
+----------------------------------------------------------------------
+UNDERSTANDING SIMILARITY SCORES
+----------------------------------------------------------------------
+
+Similarity scores measure how similarly two voters rate the same songs:
+
+  1.00 = Perfect agreement (always give identical scores)
+  0.70-0.99 = Very similar taste (usually agree)
+  0.40-0.69 = Moderate overlap (sometimes agree)
+  0.10-0.39 = Different taste (rarely agree)
+  0.00-0.09 = Opposite taste (one's favorites are the other's least)
+
+We use cosine similarity, which focuses on rating patterns rather than
+absolute differences. A score of 0.580 means two voters agree on their
+relative preferences about 58% of the time.
+
+======================================================================
+VOTER COMPATIBILITY MATRIX
+======================================================================
+
+Each voter's most and least compatible musical partners:
+
+Voter                   Most Similar To         Score   Least Similar To              Score
+-------------------------------------------------------------------------------------------
+Adam Gimpert            Matt M                  0.268   Jared                         0.092
+Ben Hamilton            Kirk Hayward            0.506   Adam Gimpert                  0.225
+Drew                    Joe Hayward             0.580   Adam Gimpert                  0.204
+Jared                   caliban                 0.438   Adam Gimpert                  0.092
+Joe Hayward             Drew                    0.580   Adam Gimpert                  0.229
+Kirk Hayward            Joe Hayward             0.532   Adam Gimpert                  0.232
+Matt M                  Joe Hayward             0.563   William Strickland Hamilton   0.266
+Qui-Jon Jinn            Joe Hayward             0.497   Adam Gimpert                  0.253
+Rachel Peterson         someben                 0.450   Adam Gimpert                  0.242
+William S. Hamilton     Ben Hamilton            0.360   caliban                       0.192
+caliban                 Joe Hayward             0.493   William Strickland Hamilton   0.192
+legion1996a             Joe Hayward             0.552   Adam Gimpert                  0.191
+someben                 Ben Hamilton            0.457   Adam Gimpert                  0.226
+
+======================================================================
+KEY FINDINGS
+======================================================================
+
+MUSICAL SOULMATES
+-----------------
+1. Drew & Joe Hayward (0.580) - The highest compatibility pair
+2. Matt M & Joe Hayward (0.563) - Very strong musical alignment
+3. legion1996a & Joe Hayward (0.552) - Consistent agreement
+4. Joe Hayward & Kirk Hayward (0.532) - Family musical DNA confirmed
+5. Ben Hamilton & Kirk Hayward (0.506) - Surprisingly high cross-family match
+
+THE JOE HAYWARD PHENOMENON
+--------------------------
+Joe Hayward is the "most similar" voter for 6 out of 13 participants:
+  - Drew (0.580)
+  - Matt M (0.563)
+  - legion1996a (0.552)
+  - Kirk Hayward (0.532)
+  - Qui-Jon Jinn (0.497)
+  - caliban (0.493)
+
+This suggests Joe has cultivated a musical taste that resonates broadly
+with the league's preferences - he's essentially the "musical center"
+of the group.
+
+THE ADAM GIMPERT PARADOX
+------------------------
+Adam Gimpert is the "least similar" voter for 10 out of 13 participants.
+His highest similarity with anyone is just 0.268 (with Matt M).
+This indicates either:
+  - Highly unique musical preferences
+  - Different scoring philosophy (perhaps more critical)
+  - Appreciation for songs others overlook
+
+FAMILY CONNECTIONS
+------------------
+The Hayward Brothers:
+  - Joe & Kirk Hayward: 0.532 similarity
+  - Both highly active (1,146 and 864 votes respectively)
+  - Strong family musical alignment
+
+The Hamilton Connection:
+  - Ben & William Strickland Hamilton: 0.360 similarity
+  - Moderate family alignment, less pronounced than Haywards
+
+======================================================================
+VOTER CLUSTERS
+======================================================================
+
+Based on average similarity with all other voters:
+
+UNIVERSALLY COMPATIBLE (Most agreeable taste)
+----------------------------------------------
+1. Joe Hayward      - 0.464 avg similarity
+2. Drew             - 0.424 avg similarity
+3. Kirk Hayward     - 0.423 avg similarity
+4. Matt M           - 0.410 avg similarity
+5. legion1996a      - 0.402 avg similarity
+
+These voters tend to appreciate a wide range of music and their
+preferences align well with the group consensus.
+
+UNIQUE TASTE (Most distinctive preferences)
+-------------------------------------------
+1. Adam Gimpert     - 0.214 avg similarity
+2. William S. Hamilton - 0.287 avg similarity
+3. Jared            - 0.330 avg similarity
+4. Rachel Peterson  - 0.361 avg similarity
+5. caliban          - 0.362 avg similarity
+
+These voters march to their own beat, often discovering and
+appreciating songs that others might overlook.
+
+======================================================================
+VOTING PATTERNS
+======================================================================
+
+MOST ACTIVE VOTERS (Total votes across all leagues)
+----------------------------------------------------
+1. Joe Hayward      - 1,146 votes (1.20 avg score)
+2. legion1996a      - 1,035 votes (1.46 avg score)
+3. Drew             - 936 votes (1.50 avg score)
+4. Matt M           - 890 votes (1.20 avg score)
+5. Kirk Hayward     - 864 votes (1.34 avg score)
+
+SCORING TENDENCIES
+------------------
+Most Conservative (lowest avg scores):
+  - Joe Hayward: 1.20
+  - Matt M: 1.20
+
+Most Generous (highest avg scores):
+  - Jared: 1.68
+  - someben: 1.58
+  - caliban: 1.55
+
+The conservative scorers (Joe, Matt) tend to reserve higher scores
+for truly exceptional songs, while generous scorers spread more
+points across their preferences.
+
+======================================================================
+IMPLICATIONS FOR MUSIC SELECTION
+======================================================================
+
+FOR HIGH COMPATIBILITY GROUPS
+------------------------------
+If you want to please Joe Hayward, you'll likely also please:
+  - Drew, Matt M, legion1996a, Kirk Hayward, Qui-Jon Jinn, caliban
+
+Songs that work for this "core group" tend to be:
+  - Well-crafted with broad appeal
+  - Balance between familiar and fresh
+  - Strong thematic fit
+
+FOR UNIQUE TASTE VOTERS
+-----------------------
+Adam Gimpert, William S. Hamilton, and Jared require special consideration:
+  - Their favorites are often others' misses
+  - They may appreciate experimental or niche selections
+  - Don't rely on "crowd pleasers" to win their votes
+
+STRATEGIC INSIGHTS
+------------------
+1. The "Joe Hayward Test" - If Joe would like it, ~46% of voters will too
+2. The "Adam Gimpert Gamble" - His favorites are high-risk, high-reward
+3. Family votes aren't guaranteed - Hamiltons only 36% similar
+4. Active voters have more predictable patterns (more data = better models)
+
+======================================================================
+SUMMARY STATISTICS
+======================================================================
+
+Total Voters Analyzed: 13
+Total Votes Analyzed: 9,658
+Average Similarity: 0.369
+Highest Pair Similarity: Drew & Joe Hayward (0.580)
+Lowest Pair Similarity: Adam Gimpert & Jared (0.092)
+
+Most Connected Voter: Joe Hayward (0.464 avg)
+Most Unique Voter: Adam Gimpert (0.214 avg)
+
+======================================================================
+
+Note: This analysis uses cosine similarity on voting patterns. Voters
+who haven't rated many of the same songs may show artificially low
+similarity. The most reliable comparisons are between active voters
+with substantial overlap in songs rated.
