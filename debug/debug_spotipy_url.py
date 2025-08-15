@@ -1,121 +1,109 @@
 #!/usr/bin/env ./venv/bin/python3
 """
-Debug Spotipy URL construction issue
+Debug Spotipy URL construction and compare with raw requests
 """
 
 import os
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-import requests
 import logging
 from dotenv import load_dotenv
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 
 # Load environment variables
 load_dotenv()
 
-# Enable verbose logging
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-def debug_spotipy_urls():
-    """Debug how Spotipy constructs URLs"""
+def test_spotipy_vs_raw():
+    """Compare Spotipy behavior with our raw requests"""
     
-    # Load credentials
-    if not os.getenv('SPOTIFY_CLIENT_ID'):
-        print("❌ No Spotify credentials found")
+    client_id = os.getenv('SPOTIFY_CLIENT_ID')
+    client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
+    
+    if not client_id or not client_secret:
+        logger.error("Missing Spotify credentials")
         return
     
-    print("🔍 DEBUGGING SPOTIPY URL CONSTRUCTION")
-    print("=" * 50)
+    # Test with Spotipy
+    logger.info("🎵 Testing with Spotipy library...")
     
-    # Initialize Spotify client
-    client_credentials_manager = SpotifyClientCredentials(
-        client_id=os.getenv('SPOTIFY_CLIENT_ID'),
-        client_secret=os.getenv('SPOTIFY_CLIENT_SECRET')
-    )
-    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-    
-    # First test: successful search
-    print("\n1. Testing search (usually works):")
     try:
-        results = sp.search(q="Come Together The Beatles", type='track', limit=1)
-        if results['tracks']['items']:
-            track = results['tracks']['items'][0]
+        client_credentials_manager = SpotifyClientCredentials(
+            client_id=client_id,
+            client_secret=client_secret
+        )
+        sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+        
+        # Test search first
+        logger.info("Testing Spotipy search...")
+        search_results = sp.search(q="rock", type="track", limit=5)
+        track_count = len(search_results['tracks']['items'])
+        logger.info(f"✅ Spotipy search successful - found {track_count} tracks")
+        
+        if search_results['tracks']['items']:
+            track = search_results['tracks']['items'][0]
             track_id = track['id']
-            print(f"✅ Search successful: {track['name']} by {track['artists'][0]['name']}")
-            print(f"   Track ID: {track_id}")
+            track_name = track['name']
+            artist_name = track['artists'][0]['name']
             
-            # Now test audio_features
-            print(f"\n2. Testing audio_features with track ID: {track_id}")
+            logger.info(f"Testing audio features for: {track_name} by {artist_name} (ID: {track_id})")
             
-            # Let's examine the client's base URL
-            print(f"   Spotipy base URL: {sp._base_url}")
-            
-            # Try to intercept the actual URL being called
-            original_get = sp._get
-            
-            def debug_get(url, args=None, payload=None, **kwargs):
-                print(f"   🔍 INTERCEPTED GET REQUEST:")
-                print(f"      URL: {url}")
-                print(f"      Args: {args}")
-                print(f"      Payload: {payload}")
-                print(f"      Kwargs: {kwargs}")
-                
-                # Call original method
-                return original_get(url, args, payload, **kwargs)
-            
-            sp._get = debug_get
-            
+            # Test audio features - this is where the 403 occurs
             try:
                 features = sp.audio_features([track_id])
-                print(f"✅ Audio features call successful!")
                 if features and features[0]:
-                    print(f"   Energy: {features[0]['energy']:.2f}")
+                    logger.info(f"✅ Spotipy audio features successful!")
+                    logger.info(f"Energy: {features[0]['energy']}, Danceability: {features[0]['danceability']}")
+                else:
+                    logger.error("❌ Spotipy audio features returned None/empty")
             except Exception as e:
-                print(f"❌ Audio features failed: {e}")
+                logger.error(f"❌ Spotipy audio features failed: {e}")
                 
-        else:
-            print("❌ No tracks found in search")
-            
+                # Check if it's a 403 by looking at the exception
+                if "403" in str(e):
+                    logger.info("This is the same 403 error we see with raw requests")
+                
     except Exception as e:
-        print(f"❌ Search failed: {e}")
+        logger.error(f"❌ Spotipy setup failed: {e}")
 
-def test_direct_api_call():
-    """Test direct API call to Spotify"""
+def test_permissions_theory():
+    """Test if the issue is related to Spotify app permissions/settings"""
     
-    print(f"\n3. Testing direct HTTP call to Spotify API:")
+    logger.info("🔍 Investigating potential permission issues...")
     
-    # Get access token
-    client_credentials_manager = SpotifyClientCredentials(
-        client_id=os.getenv('SPOTIFY_CLIENT_ID'),
-        client_secret=os.getenv('SPOTIFY_CLIENT_SECRET')
-    )
+    client_id = os.getenv('SPOTIFY_CLIENT_ID')
+    logger.info(f"Client ID: {client_id}")
     
-    token_info = client_credentials_manager.get_access_token()
-    access_token = token_info['access_token']
+    # The audio features endpoint requires specific API access
+    # Let's check what endpoints work vs don't work
     
-    # Make direct request
-    track_id = "2EqlS6tkEnglzr7tkKAAYD"  # Come Together by The Beatles
+    logger.info("📋 Summary of what we know:")
+    logger.info("✅ Working endpoints:")
+    logger.info("   - Token acquisition (accounts.spotify.com)")
+    logger.info("   - Search (/v1/search)")
+    logger.info("   - Track info (/v1/tracks/{id})")
     
-    headers = {
-        'Authorization': f'Bearer {access_token}'
-    }
+    logger.info("❌ Failing endpoints:")
+    logger.info("   - Audio features (/v1/audio-features/{id})")
+    logger.info("   - Batch audio features (/v1/audio-features)")
     
-    # Correct URL format
-    correct_url = f"https://api.spotify.com/v1/audio-features?ids={track_id}"
-    print(f"   Trying correct URL: {correct_url}")
+    logger.info("🤔 Possible causes:")
+    logger.info("1. Audio features require special app permissions in Spotify Dashboard")
+    logger.info("2. Our app registration doesn't have 'Audio Features' scope enabled")
+    logger.info("3. Spotify may have changed permissions for Client Credentials flow")
+    logger.info("4. These endpoints may now require user authentication instead of client credentials")
+
+def main():
+    """Run debugging tests"""
     
-    response = requests.get(correct_url, headers=headers)
-    print(f"   Status: {response.status_code}")
-    print(f"   Response: {response.text[:200]}...")
+    print("🔬 Spotipy vs Raw Requests Debugging")
+    print("=" * 40)
     
-    # Also try the malformed URL that Spotipy seems to generate
-    malformed_url = f"https://api.spotify.com/v1/audio-features/?ids={track_id}"
-    print(f"\n   Trying malformed URL: {malformed_url}")
+    test_spotipy_vs_raw()
     
-    response2 = requests.get(malformed_url, headers=headers)
-    print(f"   Status: {response2.status_code}")
-    print(f"   Response: {response2.text[:200]}...")
+    print("\n" + "=" * 40)
+    test_permissions_theory()
 
 if __name__ == "__main__":
-    debug_spotipy_urls()
-    test_direct_api_call()
+    main()

@@ -1,0 +1,201 @@
+🤖 Initializing ensemble prediction models...
+   ✅ Ensemble models initialized
+🎵 Initializing lyrics-based discovery...
+   ✅ Lyrics discovery initialized
+🚀 Music League Scout initialized
+   Theme: 'Ominous rock'
+   Description: 'What is Ominous Rock? I'm not sure - I didn't author this category, however the people demanded it be a theme this league. Let's all find out together!'
+   Target count: 20
+   Genre focus: rock
+   Excluding mainstream hits
+   Including obscure songs
+   Using lyrics-based discovery
+   Using advanced ensemble models
+   Artist diversity: max 3 songs per artist
+
+🔄 Search iteration 1 (need 20 more songs)
+🔍 Discovering candidates for theme: 'Ominous rock'
+   Searching for keywords: ['ominous', 'rock', 'ominous', 'rock', 'category']
+     Found 5 songs with 'rock' in title
+     Found 5 songs with 'rock' in title
+   🧠 Using LLM musical knowledge for thematic discovery...
+   📝 LLM suggested 25 thematic candidates
+     🆕 External suggestion: Dead Flag Blues by Godspeed You! Black Emperor
+     🆕 External suggestion: Black Angels Death Song by The Velvet Underground
+     🆕 External suggestion: Frankie Teardrop by Suicide
+     🆕 External suggestion: The Beautiful People by Marilyn Manson
+     ✅ Found in DB: Red Right Hand - 2011 Remastered Version by Nick Cave & The Bad Seeds
+     🆕 External suggestion: Black Math by The White Stripes
+     🆕 External suggestion: March of the Pigs by Nine Inch Nails
+     🆕 External suggestion: Dead Skin Mask by Slayer
+     ✅ Found in DB: The Killing Moon by Echo & the Bunnymen
+     🆕 External suggestion: Careful With That Axe, Eugene by Pink Floyd
+     ✅ Found in DB: Cities In Dust by Siouxsie and the Banshees
+     ✅ Found in DB: The End by The Doors
+     🆕 External suggestion: Hamburger Lady by Throbbing Gristle
+     🆕 External suggestion: Black Planet by Sisters of Mercy
+     🆕 External suggestion: Dead Souls by Joy Division
+     🆕 External suggestion: Helter Skelter by The Beatles
+     🆕 External suggestion: Black Sabbath by Black Sabbath
+     🆕 External suggestion: The Package by A Perfect Circle
+     🆕 External suggestion: Venus in Furs by The Velvet Underground
+     🆕 External suggestion: Kim by Eminem
+   🎵 LLM discovery found 20 thematic candidates
+   Searching Spotify for: 'ominous'
+   Searching Spotify for: 'rock'
+   Searching Spotify for: 'ominous'
+   🎵 Searching for songs with thematically relevant lyrics...
+   📝 Lyrics engine found 0 potential candidates
+   🎵 Lyrics discovery found 0 candidates
+   Filtered out 0 mainstream songs
+   Found 61 unique candidates from all strategies
+🤖 Scoring 60 candidates with ensemble models...
+   Ranked 12 candidates with ensemble models (min_score >= 0.4)
+   🎯 Top pick: The Beautiful People by Marilyn Manson (score: 0.558)
+   Added 12 new unique recommendations
+🔄 Search iteration 2 (need 8 more songs)
+🔍 Discovering candidates for theme: 'Ominous rock'
+   Searching for keywords: ['ominous', 'rock', 'ominous', 'rock', 'category']
+     Found 5 songs with 'rock' in title
+     Found 5 songs with 'rock' in title
+   🧠 Using LLM musical knowledge for thematic discovery...
+   📝 LLM suggested 25 thematic candidates
+     🆕 External suggestion: Dead Souls by Joy Division
+     🆕 External suggestion: Black Smoke Rising by Greta Van Fleet
+     🆕 External suggestion: The Devil and The Huntsman by Sam Lee & Daniel Pemberton
+     🆕 External suggestion: Rats by Ghost
+     🆕 External suggestion: Mars, The Bringer of War by King Crimson
+     🆕 External suggestion: People Are Strange by The Doors
+     🆕 External suggestion: Black Math by The White Stripes
+     🆕 External suggestion: Hand of Doom by Black Sabbath
+     🆕 External suggestion: Death Valley '69 by Sonic Youth
+     🆕 External suggestion: The Beautiful People by Marilyn Manson
+     ✅ Found in DB: Red Right Hand - 2011 Remastered Version by Nick Cave & The Bad Seeds
+     🆕 External suggestion: I Am The Black Wizards by Emperor
+     🆕 External suggestion: Dead Flag Blues by Godspeed You! Black Emperor
+     🆕 External suggestion: Kim by Tool
+     🆕 External suggestion: The Kill by 30 Seconds to Mars
+     🆕 External suggestion: Reptilia by The Strokes
+   🎵 LLM discovery found 16 thematic candidates
+   Searching Spotify for: 'ominous'
+   Searching Spotify for: 'rock'
+   Searching Spotify for: 'ominous'
+   🎵 Searching for songs with thematically relevant lyrics...
+   📝 Lyrics engine found 0 potential candidates
+   🎵 Lyrics discovery found 0 candidates
+   Filtered out 0 mainstream songs
+   Found 55 unique candidates from all strategies
+🤖 Scoring 50 candidates with ensemble models...
+   Ranked 11 candidates with ensemble models (min_score >= 0.4)
+   🎯 Top pick: The Beautiful People by Marilyn Manson (score: 0.558)
+   Added 8 new unique recommendations
+✅ Found 20 recommendations
+📊 Applying final filters...
+   Applying artist diversity filter: max 3 songs per artist
+
+🎵 MUSIC LEAGUE SCOUT RECOMMENDATIONS
+Theme: Ominous rock
+============================================================
+
+1. The Beautiful People by Marilyn Manson
+   Combined Score: 0.558
+   Theme Match: 0.900 | Audio Features: 0.331
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.558 (conf: 0.50), Theme: 0.90, Audio: 0.33, Lyrics: 0.50
+
+2. Venus in Furs by The Velvet Underground
+   Combined Score: 0.542
+   Theme Match: 0.900 | Audio Features: 0.286
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.542 (conf: 0.50), Theme: 0.90, Audio: 0.29, Lyrics: 0.48
+
+3. Black Sabbath by Black Sabbath
+   Combined Score: 0.521
+   Theme Match: 0.950 | Audio Features: 0.169
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.521 (conf: 0.50), Theme: 0.95, Audio: 0.17, Lyrics: 0.45
+
+4. Rats by Ghost
+   Combined Score: 0.518
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.518 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.54
+
+5. Hand of Doom by Black Sabbath
+   Combined Score: 0.509
+   Theme Match: 0.900 | Audio Features: 0.198
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.509 (conf: 0.50), Theme: 0.90, Audio: 0.20, Lyrics: 0.45
+
+6. Black Planet by Sisters of Mercy
+   Combined Score: 0.508
+   Theme Match: 0.900 | Audio Features: 0.226
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.508 (conf: 0.50), Theme: 0.90, Audio: 0.23, Lyrics: 0.40
+
+7. Mars, The Bringer of War by King Crimson
+   Combined Score: 0.498
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.498 (conf: 0.50), Theme: 0.90, Audio: 0.30, Lyrics: 0.24
+
+8. Careful With That Axe, Eugene by Pink Floyd
+   Combined Score: 0.492
+   Theme Match: 0.900 | Audio Features: 0.141
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.492 (conf: 0.50), Theme: 0.90, Audio: 0.14, Lyrics: 0.45
+
+9. Dead Flag Blues by Godspeed You! Black Emperor
+   Combined Score: 0.480
+   Theme Match: 0.900 | Audio Features: 0.068
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.480 (conf: 0.50), Theme: 0.90, Audio: 0.07, Lyrics: 0.50
+
+10. Frankie Teardrop by Suicide
+   Combined Score: 0.478
+   Theme Match: 0.900 | Audio Features: 0.064
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.478 (conf: 0.50), Theme: 0.90, Audio: 0.06, Lyrics: 0.50
+
+11. Hamburger Lady by Throbbing Gristle
+   Combined Score: 0.472
+   Theme Match: 0.900 | Audio Features: 0.135
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.472 (conf: 0.50), Theme: 0.90, Audio: 0.13, Lyrics: 0.36
+
+12. People Are Strange by The Doors
+   Combined Score: 0.468
+   Theme Match: 0.700 | Audio Features: 0.369
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.468 (conf: 0.50), Theme: 0.70, Audio: 0.37, Lyrics: 0.39
+
+13. The Devil and The Huntsman by Sam Lee & Daniel Pemberton
+   Combined Score: 0.466
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.466 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.28
+
+14. Black Angels Death Song by The Velvet Underground
+   Combined Score: 0.458
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.458 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.24
+
+15. Kim by Tool
+   Combined Score: 0.450
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.450 (conf: 0.50), Theme: 0.90, Audio: 0.30
+
+16. The Package by A Perfect Circle
+   Combined Score: 0.449
+   Theme Match: 0.800 | Audio Features: 0.164
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.449 (conf: 0.50), Theme: 0.80, Audio: 0.16, Lyrics: 0.40
+
+17. Dead Souls by Joy Division
+   Combined Score: 0.442
+   Theme Match: 0.900 | Audio Features: 0.088
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.442 (conf: 0.50), Theme: 0.90, Audio: 0.09, Lyrics: 0.28
+
+18. Death Valley '69 by Sonic Youth
+   Combined Score: 0.436
+   Theme Match: 0.900 | Audio Features: 0.088
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.436 (conf: 0.50), Theme: 0.90, Audio: 0.09, Lyrics: 0.24
+
+19. Ominous Cloud by Broadcast
+   Combined Score: 0.410
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.410 (conf: 0.50), Theme: 0.80, Audio: 0.30
+
+20. The Kill by 30 Seconds to Mars
+   Combined Score: 0.402
+   Theme Match: 0.600 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.402 (conf: 0.50), Theme: 0.60, Audio: 0.30, Lyrics: 0.36
+
+📊 Average Score: 0.478
+🎯 Best Pick: The Beautiful People by Marilyn Manson

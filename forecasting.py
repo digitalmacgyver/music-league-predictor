@@ -24,7 +24,7 @@ from dotenv import load_dotenv
 
 from config import DATABASE_PATH
 from setup_db import get_db_connection
-from audio_features_fallback import AudioFeatureEstimator, FallbackAudioFeatures
+# Old fallback system replaced by enhanced_audio_features.py
 from enhanced_audio_features import EnhancedAudioFeaturesProvider
 from lyrics_analysis import LyricsThemeAnalyzer
 
@@ -99,8 +99,7 @@ class MusicForecaster:
             ngram_range=(1, 2)
         )
         
-        # Initialize fallback audio features
-        self.audio_estimator = AudioFeatureEstimator()
+        # Initialize enhanced audio features system
         self.enhanced_audio_provider = EnhancedAudioFeaturesProvider()
         
         # Initialize lyrics analysis (optional)
@@ -239,51 +238,10 @@ class MusicForecaster:
         )
 
     def get_spotify_features(self, song_title: str, artist: str) -> Optional[SongFeatures]:
-        """Get audio features from Spotify API with fallback to estimation"""
+        """Get audio features using enhanced multi-tier system (Spotify audio-features API deprecated)"""
         
-        # Try Spotify first if available
-        if self.spotify:
-            try:
-                # Search for the song
-                query = f"track:{song_title} artist:{artist}"
-                results = self.spotify.search(q=query, type='track', limit=1)
-                
-                if not results['tracks']['items']:
-                    # Try simplified search
-                    query = f"{song_title} {artist}"
-                    results = self.spotify.search(q=query, type='track', limit=1)
-                
-                if results['tracks']['items']:
-                    track = results['tracks']['items'][0]
-                    track_id = track['id']
-                    
-                    # Get audio features (spotipy expects a list of track IDs)
-                    features = self.spotify.audio_features([track_id])[0]
-                    if features:
-                        logger.info(f"Got Spotify features for {song_title} by {artist}")
-                        return SongFeatures(
-                            energy=features['energy'],
-                            danceability=features['danceability'],
-                            valence=features['valence'],
-                            acousticness=features['acousticness'],
-                            instrumentalness=features['instrumentalness'],
-                            liveness=features['liveness'],
-                            speechiness=features['speechiness'],
-                            tempo=features['tempo'],
-                            loudness=features['loudness'],
-                            key=features['key'],
-                            mode=features['mode'],
-                            time_signature=features['time_signature']
-                        )
-                
-            except Exception as e:
-                if "403" in str(e):
-                    logger.warning(f"Spotify API restricted (403) - using fallback for {song_title}")
-                else:
-                    logger.error(f"Spotify API error for {song_title} by {artist}: {e}")
-        
-        # Enhanced fallback: Try historical dataset first, then estimation
-        logger.info(f"Using enhanced audio features for {song_title} by {artist}")
+        # Use enhanced audio features system (historical dataset + Essentia + estimation)
+        logger.debug(f"Getting enhanced audio features for {song_title} by {artist}")
         enhanced_features = self.enhanced_audio_provider.get_audio_features(song_title, artist)
         
         if enhanced_features:
