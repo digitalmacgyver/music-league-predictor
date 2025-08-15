@@ -1,0 +1,26 @@
+MUSIC LEAGUE MARKDOWN FILE CATEGORIZATION
+==========================================
+
+CORE DOCUMENTATION (KEEP IN ROOT):
+----------------------------------
+✅ CLAUDE.md - Project instructions for Claude (KEEP)
+✅ README.md - Main project documentation (KEEP)
+
+TOOL DOCUMENTATION (KEEP IN ROOT):
+----------------------------------
+✅ PREDICTION_GUIDE.md - User guide for predictions (KEEP)
+✅ SCOUT_GUIDE.md - User guide for Scout tool (KEEP)
+✅ USAGE_GUIDE.md - Enhanced usage guide for Scout (KEEP)
+✅ SCRAPER.md - Documentation for scraper tool (KEEP)
+
+GENERATED REPORTS (MOVE TO reports/):
+------------------------------------
+🔄 food_theme_results.md - One-time food theme analysis report
+🔄 VOTER_SIMILARITY_INSIGHTS.md - Voter analysis report
+
+SUMMARY:
+--------
+✅ KEEP (6): Core project docs and tool documentation
+🔄 MOVE TO reports/ (2): Generated analysis reports
+
+This reduces root directory markdown files from 8 to 6 files

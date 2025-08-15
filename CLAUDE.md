@@ -147,6 +147,16 @@ When creating scripts for:
 
 **ALWAYS create them in the `debug/` directory** to keep the root clean and organized.
 
+### Reports Directory Usage
+When generating reports and analyses:
+- Voter similarity analyses (e.g., `BT26_VOTER_SIMILARITY_ANALYSIS.txt`)
+- Theme prediction results (e.g., `food_theme_results.md`)
+- Historical pattern insights (e.g., `RECENT_LEAGUES_INSIGHTS.txt`)
+- Scout recommendation outputs
+- One-time research findings
+
+**ALWAYS save them in the `reports/` directory** to organize all analytical outputs separately from core documentation.
+
 ## Success Metrics
 - Complete data capture from all 27 Bard's Tale leagues
 - Zero data loss or corruption
