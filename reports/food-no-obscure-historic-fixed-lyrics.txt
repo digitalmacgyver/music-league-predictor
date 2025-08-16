@@ -1,211 +1,378 @@
 📊 Initializing historical pattern analysis...
-================================================================================
-      HISTORICAL PERFORMANCE PATTERN ANALYSIS
-      Music League Preference Evolution Report
-================================================================================
+   ✅ Historical patterns loaded - Group tendency: balanced
+   📈 Confidence: 100.0%
+🤖 Initializing ensemble prediction models...
+   ✅ Ensemble models initialized
+   🎯 Will attempt ensemble training with historical data
+🎵 Initializing lyrics-based discovery...
+   ✅ Lyrics discovery initialized
+📋 Initializing playlist-based discovery...
+   ✅ Playlist discovery initialized
+🔍 Initializing candidate verification system...
+   ✅ Candidate verification initialized
+🚀 Music League Scout initialized
+   Theme: 'Songs about Food/Meals/Eating (NO Weird Al\!)'
+   Target count: 20
+   Using historical pattern analysis
+   Using lyrics-based discovery
+   Using playlist-based discovery
+   Using advanced ensemble models
+   Artist diversity: max 3 songs per artist
 
-Analyzed 26 leagues spanning 0-26
-Total unique voters: 25
-Total songs analyzed: 1631
-Total votes analyzed: 10853
+🔄 Search iteration 1 (need 20 more songs)
+🔍 Discovering candidates for theme: 'Songs about Food/Meals/Eating (NO Weird Al\!)'
+   Searching for keywords: ['food', 'meals', 'eating', 'weird']
+     Found 1 songs with 'weird' in title
+   🧠 Using LLM musical knowledge for thematic discovery...
+   📝 LLM suggested 20 thematic candidates
+     🆕 External suggestion: Savoy Truffle by The Beatles
+     ✅ Found in DB: Green Onions by Booker T. & the M.G.'s
+     ✅ Found in DB: Peaches by The Presidents Of The United States Of America
+     🆕 External suggestion: Sugar Sugar by The Archies
+     🆕 External suggestion: Ham 'N' Eggs by A Tribe Called Quest
+     🆕 External suggestion: Vegetables by The Beach Boys
+     ✅ Found in DB: Cherry Pie by Warrant
+     🆕 External suggestion: Milk and Honey by Billie Marten
+     🆕 External suggestion: Coconut by Harry Nilsson
+     🆕 External suggestion: Rice & Beans by Blue Lab Beats ft. Ghetto Boy
+     🆕 External suggestion: Black Coffee in Bed by Squeeze
+     🆕 External suggestion: Banana Pancakes by Jack Johnson
+     🆕 External suggestion: Eat It by ZZ Top
+     🆕 External suggestion: Sugar Water by Cibo Matto
+     🆕 External suggestion: Eggs and Sausage by Tom Waits
+     🆕 External suggestion: Mashed Potatoes by James Brown
+     🆕 External suggestion: Cake by Ivy Sole
+     🆕 External suggestion: Hot Tamales by T-Bone Walker
+     🆕 External suggestion: Butter by A Tribe Called Quest
+     🆕 External suggestion: Milk and Cereal by G. Love & Special Sauce
+   🎵 LLM discovery found 20 thematic candidates
+   Searching Spotify for: 'food'
+   Searching Spotify for: 'meals'
+   Searching Spotify for: 'eating'
+   🎵 Searching for songs with thematically relevant lyrics...
+   📝 Lyrics engine found 10 potential candidates
+     🎯 Lyrical match: "Savoy Truffle" by The Beatles (relevance: 0.80)
+     🎯 Lyrical match: "Eat It Up" by Kate Nash (relevance: 0.80)
+     🎯 Lyrical match: "Green Onions" by Booker T. & the M.G.'s (relevance: 0.80)
+     🎯 Lyrical match: "Peaches" by The Presidents of the United States of America (relevance: 0.80)
+     🎯 Lyrical match: "Sugar Sugar" by The Archies (relevance: 0.80)
+     🎯 Lyrical match: Requiem, K. 626 (Ed. Beyer/Levin): IIIa. Dies irae - Live by Wolfgang Amadeus Mozart (relevance: 0.60)
+     🎯 Lyrical match: Heads Will Roll by Yeah Yeah Yeahs (relevance: 0.60)
+     🎯 Lyrical match: Folsom Prison Blues by Johnny Cash (relevance: 0.60)
+     🎯 Lyrical match: Runnin' Down A Dream by Tom Petty (relevance: 0.60)
+     🎯 Lyrical match: Intergalactic - Remastered 2009 by Beastie Boys (relevance: 0.60)
+   🎵 Lyrics discovery found 10 candidates
+   📋 Searching public playlists for theme matches...
+   📋 Playlist discovery found 20 candidates
+     📋 Playlist match: Coconut by Harry Nilsson (from: Catchy Songs about Food)
+     📋 Playlist match: Banana Boat (Day-O) by Harry Belafonte (from: Catchy Songs about Food)
+     📋 Playlist match: Banana Pancakes by Jack Johnson (from: Catchy Songs about Food)
+     📋 Playlist match: Do You Like Waffles? by Parry Gripp (from: Catchy Songs about Food)
+     📋 Playlist match: Bananaphone by Raffi (from: Catchy Songs about Food)
+     📋 Playlist match: Apples And Bananas by Raffi (from: Catchy Songs about Food)
+     📋 Playlist match: Coconut Woman by Harry Belafonte (from: Catchy Songs about Food)
+     📋 Playlist match: Potato Chips by Slim Gaillard (from: Catchy Songs about Food)
+     📋 Playlist match: Pico De Gallo by Trout Fishing in America (from: Catchy Songs about Food)
+     📋 Playlist match: I Love Sopaipillas by Peter Apel (from: Catchy Songs about Food)
+     📋 Playlist match: Betty Spaghetti by Kymberly Stewart (from: Songs about Food for Kids)
+     📋 Playlist match: Pineapple by fleaBITE (from: Songs about Food for Kids)
+     📋 Playlist match: Fruit Salad by The Wiggles (from: Songs about Food for Kids)
+     📋 Playlist match: Blueberries by Music with Michal (from: Songs about Food for Kids)
+     📋 Playlist match: I Eat Healthy Food by Evolved Teacher (from: Songs about Food for Kids)
+     📋 Playlist match: Sing a Song of Sushi by fleaBITE (from: Songs about Food for Kids)
+     📋 Playlist match: Yes Yes Vegetables by The Mik Maks (from: Songs about Food for Kids)
+     📋 Playlist match: Blueberries (Fruit Song) by Itty Bitty Beats (from: Songs about Food for Kids)
+     📋 Playlist match: Food Party by Barenaked Ladies (from: Songs about Food for Kids)
+     📋 Playlist match: Pop Korn by fleaBITE (from: Songs about Food for Kids)
+🔍 Validating 82 candidates...
+   ❌ Removed invalid: Milk and Honey by Billie Marten
+     ⚠️  No good Spotify match found for 'Milk and Honey' by 'Billie Marten'
+   ❌ Removed invalid: Rice & Beans by Blue Lab Beats ft. Ghetto Boy
+     ⚠️  No good Spotify match found for 'Rice & Beans' by 'Blue Lab Beats ft. Ghetto Boy'
+   ✅ Verified & corrected: Black Coffee In Bed by Squeeze
+     ⚠️  Title corrected: 'Black Coffee in Bed' → 'Black Coffee In Bed'
+   ❌ Removed invalid: Eat It by ZZ Top
+     ⚠️  No good Spotify match found for 'Eat It' by 'ZZ Top'
+   ❌ Removed invalid: Cake by Ivy Sole
+     ⚠️  No good Spotify match found for 'Cake' by 'Ivy Sole'
+   ❌ Removed invalid: Hot Tamales by T-Bone Walker
+     ⚠️  No good Spotify match found for 'Hot Tamales' by 'T-Bone Walker'
+   ❌ Removed invalid: Milk and Cereal by G. Love & Special Sauce
+     ⚠️  No good Spotify match found for 'Milk and Cereal' by 'G. Love & Special Sauce'
+   🔄 Skipped duplicate: "Savoy Truffle" by The Beatles
+   🔄 Skipped duplicate: "Green Onions" by Booker T. & the M.G.'s
+   🔄 Skipped duplicate: "Peaches" by The Presidents of the United States of America
+   🔄 Skipped duplicate: "Sugar Sugar" by The Archies
+   ✅ Validated 72/82 candidates
+   🔍 Verification removed 10 invalid/duplicate candidates
+   Found 72 verified candidates from all strategies
+🤖 Scoring 60 candidates with ensemble models...
+   Ranked 17 candidates with ensemble models (min_score >= 0.4)
+   🎯 Top pick: Do You Like Waffles? by Parry Gripp (score: 0.660)
+   Added 17 new unique recommendations
+🔄 Search iteration 2 (need 3 more songs)
+🔍 Discovering candidates for theme: 'Songs about Food/Meals/Eating (NO Weird Al\!)'
+   Searching for keywords: ['food', 'meals', 'eating', 'weird']
+     Found 1 songs with 'weird' in title
+   🧠 Using LLM musical knowledge for thematic discovery...
+   📝 LLM suggested 25 thematic candidates
+     🆕 External suggestion: Eat It All by The Flaming Lips
+     ✅ Found in DB: Green Onions by Booker T. & the M.G.'s
+     🆕 External suggestion: Savoy Truffle by The Beatles
+     🆕 External suggestion: Meat and Potatoes by Belle & Sebastian
+     🆕 External suggestion: Rice & Beans by Thievery Corporation
+     🆕 External suggestion: Sugar Water by Cibo Matto
+     🆕 External suggestion: Vegetables by Beach Boys
+     🆕 External suggestion: Milk and Honey by Billie Marten
+     🆕 External suggestion: Black Coffee in Bed by Squeeze
+     🆕 External suggestion: Coconut by Harry Nilsson
+     🆕 External suggestion: Bean and Corn Bread by Louis Jordan
+     ✅ Found in DB: Peaches by The Presidents Of The United States Of America
+     🆕 External suggestion: Banana Pancakes by Jack Johnson
+     🆕 External suggestion: She's Baking by The Beta Band
+     🆕 External suggestion: Hot Tamales by Robert Johnson
+     🆕 External suggestion: Milk Shake by Sleater-Kinney
+   🎵 LLM discovery found 16 thematic candidates
+   Searching Spotify for: 'food'
+   Searching Spotify for: 'meals'
+   Searching Spotify for: 'eating'
+   🎵 Searching for songs with thematically relevant lyrics...
+   📝 Lyrics engine found 8 potential candidates
+     🎯 Lyrical match: Peaches by The Presidents of the United States of America (relevance: 0.80)
+     🎯 Lyrical match: Sugar Sugar Sugar by ESG (relevance: 0.80)
+     🎯 Lyrical match: Savoy Truffle by The Beatles (relevance: 0.80)
+     🎯 Lyrical match: Green Onions by Booker T. & the M.G.'s (relevance: 0.80)
+     🎯 Lyrical match: Requiem, K. 626 (Ed. Beyer/Levin): IIIa. Dies irae - Live by Wolfgang Amadeus Mozart (relevance: 0.60)
+     🎯 Lyrical match: Heads Will Roll by Yeah Yeah Yeahs (relevance: 0.60)
+     🎯 Lyrical match: Folsom Prison Blues by Johnny Cash (relevance: 0.60)
+     🎯 Lyrical match: Runnin' Down A Dream by Tom Petty (relevance: 0.60)
+   🎵 Lyrics discovery found 8 candidates
+   📋 Searching public playlists for theme matches...
+   📋 Playlist discovery found 16 candidates
+     📋 Playlist match: Coconut by Harry Nilsson (from: Catchy Songs about Food)
+     📋 Playlist match: Banana Boat (Day-O) by Harry Belafonte (from: Catchy Songs about Food)
+     📋 Playlist match: Banana Pancakes by Jack Johnson (from: Catchy Songs about Food)
+     📋 Playlist match: Do You Like Waffles? by Parry Gripp (from: Catchy Songs about Food)
+     📋 Playlist match: Bananaphone by Raffi (from: Catchy Songs about Food)
+     📋 Playlist match: Apples And Bananas by Raffi (from: Catchy Songs about Food)
+     📋 Playlist match: Coconut Woman by Harry Belafonte (from: Catchy Songs about Food)
+     📋 Playlist match: Potato Chips by Slim Gaillard (from: Catchy Songs about Food)
+     📋 Playlist match: Pico De Gallo by Trout Fishing in America (from: Catchy Songs about Food)
+     📋 Playlist match: I Love Sopaipillas by Peter Apel (from: Catchy Songs about Food)
+     📋 Playlist match: Betty Spaghetti by Kymberly Stewart (from: Songs about Food for Kids)
+     📋 Playlist match: Pineapple by fleaBITE (from: Songs about Food for Kids)
+     📋 Playlist match: Fruit Salad by The Wiggles (from: Songs about Food for Kids)
+     📋 Playlist match: Blueberries by Music with Michal (from: Songs about Food for Kids)
+     📋 Playlist match: I Eat Healthy Food by Evolved Teacher (from: Songs about Food for Kids)
+     📋 Playlist match: Sing a Song of Sushi by fleaBITE (from: Songs about Food for Kids)
+🔍 Validating 68 candidates...
+   ❌ Removed invalid: Eat It All by The Flaming Lips
+     ⚠️  No good Spotify match found for 'Eat It All' by 'The Flaming Lips'
+   ✅ Verified & corrected: Meat And Potatoes by Belle and Sebastian
+     ⚠️  Title corrected: 'Meat and Potatoes' → 'Meat And Potatoes'
+   ❌ Removed invalid: Rice & Beans by Thievery Corporation
+     ⚠️  No good Spotify match found for 'Rice & Beans' by 'Thievery Corporation'
+   ✅ Verified & corrected: Vegetables - Remastered 2001 by The Beach Boys
+     ⚠️  Artist corrected: 'Beach Boys' → 'The Beach Boys'
+   ❌ Removed invalid: Milk and Honey by Billie Marten
+     ⚠️  No good Spotify match found for 'Milk and Honey' by 'Billie Marten'
+   ✅ Verified & corrected: Black Coffee In Bed by Squeeze
+     ⚠️  Title corrected: 'Black Coffee in Bed' → 'Black Coffee In Bed'
+   ❌ Removed invalid: Bean and Corn Bread by Louis Jordan
+     ⚠️  No good Spotify match found for 'Bean and Corn Bread' by 'Louis Jordan'
+   ❌ Removed invalid: She's Baking by The Beta Band
+     ⚠️  No good Spotify match found for 'She's Baking' by 'The Beta Band'
+   ❌ Removed invalid: Hot Tamales by Robert Johnson
+     ⚠️  No good Spotify match found for 'Hot Tamales' by 'Robert Johnson'
+   ❌ Removed invalid: Milk Shake by Sleater-Kinney
+     ⚠️  No good Spotify match found for 'Milk Shake' by 'Sleater-Kinney'
+   ✅ Validated 61/68 candidates
+   🔍 Verification removed 7 invalid/duplicate candidates
+   Found 61 verified candidates from all strategies
+🤖 Scoring 50 candidates with ensemble models...
+   Ranked 12 candidates with ensemble models (min_score >= 0.4)
+   🎯 Top pick: Do You Like Waffles? by Parry Gripp (score: 0.620)
+   Added 1 new unique recommendations
+🔄 Search iteration 3 (need 2 more songs)
+🔍 Discovering candidates for theme: 'Songs about Food/Meals/Eating (NO Weird Al\!)'
+   Searching for keywords: ['food', 'meals', 'eating', 'weird']
+     Found 1 songs with 'weird' in title
+   🧠 Using LLM musical knowledge for thematic discovery...
+   📝 LLM suggested 20 thematic candidates
+     ✅ Found in DB: Peaches by The Presidents Of The United States Of America
+     🆕 External suggestion: Sugar Sugar by The Archies
+     ✅ Found in DB: Green Onions by Booker T. & the M.G.'s
+     🆕 External suggestion: Savoy Truffle by The Beatles
+     🆕 External suggestion: Ice Cream by Sarah McLachlan
+     ✅ Found in DB: Cherry Pie by Warrant
+     🆕 External suggestion: Milk and Honey by Billie Marten
+     🆕 External suggestion: Breakfast In America by Supertramp
+     🆕 External suggestion: Pour Some Sugar On Me by Def Leppard
+     🆕 External suggestion: Banana Pancakes by Jack Johnson
+     🆕 External suggestion: Ham 'N' Eggs by A Tribe Called Quest
+     🆕 External suggestion: Vegetables by The Beach Boys
+     🆕 External suggestion: Sugar Water by Cibo Matto
+     🆕 External suggestion: Cheeseburger in Paradise by Jimmy Buffett
+     ✅ Found in DB: Red Red Wine by UB40
+     🆕 External suggestion: Life Is Sweet by Chemical Brothers
+   🎵 LLM discovery found 16 thematic candidates
+   Searching Spotify for: 'food'
+   Searching Spotify for: 'meals'
+   Searching Spotify for: 'eating'
+   🎵 Searching for songs with thematically relevant lyrics...
+   📝 Lyrics engine found 4 potential candidates
+     🎯 Lyrical match: Requiem, K. 626 (Ed. Beyer/Levin): IIIa. Dies irae - Live by Wolfgang Amadeus Mozart (relevance: 0.60)
+     🎯 Lyrical match: Heads Will Roll by Yeah Yeah Yeahs (relevance: 0.60)
+     🎯 Lyrical match: Folsom Prison Blues by Johnny Cash (relevance: 0.60)
+     🎯 Lyrical match: Runnin' Down A Dream by Tom Petty (relevance: 0.60)
+   🎵 Lyrics discovery found 4 candidates
+   📋 Searching public playlists for theme matches...
+   📋 Playlist discovery found 16 candidates
+     📋 Playlist match: Coconut by Harry Nilsson (from: Catchy Songs about Food)
+     📋 Playlist match: Banana Boat (Day-O) by Harry Belafonte (from: Catchy Songs about Food)
+     📋 Playlist match: Banana Pancakes by Jack Johnson (from: Catchy Songs about Food)
+     📋 Playlist match: Do You Like Waffles? by Parry Gripp (from: Catchy Songs about Food)
+     📋 Playlist match: Bananaphone by Raffi (from: Catchy Songs about Food)
+     📋 Playlist match: Apples And Bananas by Raffi (from: Catchy Songs about Food)
+     📋 Playlist match: Coconut Woman by Harry Belafonte (from: Catchy Songs about Food)
+     📋 Playlist match: Potato Chips by Slim Gaillard (from: Catchy Songs about Food)
+     📋 Playlist match: Pico De Gallo by Trout Fishing in America (from: Catchy Songs about Food)
+     📋 Playlist match: I Love Sopaipillas by Peter Apel (from: Catchy Songs about Food)
+     📋 Playlist match: Betty Spaghetti by Kymberly Stewart (from: Songs about Food for Kids)
+     📋 Playlist match: Pineapple by fleaBITE (from: Songs about Food for Kids)
+     📋 Playlist match: Fruit Salad by The Wiggles (from: Songs about Food for Kids)
+     📋 Playlist match: Blueberries by Music with Michal (from: Songs about Food for Kids)
+     📋 Playlist match: I Eat Healthy Food by Evolved Teacher (from: Songs about Food for Kids)
+     📋 Playlist match: Sing a Song of Sushi by fleaBITE (from: Songs about Food for Kids)
+🔍 Validating 68 candidates...
+   ❌ Removed invalid: Milk and Honey by Billie Marten
+     ⚠️  No good Spotify match found for 'Milk and Honey' by 'Billie Marten'
+   ✅ Verified & corrected: Cheeseburger In Paradise by Jimmy Buffett
+     ⚠️  Title corrected: 'Cheeseburger in Paradise' → 'Cheeseburger In Paradise'
+   ✅ Verified & corrected: Life Is Sweet by The Chemical Brothers
+     ⚠️  Artist corrected: 'Chemical Brothers' → 'The Chemical Brothers'
+   ✅ Validated 67/68 candidates
+   🔍 Verification removed 1 invalid/duplicate candidates
+   Found 67 verified candidates from all strategies
+🤖 Scoring 50 candidates with ensemble models...
+   Ranked 13 candidates with ensemble models (min_score >= 0.4)
+   🎯 Top pick: Savoy Truffle - Remastered 2009 by The Beatles (score: 0.592)
+   Added 4 new unique recommendations
+✅ Found 22 recommendations
+📊 Applying final filters...
+   Applying artist diversity filter: max 3 songs per artist
+   Filtered out 2 songs to ensure artist diversity
 
---------------------------------------------------------------------------------
-VOTER POOL EVOLUTION
---------------------------------------------------------------------------------
+🎵 MUSIC LEAGUE SCOUT RECOMMENDATIONS
+Theme: Songs about Food/Meals/Eating (NO Weird Al\!)
+============================================================
 
-League Participation Overview:
-  Average voters per league: 11.5
-  Peak participation: 16 voters
-  Minimum participation: 8 voters
-  Average turnover rate: 40.3%
+1. Do You Like Waffles? by Parry Gripp
+   Combined Score: 0.660
+   Theme Match: 0.900 | Audio Features: 0.367
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.660 (conf: 0.50), Theme: 0.90, Audio: 0.37, Lyrics: 0.95
 
-High turnover periods (>40% new voters):
-  Bardalon 5: Our Last Best Hope for Jams: 45.5% turnover
-  Bard’s Tale: 55.6% turnover
-  Bard's Tale IV: A New Hope: 50.0% turnover
-  Bard's Tale 2: 66.7% turnover
-  Bard's Tale 3: Revenge of the Bard: 72.7% turnover
-  B6: Bard's Tale 6: Fully Loaded: 100.0% turnover
-  Bard's Tale 11: Bard's Eleven: 60.0% turnover
-  Bard's Tale 12: Midnight Special: 45.5% turnover
-  Bard's Tale 13: Freaky Friday: 78.6% turnover
-  Bard's Tale 14: Journey of the Brave: 56.2% turnover
-  Bard's Tale 15: Terror of Mechagodzilla: 50.0% turnover
-  Bard's Tale 16: Search for Danger: 50.0% turnover
-  Bard's Tale 17: Lyorn: 54.5% turnover
+2. Potato Chips by Slim Gaillard
+   Combined Score: 0.635
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.635 (conf: 0.50), Theme: 0.90, Audio: 0.30, Lyrics: 0.93
 
---------------------------------------------------------------------------------
-VOTER CLASSIFICATION ANALYSIS
---------------------------------------------------------------------------------
+3. Apples And Bananas by Raffi
+   Combined Score: 0.605
+   Theme Match: 0.800 | Audio Features: 0.316
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.605 (conf: 0.50), Theme: 0.80, Audio: 0.32, Lyrics: 0.95
 
-Core Voters (70%+ participation): 8
-  legion1996a: 26 leagues, 1.45 avg score
-  Joe Hayward: 24 leagues, 1.20 avg score
-  Drew: 24 leagues, 1.50 avg score
-  caliban: 22 leagues, 1.55 avg score
-  Kirk Hayward: 21 leagues, 1.34 avg score
-  Jared: 20 leagues, 1.68 avg score
-  Matt M: 19 leagues, 1.20 avg score
-  someben: 19 leagues, 1.58 avg score
+4. Coconut Woman by Harry Belafonte
+   Combined Score: 0.601
+   Theme Match: 0.800 | Audio Features: 0.413
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.601 (conf: 0.50), Theme: 0.80, Audio: 0.41, Lyrics: 0.79
 
-Regular Voters (30-70% participation): 6
-  Qui-Jon Jinn: 18 leagues, 1.38 avg score
-  Rachel Peterson: 18 leagues, 1.55 avg score
-  Ben Hamilton: 17 leagues, 1.43 avg score
-  William Strickland Hamilton: 13 leagues, 1.39 avg score
-  Adrien: 10 leagues, 1.45 avg score
+5. Savoy Truffle - Remastered 2009 by The Beatles
+   Combined Score: 0.571
+   Theme Match: 0.900 | Audio Features: 0.375
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.571 (conf: 0.50), Theme: 0.90, Audio: 0.37, Lyrics: 0.50
 
-Transient Voters (<30% participation): 11
-  Average participation: 3.5 leagues
+6. Food, Glorious Food by The "Oliver! 1994" Kids Ensemble
+   Combined Score: 0.570
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.570 (conf: 0.50), Theme: 0.90, Audio: 0.30, Lyrics: 0.60
 
---------------------------------------------------------------------------------
-GROUP PREFERENCE EVOLUTION
---------------------------------------------------------------------------------
+7. Coconut by Harry Nilsson
+   Combined Score: 0.566
+   Theme Match: 0.800 | Audio Features: 0.420
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.566 (conf: 0.50), Theme: 0.80, Audio: 0.42, Lyrics: 0.60
 
-Scoring Generosity Trends:
-  Early leagues (first 5): 1.70 average rating
-  Recent leagues (last 5): 1.30 average rating
-  Overall trend: More conservative
-  Change magnitude: -0.40
+8. Cheeseburger In Paradise by Jimmy Buffett
+   Combined Score: 0.549
+   Theme Match: 0.800 | Audio Features: 0.362
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.549 (conf: 0.50), Theme: 0.80, Audio: 0.36, Lyrics: 0.60
 
-Consensus Evolution:
-  Early disagreement: 0.41 standard deviation
-  Recent disagreement: 0.21 standard deviation
-  Consensus trend: More consensus
+9. Banana Pancakes by Jack Johnson
+   Combined Score: 0.543
+   Theme Match: 0.900 | Audio Features: 0.310
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.543 (conf: 0.50), Theme: 0.90, Audio: 0.31, Lyrics: 0.45
 
---------------------------------------------------------------------------------
-MAJOR ERA TRANSITIONS
---------------------------------------------------------------------------------
+10. Food Glorious Food by John Powell
+   Combined Score: 0.520
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.520 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.55
 
-Bard's Tale 8: Pinky Pie's Singalong (moderate generosity_shift):
-  Scoring became more generous by 0.26 points
+11. Eggs and Sausage - Live by Tom Waits
+   Combined Score: 0.514
+   Theme Match: 0.700 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.514 (conf: 0.50), Theme: 0.70, Audio: 0.30, Lyrics: 0.72
 
-Bard's Tale 9: The Rise of Bardwalker (major generosity_shift):
-  Scoring became more conservative by 0.38 points
+12. Sugar Sugar by The Archies
+   Combined Score: 0.509
+   Theme Match: 0.800 | Audio Features: 0.429
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.509 (conf: 0.50), Theme: 0.80, Audio: 0.43, Lyrics: 0.30
 
-Bard's Tale 17: Lyorn (moderate generosity_shift):
-  Scoring became more generous by 0.24 points
+13. Eating My Heart Out by Wind Walkers
+   Combined Score: 0.505
+   Theme Match: 1.000 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.505 (conf: 0.50), Theme: 1.00, Audio: 0.30, Lyrics: 0.07
 
-Bard's Tale 23: Skyfall (moderate generosity_shift):
-  Scoring became more conservative by 0.27 points
+14. Vegetables - Remastered 2001 by The Beach Boys
+   Combined Score: 0.504
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.504 (conf: 0.50), Theme: 0.90, Audio: 0.30, Lyrics: 0.27
 
---------------------------------------------------------------------------------
-VOTER TURNOVER IMPACT ON PREFERENCES
---------------------------------------------------------------------------------
+15. Meals On Wheels by 10TA Lil A
+   Combined Score: 0.498
+   Theme Match: 1.000 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.498 (conf: 0.50), Theme: 1.00, Audio: 0.30, Lyrics: 0.04
 
-Leagues with increased generosity:
-  Bard’s Tale: +0.49 (turnover: 56%)
-  Bard's Tale 2: +0.15 (turnover: 67%)
-  Bard's Tale 8: Pinky Pie's Singalong: +0.17 (turnover: 25%)
-  Bard's Tale 17: Lyorn: +0.22 (turnover: 55%)
-  Bard's Tale 19: Feet of Clay: +0.14 (turnover: 20%)
+16. Ham 'N' Eggs by A Tribe Called Quest
+   Combined Score: 0.495
+   Theme Match: 0.900 | Audio Features: 0.271
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.495 (conf: 0.50), Theme: 0.90, Audio: 0.27, Lyrics: 0.27
 
-Leagues with decreased generosity:
-  Bard's Tale IV: A New Hope: -0.45 (turnover: 50%)
-  Bard's Tale 3: Revenge of the Bard: -0.15 (turnover: 73%)
-  Bard's Tale 7: The Beat Awakens: -0.12 (turnover: 40%)
-  Bard's Tale 9: The Rise of Bardwalker: -0.31 (turnover: 27%)
-  Bard's Tale 18: Tomorrow Never Dies: -0.16 (turnover: 25%)
-  Bard's Tale 20: The Haunted Mine: -0.14 (turnover: 18%)
-  Bard's Tale 23: Skyfall: -0.28 (turnover: 8%)
+17. Breakfast In America - Remastered 2010 by Supertramp
+   Combined Score: 0.466
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.466 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.28
 
---------------------------------------------------------------------------------
-PREDICTIVE INSIGHTS FOR FUTURE LEAGUES
---------------------------------------------------------------------------------
+18. Banana Boat (Day-O) by Harry Belafonte
+   Combined Score: 0.453
+   Theme Match: 0.700 | Audio Features: 0.157
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.453 (conf: 0.50), Theme: 0.70, Audio: 0.16, Lyrics: 0.63
 
-Current state (most recent league):
-  Voters: 13
-  Average score: 1.25
-  Recent turnover: 23%
-================================================================================
-      HISTORICAL PERFORMANCE PATTERN ANALYSIS
-      Music League Preference Evolution Report
-================================================================================
+19. Eatin' Big Time by Tyler Childers
+   Combined Score: 0.450
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.450 (conf: 0.50), Theme: 0.90, Audio: 0.30
 
-Analyzed 26 leagues spanning 0-26
-Total unique voters: 25
-Total songs analyzed: 1631
-Total votes analyzed: 10853
+20. Sugar Sugar Sugar by ESG
+   Combined Score: 0.424
+   Theme Match: 0.700 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.424 (conf: 0.50), Theme: 0.70, Audio: 0.30, Lyrics: 0.27
 
---------------------------------------------------------------------------------
-VOTER POOL EVOLUTION
---------------------------------------------------------------------------------
+📊 Average Score: 0.532
+🎯 Best Pick: Do You Like Waffles? by Parry Gripp
 
-League Participation Overview:
-  Average voters per league: 11.5
-  Peak participation: 16 voters
-  Minimum participation: 8 voters
-  Average turnover rate: 40.3%
-
-High turnover periods (>40% new voters):
-  Bardalon 5: Our Last Best Hope for Jams: 45.5% turnover
-  Bard’s Tale: 55.6% turnover
-  Bard's Tale IV: A New Hope: 50.0% turnover
-  Bard's Tale 2: 66.7% turnover
-  Bard's Tale 3: Revenge of the Bard: 72.7% turnover
-  B6: Bard's Tale 6: Fully Loaded: 100.0% turnover
-  Bard's Tale 11: Bard's Eleven: 60.0% turnover
-  Bard's Tale 12: Midnight Special: 45.5% turnover
-  Bard's Tale 13: Freaky Friday: 78.6% turnover
-  Bard's Tale 14: Journey of the Brave: 56.2% turnover
-  Bard's Tale 15: Terror of Mechagodzilla: 50.0% turnover
-  Bard's Tale 16: Search for Danger: 50.0% turnover
-  Bard's Tale 17: Lyorn: 54.5% turnover
-
---------------------------------------------------------------------------------
-VOTER CLASSIFICATION ANALYSIS
---------------------------------------------------------------------------------
-
-Core Voters (70%+ participation): 8
-  legion1996a: 26 leagues, 1.45 avg score
-  Joe Hayward: 24 leagues, 1.20 avg score
-  Drew: 24 leagues, 1.50 avg score
-  caliban: 22 leagues, 1.55 avg score
-  Kirk Hayward: 21 leagues, 1.34 avg score
-  Jared: 20 leagues, 1.68 avg score
-  Matt M: 19 leagues, 1.20 avg score
-  someben: 19 leagues, 1.58 avg score
-
-Regular Voters (30-70% participation): 6
-  Qui-Jon Jinn: 18 leagues, 1.38 avg score
-  Rachel Peterson: 18 leagues, 1.55 avg score
-  Ben Hamilton: 17 leagues, 1.43 avg score
-  William Strickland Hamilton: 13 leagues, 1.39 avg score
-  Adrien: 10 leagues, 1.45 avg score
-
-Transient Voters (<30% participation): 11
-  Average participation: 3.5 leagues
-
---------------------------------------------------------------------------------
-GROUP PREFERENCE EVOLUTION
---------------------------------------------------------------------------------
-
-Scoring Generosity Trends:
-  Early leagues (first 5): 1.70 average rating
-  Recent leagues (last 5): 1.30 average rating
-  Overall trend: More conservative
-  Change magnitude: -0.40
-
-Consensus Evolution:
-  Early disagreement: 0.41 standard deviation
-  Recent disagreement: 0.21 standard deviation
-  Consensus trend: More consensus
-
---------------------------------------------------------------------------------
-MAJOR ERA TRANSITIONS
---------------------------------------------------------------------------------
-
-Bard's Tale 8: Pinky Pie's Singalong (moderate generosity_shift):
-  Scoring became more generous by 0.26 points
-
-Bard's Tale 9: The Rise of Bardwalker (major generosity_shift):
-  Scoring became more conservative by 0.38 points
-
-Bard's Tale 17: Lyorn (moderate generosity_shift):
-  Scoring became more generous by 0.24 points
-
-Bard's Tale 23: Skyfall (moderate generosity_shift):
-  Scoring became more conservative by 0.27 points
-
---------------------------------------------------------------------------------
-VOTER TURNOVER IMPACT ON PREFERENCES
+🔍 Candidate Verification Summary:
+   Total candidates processed: 218
+   Spotify verified: 23
+   Spotify corrected: 6
+   Duplicates removed: 4
+   Invalid candidates removed: 14

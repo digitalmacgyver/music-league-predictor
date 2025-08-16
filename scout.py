@@ -436,11 +436,21 @@ Example format:
   ...
 ]"""
 
-            response = self.forecaster.anthropic_client.messages.create(
-                model="claude-3-5-sonnet-20241022",  # Use Sonnet for sophisticated musical knowledge
-                max_tokens=2000,
-                messages=[{"role": "user", "content": prompt}]
-            )
+            # Add timeout to prevent hanging
+            import time
+            start_time = time.time()
+            
+            try:
+                response = self.forecaster.anthropic_client.messages.create(
+                    model="claude-3-5-sonnet-20241022",  # Use Sonnet for sophisticated musical knowledge
+                    max_tokens=2000,
+                    messages=[{"role": "user", "content": prompt}],
+                    timeout=30.0  # 30 second timeout
+                )
+            except Exception as e:
+                if self.verbose:
+                    print(f"   ❌ LLM discovery failed: {e}")
+                return candidates
             
             response_text = response.content[0].text
             
@@ -1163,8 +1173,9 @@ def apply_artist_diversity_filter(recommendations: List[SongMatch], target_count
     if allow_duplicates:
         return recommendations[:target_count]
     
-    # Calculate max songs per artist: 1 + floor(target_count/10)
-    max_per_artist = 1 + target_count // 10
+    # Calculate max songs per artist: ceiling(target_count/10)
+    import math
+    max_per_artist = math.ceil(target_count / 10)
     
     if verbose:
         print(f"   Applying artist diversity filter: max {max_per_artist} songs per artist")
@@ -1429,7 +1440,8 @@ Examples (ensemble models and lyrics discovery enabled by default):
             else:
                 print(f"   Using legacy scoring")
             if not args.allow_artist_duplicates:
-                max_per_artist = 1 + args.number // 10
+                import math
+                max_per_artist = math.ceil(args.number / 10)
                 print(f"   Artist diversity: max {max_per_artist} songs per artist")
             else:
                 print(f"   Artist diversity: unlimited (duplicates allowed)")

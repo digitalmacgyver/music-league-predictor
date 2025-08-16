@@ -150,13 +150,33 @@ class CandidateVerifier:
                 track_title = self.normalize_title(track['name']).lower()
                 track_artist = self.normalize_artist(track['artists'][0]['name']).lower()
                 
-                # Calculate similarity score
-                title_match = 1.0 if track_title == norm_title else (0.8 if norm_title in track_title or track_title in norm_title else 0.0)
-                artist_match = 1.0 if track_artist == norm_artist else (0.8 if norm_artist in track_artist or track_artist in norm_artist else 0.0)
+                # Calculate similarity score - much stricter matching
+                # Only accept exact matches or very close matches (not just substrings)
+                title_match = 1.0 if track_title == norm_title else 0.0
                 
-                score = (title_match + artist_match) / 2
+                # For title, allow some flexibility for remastered versions, etc.
+                if title_match == 0.0:
+                    # Check if one is a subset with common suffixes/prefixes
+                    if (norm_title in track_title and 
+                        any(suffix in track_title for suffix in [' - remastered', ' - live', ' - remix', ' (remastered', ' (live'])):
+                        title_match = 0.9
+                    elif (track_title in norm_title and len(track_title) >= len(norm_title) * 0.8):
+                        title_match = 0.8
                 
-                if score > best_score and score >= 0.6:  # Minimum threshold
+                # Artist matching - be strict, no substring matching unless very close
+                artist_match = 1.0 if track_artist == norm_artist else 0.0
+                
+                if artist_match == 0.0:
+                    # Only allow artist corrections for obvious variations
+                    if (len(norm_artist) > 3 and len(track_artist) > 3 and
+                        (norm_artist in track_artist or track_artist in norm_artist) and
+                        abs(len(norm_artist) - len(track_artist)) <= 5):
+                        artist_match = 0.7
+                
+                # Require high confidence - both title and artist must be very close
+                score = (title_match * 0.7 + artist_match * 0.3)  # Weight title more heavily
+                
+                if score > best_score and score >= 0.8:  # Much higher threshold
                     best_score = score
                     best_match = track
             
