@@ -11,9 +11,12 @@ import sys
 import json
 import csv
 import logging
+import math
+import re
+import time
+import traceback
 from typing import List, Dict, Any, Optional, Tuple
 from dataclasses import asdict
-import re
 
 from forecasting import MusicForecaster, SongMatch
 from setup_db import get_db_connection
@@ -437,7 +440,6 @@ Example format:
 ]"""
 
             # Add timeout to prevent hanging
-            import time
             start_time = time.time()
             
             try:
@@ -455,8 +457,6 @@ Example format:
             response_text = response.content[0].text
             
             # Extract JSON from response (handle markdown code blocks)
-            import re
-            import json
             
             json_match = re.search(r'```json\s*(\[.*?\])\s*```', response_text, re.DOTALL)
             if json_match:
@@ -1174,7 +1174,6 @@ def apply_artist_diversity_filter(recommendations: List[SongMatch], target_count
         return recommendations[:target_count]
     
     # Calculate max songs per artist: ceiling(target_count/10)
-    import math
     max_per_artist = math.ceil(target_count / 10)
     
     if verbose:
@@ -1440,7 +1439,6 @@ Examples (ensemble models and lyrics discovery enabled by default):
             else:
                 print(f"   Using legacy scoring")
             if not args.allow_artist_duplicates:
-                import math
                 max_per_artist = math.ceil(args.number / 10)
                 print(f"   Artist diversity: max {max_per_artist} songs per artist")
             else:
@@ -1518,7 +1516,6 @@ Examples (ensemble models and lyrics discovery enabled by default):
             except Exception as e:
                 print(f"❌ Playlist creation error: {e}")
                 if args.verbose:
-                    import traceback
                     traceback.print_exc()
         
         return 0
@@ -1529,7 +1526,6 @@ Examples (ensemble models and lyrics discovery enabled by default):
     except Exception as e:
         print(f"❌ Error: {e}")
         if args.verbose:
-            import traceback
             traceback.print_exc()
         return 1
     finally:

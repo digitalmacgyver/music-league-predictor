@@ -8,6 +8,7 @@ import os
 import sys
 import json
 import sqlite3
+import re
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 import logging
@@ -194,7 +195,6 @@ class MusicForecaster:
             response_text = response.content[0].text
             
             # Handle JSON wrapped in markdown code blocks
-            import re
             json_match = re.search(r'```json\s*(\{.*?\})\s*```', response_text, re.DOTALL)
             if json_match:
                 json_text = json_match.group(1)
@@ -327,7 +327,6 @@ Respond with just the score (0.0-1.0) followed by a concise explanation of your 
             response_text = response.content[0].text.strip()
             
             # Extract score with more robust parsing
-            import re
             score_pattern = r'(?:^|\s)([0-1]\.?\d*|1\.0+)(?:\s|$)'
             score_match = re.search(score_pattern, response_text)
             

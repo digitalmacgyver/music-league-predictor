@@ -4,6 +4,8 @@ Generate reports from Music League database
 """
 
 import sqlite3
+import sys
+import subprocess
 import tabulate
 from config import DATABASE_PATH
 
@@ -276,12 +278,10 @@ def main():
 
 if __name__ == "__main__":
     # Add tabulate to requirements if not already there
-    import sys
     try:
         import tabulate
     except ImportError:
         print("Installing tabulate...")
-        import subprocess
         subprocess.check_call([sys.executable, "-m", "pip", "install", "tabulate"])
         import tabulate
     

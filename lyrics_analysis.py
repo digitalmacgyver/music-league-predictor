@@ -10,6 +10,7 @@ import os
 import time
 import logging
 import re
+import json
 import hashlib
 import sqlite3
 from typing import Optional, Dict, Any, List
@@ -322,8 +323,6 @@ class LyricsAnalyzer:
             response_text = response.content[0].text
             
             # Parse JSON response
-            import json
-            import re
             json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
             if json_match:
                 analysis_json = json.loads(json_match.group(0))
