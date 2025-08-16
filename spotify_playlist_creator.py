@@ -39,7 +39,7 @@ class SpotifyPlaylistCreator:
     """Creates and manages Spotify playlists from song recommendations"""
     
     def __init__(self, client_id: str = None, client_secret: str = None, 
-                 redirect_uri: str = "http://localhost:8080"):
+                 redirect_uri: str = "http://127.0.0.1:8080"):
         """
         Initialize with Spotify credentials
         

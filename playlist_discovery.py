@@ -118,8 +118,9 @@ class SpotifyPlaylistDiscovery:
         try:
             logger.info(f"🔍 Searching playlists for theme: '{theme}'")
             
-            # Search for playlists
-            results = self.spotify.search(q=theme, type='playlist', limit=min(50, max_playlists))
+            # Search for playlists (ensure limit is at least 1)
+            search_limit = max(1, min(50, max_playlists))
+            results = self.spotify.search(q=theme, type='playlist', limit=search_limit)
             playlists = results['playlists']['items']
             
             logger.info(f"   Found {len(playlists)} potential playlists")
@@ -183,9 +184,10 @@ class SpotifyPlaylistDiscovery:
         try:
             logger.info(f"   📋 Extracting tracks from: '{playlist_name}'")
             
-            # Get tracks from playlist
+            # Get tracks from playlist (ensure limit is at least 1)
             tracks = []
-            results = self.spotify.playlist_tracks(playlist_id, limit=min(50, max_tracks))
+            track_limit = max(1, min(50, max_tracks))
+            results = self.spotify.playlist_tracks(playlist_id, limit=track_limit)
             
             while results:
                 for item in results['items']:

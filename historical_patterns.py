@@ -271,13 +271,18 @@ class HistoricalPatternAnalyzer:
         
         return pd.DataFrame(transitions)
     
-    def generate_comprehensive_report(self):
-        """Generate a comprehensive historical analysis report"""
+    def generate_comprehensive_report(self, print_report=True):
+        """Generate a comprehensive historical analysis report
         
-        print("="*80)
-        print("      HISTORICAL PERFORMANCE PATTERN ANALYSIS")
-        print("      Music League Preference Evolution Report")
-        print("="*80)
+        Args:
+            print_report: If True, print the report to console. If False, just return data.
+        """
+        
+        if print_report:
+            print("="*80)
+            print("      HISTORICAL PERFORMANCE PATTERN ANALYSIS")
+            print("      Music League Preference Evolution Report")
+            print("="*80)
         
         # Load all data
         self.load_chronological_data()
@@ -287,6 +292,17 @@ class HistoricalPatternAnalyzer:
         voter_classifications = self.identify_stable_core_vs_transient_voters()
         era_transitions = self.analyze_era_transitions()
         
+        # If not printing, return data immediately
+        if not print_report:
+            return {
+                'voter_evolution': voter_evolution,
+                'preference_trends': preference_trends,
+                'impact_analysis': impact_analysis,
+                'voter_classifications': voter_classifications,
+                'era_transitions': era_transitions
+            }
+        
+        # Print the full report
         print(f"\nAnalyzed {len(self.leagues_data)} leagues spanning {self.leagues_data['league_number'].min()}-{self.leagues_data['league_number'].max()}")
         print(f"Total unique voters: {len(voter_classifications)}")
         print(f"Total songs analyzed: {self.leagues_data['song_count'].sum()}")

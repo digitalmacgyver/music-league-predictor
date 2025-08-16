@@ -28,7 +28,7 @@ class GroupPreferenceForecaster:
         """Calculate how much each voter type influences group preferences"""
         
         # Load historical data
-        results = self.analyzer.generate_comprehensive_report()
+        results = self.analyzer.generate_comprehensive_report(print_report=False)
         voter_classifications = results['voter_classifications']
         voter_evolution = results['voter_evolution']
         preference_trends = results['preference_trends']
@@ -68,7 +68,7 @@ class GroupPreferenceForecaster:
     def build_turnover_impact_model(self):
         """Build model predicting impact of voter turnover on preferences"""
         
-        results = self.analyzer.generate_comprehensive_report()
+        results = self.analyzer.generate_comprehensive_report(print_report=False)
         impact_analysis = results['impact_analysis']
         
         # Analyze correlation between turnover and preference changes

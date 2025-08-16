@@ -1,0 +1,500 @@
+📊 Initializing historical pattern analysis...
+================================================================================
+      HISTORICAL PERFORMANCE PATTERN ANALYSIS
+      Music League Preference Evolution Report
+================================================================================
+
+Analyzed 26 leagues spanning 0-26
+Total unique voters: 25
+Total songs analyzed: 1631
+Total votes analyzed: 10853
+
+--------------------------------------------------------------------------------
+VOTER POOL EVOLUTION
+--------------------------------------------------------------------------------
+
+League Participation Overview:
+  Average voters per league: 11.5
+  Peak participation: 16 voters
+  Minimum participation: 8 voters
+  Average turnover rate: 40.3%
+
+High turnover periods (>40% new voters):
+  Bardalon 5: Our Last Best Hope for Jams: 45.5% turnover
+  Bard’s Tale: 55.6% turnover
+  Bard's Tale IV: A New Hope: 50.0% turnover
+  Bard's Tale 2: 66.7% turnover
+  Bard's Tale 3: Revenge of the Bard: 72.7% turnover
+  B6: Bard's Tale 6: Fully Loaded: 100.0% turnover
+  Bard's Tale 11: Bard's Eleven: 60.0% turnover
+  Bard's Tale 12: Midnight Special: 45.5% turnover
+  Bard's Tale 13: Freaky Friday: 78.6% turnover
+  Bard's Tale 14: Journey of the Brave: 56.2% turnover
+  Bard's Tale 15: Terror of Mechagodzilla: 50.0% turnover
+  Bard's Tale 16: Search for Danger: 50.0% turnover
+  Bard's Tale 17: Lyorn: 54.5% turnover
+
+--------------------------------------------------------------------------------
+VOTER CLASSIFICATION ANALYSIS
+--------------------------------------------------------------------------------
+
+Core Voters (70%+ participation): 8
+  legion1996a: 26 leagues, 1.45 avg score
+  Joe Hayward: 24 leagues, 1.20 avg score
+  Drew: 24 leagues, 1.50 avg score
+  caliban: 22 leagues, 1.55 avg score
+  Kirk Hayward: 21 leagues, 1.34 avg score
+  Jared: 20 leagues, 1.68 avg score
+  Matt M: 19 leagues, 1.20 avg score
+  someben: 19 leagues, 1.58 avg score
+
+Regular Voters (30-70% participation): 6
+  Qui-Jon Jinn: 18 leagues, 1.38 avg score
+  Rachel Peterson: 18 leagues, 1.55 avg score
+  Ben Hamilton: 17 leagues, 1.43 avg score
+  William Strickland Hamilton: 13 leagues, 1.39 avg score
+  Adrien: 10 leagues, 1.45 avg score
+
+Transient Voters (<30% participation): 11
+  Average participation: 3.5 leagues
+
+--------------------------------------------------------------------------------
+GROUP PREFERENCE EVOLUTION
+--------------------------------------------------------------------------------
+
+Scoring Generosity Trends:
+  Early leagues (first 5): 1.70 average rating
+  Recent leagues (last 5): 1.30 average rating
+  Overall trend: More conservative
+  Change magnitude: -0.40
+
+Consensus Evolution:
+  Early disagreement: 0.41 standard deviation
+  Recent disagreement: 0.21 standard deviation
+  Consensus trend: More consensus
+
+--------------------------------------------------------------------------------
+MAJOR ERA TRANSITIONS
+--------------------------------------------------------------------------------
+
+Bard's Tale 8: Pinky Pie's Singalong (moderate generosity_shift):
+  Scoring became more generous by 0.26 points
+
+Bard's Tale 9: The Rise of Bardwalker (major generosity_shift):
+  Scoring became more conservative by 0.38 points
+
+Bard's Tale 17: Lyorn (moderate generosity_shift):
+  Scoring became more generous by 0.24 points
+
+Bard's Tale 23: Skyfall (moderate generosity_shift):
+  Scoring became more conservative by 0.27 points
+
+--------------------------------------------------------------------------------
+VOTER TURNOVER IMPACT ON PREFERENCES
+--------------------------------------------------------------------------------
+
+Leagues with increased generosity:
+  Bard’s Tale: +0.49 (turnover: 56%)
+  Bard's Tale 2: +0.15 (turnover: 67%)
+  Bard's Tale 8: Pinky Pie's Singalong: +0.17 (turnover: 25%)
+  Bard's Tale 17: Lyorn: +0.22 (turnover: 55%)
+  Bard's Tale 19: Feet of Clay: +0.14 (turnover: 20%)
+
+Leagues with decreased generosity:
+  Bard's Tale IV: A New Hope: -0.45 (turnover: 50%)
+  Bard's Tale 3: Revenge of the Bard: -0.15 (turnover: 73%)
+  Bard's Tale 7: The Beat Awakens: -0.12 (turnover: 40%)
+  Bard's Tale 9: The Rise of Bardwalker: -0.31 (turnover: 27%)
+  Bard's Tale 18: Tomorrow Never Dies: -0.16 (turnover: 25%)
+  Bard's Tale 20: The Haunted Mine: -0.14 (turnover: 18%)
+  Bard's Tale 23: Skyfall: -0.28 (turnover: 8%)
+
+--------------------------------------------------------------------------------
+PREDICTIVE INSIGHTS FOR FUTURE LEAGUES
+--------------------------------------------------------------------------------
+
+Current state (most recent league):
+  Voters: 13
+  Average score: 1.25
+  Recent turnover: 23%
+================================================================================
+      HISTORICAL PERFORMANCE PATTERN ANALYSIS
+      Music League Preference Evolution Report
+================================================================================
+
+Analyzed 26 leagues spanning 0-26
+Total unique voters: 25
+Total songs analyzed: 1631
+Total votes analyzed: 10853
+
+--------------------------------------------------------------------------------
+VOTER POOL EVOLUTION
+--------------------------------------------------------------------------------
+
+League Participation Overview:
+  Average voters per league: 11.5
+  Peak participation: 16 voters
+  Minimum participation: 8 voters
+  Average turnover rate: 40.3%
+
+High turnover periods (>40% new voters):
+  Bardalon 5: Our Last Best Hope for Jams: 45.5% turnover
+  Bard’s Tale: 55.6% turnover
+  Bard's Tale IV: A New Hope: 50.0% turnover
+  Bard's Tale 2: 66.7% turnover
+  Bard's Tale 3: Revenge of the Bard: 72.7% turnover
+  B6: Bard's Tale 6: Fully Loaded: 100.0% turnover
+  Bard's Tale 11: Bard's Eleven: 60.0% turnover
+  Bard's Tale 12: Midnight Special: 45.5% turnover
+  Bard's Tale 13: Freaky Friday: 78.6% turnover
+  Bard's Tale 14: Journey of the Brave: 56.2% turnover
+  Bard's Tale 15: Terror of Mechagodzilla: 50.0% turnover
+  Bard's Tale 16: Search for Danger: 50.0% turnover
+  Bard's Tale 17: Lyorn: 54.5% turnover
+
+--------------------------------------------------------------------------------
+VOTER CLASSIFICATION ANALYSIS
+--------------------------------------------------------------------------------
+
+Core Voters (70%+ participation): 8
+  legion1996a: 26 leagues, 1.45 avg score
+  Joe Hayward: 24 leagues, 1.20 avg score
+  Drew: 24 leagues, 1.50 avg score
+  caliban: 22 leagues, 1.55 avg score
+  Kirk Hayward: 21 leagues, 1.34 avg score
+  Jared: 20 leagues, 1.68 avg score
+  Matt M: 19 leagues, 1.20 avg score
+  someben: 19 leagues, 1.58 avg score
+
+Regular Voters (30-70% participation): 6
+  Qui-Jon Jinn: 18 leagues, 1.38 avg score
+  Rachel Peterson: 18 leagues, 1.55 avg score
+  Ben Hamilton: 17 leagues, 1.43 avg score
+  William Strickland Hamilton: 13 leagues, 1.39 avg score
+  Adrien: 10 leagues, 1.45 avg score
+
+Transient Voters (<30% participation): 11
+  Average participation: 3.5 leagues
+
+--------------------------------------------------------------------------------
+GROUP PREFERENCE EVOLUTION
+--------------------------------------------------------------------------------
+
+Scoring Generosity Trends:
+  Early leagues (first 5): 1.70 average rating
+  Recent leagues (last 5): 1.30 average rating
+  Overall trend: More conservative
+  Change magnitude: -0.40
+
+Consensus Evolution:
+  Early disagreement: 0.41 standard deviation
+  Recent disagreement: 0.21 standard deviation
+  Consensus trend: More consensus
+
+--------------------------------------------------------------------------------
+MAJOR ERA TRANSITIONS
+--------------------------------------------------------------------------------
+
+Bard's Tale 8: Pinky Pie's Singalong (moderate generosity_shift):
+  Scoring became more generous by 0.26 points
+
+Bard's Tale 9: The Rise of Bardwalker (major generosity_shift):
+  Scoring became more conservative by 0.38 points
+
+Bard's Tale 17: Lyorn (moderate generosity_shift):
+  Scoring became more generous by 0.24 points
+
+Bard's Tale 23: Skyfall (moderate generosity_shift):
+  Scoring became more conservative by 0.27 points
+
+--------------------------------------------------------------------------------
+VOTER TURNOVER IMPACT ON PREFERENCES
+--------------------------------------------------------------------------------
+
+Leagues with increased generosity:
+  Bard’s Tale: +0.49 (turnover: 56%)
+  Bard's Tale 2: +0.15 (turnover: 67%)
+  Bard's Tale 8: Pinky Pie's Singalong: +0.17 (turnover: 25%)
+  Bard's Tale 17: Lyorn: +0.22 (turnover: 55%)
+  Bard's Tale 19: Feet of Clay: +0.14 (turnover: 20%)
+
+Leagues with decreased generosity:
+  Bard's Tale IV: A New Hope: -0.45 (turnover: 50%)
+  Bard's Tale 3: Revenge of the Bard: -0.15 (turnover: 73%)
+  Bard's Tale 7: The Beat Awakens: -0.12 (turnover: 40%)
+  Bard's Tale 9: The Rise of Bardwalker: -0.31 (turnover: 27%)
+  Bard's Tale 18: Tomorrow Never Dies: -0.16 (turnover: 25%)
+  Bard's Tale 20: The Haunted Mine: -0.14 (turnover: 18%)
+  Bard's Tale 23: Skyfall: -0.28 (turnover: 8%)
+
+--------------------------------------------------------------------------------
+PREDICTIVE INSIGHTS FOR FUTURE LEAGUES
+--------------------------------------------------------------------------------
+
+Current state (most recent league):
+  Voters: 13
+  Average score: 1.25
+  Recent turnover: 23%
+   ✅ Historical patterns loaded - Group tendency: balanced
+   📈 Confidence: 100.0%
+🤖 Initializing ensemble prediction models...
+   ✅ Ensemble models initialized
+   🎯 Will attempt ensemble training with historical data
+🎵 Initializing lyrics-based discovery...
+   ✅ Lyrics discovery initialized
+🚀 Music League Scout initialized
+   Theme: 'Songs about Food/Meals/Eating (NO Weird Al\!)'
+   Target count: 20
+   Excluding mainstream hits
+   Including obscure songs
+   Using historical pattern analysis
+   Using lyrics-based discovery
+   Using advanced ensemble models
+   Artist diversity: max 3 songs per artist
+
+🔄 Search iteration 1 (need 20 more songs)
+🔍 Discovering candidates for theme: 'Songs about Food/Meals/Eating (NO Weird Al\!)'
+   Searching for keywords: ['food', 'meals', 'eating', 'weird']
+     Found 1 songs with 'weird' in title
+   🧠 Using LLM musical knowledge for thematic discovery...
+   📝 LLM suggested 25 thematic candidates
+     🆕 External suggestion: Savoy Truffle by The Beatles
+     🆕 External suggestion: Egg Man by Beastie Boys
+     ✅ Found in DB: Green Onions by Booker T. & the M.G.'s
+     ✅ Found in DB: Peaches by The Presidents Of The United States Of America
+     🆕 External suggestion: Sugar Sugar by The Archies
+     🆕 External suggestion: Milk and Honey by Billie Marten
+     🆕 External suggestion: Ice Cream by MIKA
+     🆕 External suggestion: Vegetables by The Beach Boys
+     🆕 External suggestion: Ham 'N' Eggs by A Tribe Called Quest
+     ✅ Found in DB: Cherry Pie by Warrant
+     🆕 External suggestion: Chicken Fried by Zac Brown Band
+     🆕 External suggestion: Banana Pancakes by Jack Johnson
+     🆕 External suggestion: Pork and Beans by Weezer
+     🆕 External suggestion: Gravy Train by Yung Gravy
+     🆕 External suggestion: Brown Sugar by D'Angelo
+     🆕 External suggestion: Rice & Beans by Blue Lab Beats & Ghetto Boy
+     🆕 External suggestion: Sugar Pie, Honey Bunch by The Four Tops
+     🆕 External suggestion: TV Dinner by ZZ Top
+     🆕 External suggestion: Coconut by Harry Nilsson
+     🆕 External suggestion: Sugar Town by Nancy Sinatra
+   🎵 LLM discovery found 20 thematic candidates
+   Searching Spotify for: 'food'
+   Searching Spotify for: 'meals'
+   Searching Spotify for: 'eating'
+   🎵 Searching for songs with thematically relevant lyrics...
+   📝 Lyrics engine found 10 potential candidates
+     🎯 Lyrical match: Savoy Truffle by The Beatles (relevance: 0.80)
+     🎯 Lyrical match: Sugar Water by Cibo Matto (relevance: 0.80)
+     🎯 Lyrical match: Green Onions by Booker T. & the M.G.'s (relevance: 0.80)
+     🎯 Lyrical match: Milk and Honey by Billie Marten (relevance: 0.80)
+     🎯 Lyrical match: Fish and Whistle by John Prine (relevance: 0.80)
+     🎯 Lyrical match: Requiem, K. 626 (Ed. Beyer/Levin): IIIa. Dies irae - Live by Wolfgang Amadeus Mozart (relevance: 0.60)
+     🎯 Lyrical match: Heads Will Roll by Yeah Yeah Yeahs (relevance: 0.60)
+     🎯 Lyrical match: Folsom Prison Blues by Johnny Cash (relevance: 0.60)
+     🎯 Lyrical match: Runnin' Down A Dream by Tom Petty (relevance: 0.60)
+     🎯 Lyrical match: Intergalactic - Remastered 2009 by Beastie Boys (relevance: 0.60)
+   🎵 Lyrics discovery found 10 candidates
+   Filtered out 0 mainstream songs
+   Found 61 unique candidates from all strategies
+🤖 Scoring 60 candidates with ensemble models...
+   Ranked 15 candidates with ensemble models (min_score >= 0.4)
+   🎯 Top pick: Savoy Truffle by The Beatles (score: 0.571)
+   Added 15 new unique recommendations
+🔄 Search iteration 2 (need 5 more songs)
+🔍 Discovering candidates for theme: 'Songs about Food/Meals/Eating (NO Weird Al\!)'
+   Searching for keywords: ['food', 'meals', 'eating', 'weird']
+     Found 1 songs with 'weird' in title
+   🧠 Using LLM musical knowledge for thematic discovery...
+   📝 LLM suggested 25 thematic candidates
+     🆕 External suggestion: Savoy Truffle by The Beatles
+     ✅ Found in DB: Green Onions by Booker T. & the M.G.'s
+     ✅ Found in DB: Peaches by The Presidents Of The United States Of America
+     🆕 External suggestion: Sugar Sugar by The Archies
+     ✅ Found in DB: Cherry Pie by Warrant
+     🆕 External suggestion: Vegetables by The Beach Boys
+     🆕 External suggestion: Banana Pancakes by Jack Johnson
+     🆕 External suggestion: Coconut by Harry Nilsson
+     🆕 External suggestion: TV Dinner by ZZ Top
+     🆕 External suggestion: Crawfish by Elvis Presley
+     🆕 External suggestion: Milk and Honey by Billie Marten
+     🆕 External suggestion: Cheeseburger in Paradise by Jimmy Buffett
+     🆕 External suggestion: Rice & Beans by Blue Lab Beats
+     🆕 External suggestion: Orange Crush by R.E.M.
+     🆕 External suggestion: Honey by King Gizzard & The Lizard Wizard
+     🆕 External suggestion: Ham 'N' Eggs by A Tribe Called Quest
+   🎵 LLM discovery found 16 thematic candidates
+   Searching Spotify for: 'food'
+   Searching Spotify for: 'meals'
+   Searching Spotify for: 'eating'
+   🎵 Searching for songs with thematically relevant lyrics...
+   📝 Lyrics engine found 8 potential candidates
+     🎯 Lyrical match: Savoy Truffle by The Beatles (relevance: 0.80)
+     🎯 Lyrical match: Sugar Water by Cibo Matto (relevance: 0.80)
+     🎯 Lyrical match: Egg Man by Beastie Boys (relevance: 0.80)
+     🎯 Lyrical match: Ham 'N' Eggs by A Tribe Called Quest (relevance: 0.80)
+     🎯 Lyrical match: Requiem, K. 626 (Ed. Beyer/Levin): IIIa. Dies irae - Live by Wolfgang Amadeus Mozart (relevance: 0.60)
+     🎯 Lyrical match: Heads Will Roll by Yeah Yeah Yeahs (relevance: 0.60)
+     🎯 Lyrical match: Folsom Prison Blues by Johnny Cash (relevance: 0.60)
+     🎯 Lyrical match: Runnin' Down A Dream by Tom Petty (relevance: 0.60)
+   🎵 Lyrics discovery found 8 candidates
+   Filtered out 0 mainstream songs
+   Found 55 unique candidates from all strategies
+🤖 Scoring 50 candidates with ensemble models...
+   Ranked 15 candidates with ensemble models (min_score >= 0.4)
+   🎯 Top pick: Savoy Truffle by The Beatles (score: 0.582)
+   Added 4 new unique recommendations
+🔄 Search iteration 3 (need 1 more songs)
+🔍 Discovering candidates for theme: 'Songs about Food/Meals/Eating (NO Weird Al\!)'
+   Searching for keywords: ['food', 'meals', 'eating', 'weird']
+     Found 1 songs with 'weird' in title
+   🧠 Using LLM musical knowledge for thematic discovery...
+   📝 LLM suggested 20 thematic candidates
+     🆕 External suggestion: Eat It (I'm Sorry) by Lake Street Dive
+     ✅ Found in DB: Green Onions by Booker T. & the M.G.'s
+     ✅ Found in DB: Peaches by The Presidents Of The United States Of America
+     🆕 External suggestion: Sugar Sugar by The Archies
+     ✅ Found in DB: Cherry Pie by Warrant
+     🆕 External suggestion: Savoy Truffle by The Beatles
+     🆕 External suggestion: Soul Kitchen by The Doors
+     🆕 External suggestion: Vegetable Man by Pink Floyd
+     🆕 External suggestion: TV Dinner by ZZ Top
+     🆕 External suggestion: Breakfast in America by Supertramp
+     🆕 External suggestion: Rice & Beans by Blue Lab Beats
+     🆕 External suggestion: Coconut by Harry Nilsson
+     🆕 External suggestion: Ham 'N' Eggs by A Tribe Called Quest
+     🆕 External suggestion: Sweet Potato Pie by James Taylor
+     🆕 External suggestion: Milk and Honey by Billie Marten
+     🆕 External suggestion: Fish & Chips by Fatboy Slim
+   🎵 LLM discovery found 16 thematic candidates
+   Searching Spotify for: 'food'
+   Searching Spotify for: 'meals'
+   Searching Spotify for: 'eating'
+   🎵 Searching for songs with thematically relevant lyrics...
+   📝 Lyrics engine found 8 potential candidates
+     🎯 Lyrical match: Savoy Truffle by The Beatles (relevance: 0.80)
+     🎯 Lyrical match: Sugar Pie, Honey Bunch by The Four Tops (relevance: 0.80)
+     🎯 Lyrical match: Green Onions by Booker T. & the M.G.'s (relevance: 0.80)
+     🎯 Lyrical match: Polk Salad Annie by Tony Joe White (relevance: 0.80)
+     🎯 Lyrical match: Requiem, K. 626 (Ed. Beyer/Levin): IIIa. Dies irae - Live by Wolfgang Amadeus Mozart (relevance: 0.60)
+     🎯 Lyrical match: Heads Will Roll by Yeah Yeah Yeahs (relevance: 0.60)
+     🎯 Lyrical match: Folsom Prison Blues by Johnny Cash (relevance: 0.60)
+     🎯 Lyrical match: Runnin' Down A Dream by Tom Petty (relevance: 0.60)
+   🎵 Lyrics discovery found 8 candidates
+   Filtered out 0 mainstream songs
+   Found 55 unique candidates from all strategies
+🤖 Scoring 50 candidates with ensemble models...
+   Ranked 12 candidates with ensemble models (min_score >= 0.4)
+   🎯 Top pick: Savoy Truffle by The Beatles (score: 0.582)
+   Added 3 new unique recommendations
+✅ Found 22 recommendations
+📊 Applying final filters...
+   Applying artist diversity filter: max 3 songs per artist
+   Filtered out 2 songs to ensure artist diversity
+
+🎵 MUSIC LEAGUE SCOUT RECOMMENDATIONS
+Theme: Songs about Food/Meals/Eating (NO Weird Al\!)
+============================================================
+
+1. Cheeseburger in Paradise by Jimmy Buffett
+   Combined Score: 0.579
+   Theme Match: 0.900 | Audio Features: 0.362
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.579 (conf: 0.50), Theme: 0.90, Audio: 0.36, Lyrics: 0.55
+
+2. Savoy Truffle by The Beatles
+   Combined Score: 0.571
+   Theme Match: 0.900 | Audio Features: 0.375
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.571 (conf: 0.50), Theme: 0.90, Audio: 0.37, Lyrics: 0.50
+
+3. Food, Glorious Food by The "Oliver! 1994" Kids Ensemble
+   Combined Score: 0.560
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.560 (conf: 0.50), Theme: 0.90, Audio: 0.30, Lyrics: 0.55
+
+4. Banana Pancakes by Jack Johnson
+   Combined Score: 0.543
+   Theme Match: 0.900 | Audio Features: 0.310
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.543 (conf: 0.50), Theme: 0.90, Audio: 0.31, Lyrics: 0.45
+
+5. Food Glorious Food by John Powell
+   Combined Score: 0.530
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.530 (conf: 0.50), Theme: 0.90, Audio: 0.30, Lyrics: 0.40
+
+6. Coconut by Harry Nilsson
+   Combined Score: 0.530
+   Theme Match: 0.800 | Audio Features: 0.420
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.530 (conf: 0.50), Theme: 0.80, Audio: 0.42, Lyrics: 0.42
+
+7. Meals On Wheels by 10TA Lil A
+   Combined Score: 0.525
+   Theme Match: 1.000 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.525 (conf: 0.50), Theme: 1.00, Audio: 0.30, Lyrics: 0.17
+
+8. Chicken Fried by Zac Brown Band
+   Combined Score: 0.507
+   Theme Match: 0.900 | Audio Features: 0.328
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.507 (conf: 0.50), Theme: 0.90, Audio: 0.33, Lyrics: 0.24
+
+9. Food for the Soul by it's murph
+   Combined Score: 0.505
+   Theme Match: 1.000 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.505 (conf: 0.50), Theme: 1.00, Audio: 0.30, Lyrics: 0.07
+
+10. Crawfish by Elvis Presley
+   Combined Score: 0.493
+   Theme Match: 0.800 | Audio Features: 0.307
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.493 (conf: 0.50), Theme: 0.80, Audio: 0.31, Lyrics: 0.40
+
+11. Sweet Potato Pie by James Taylor
+   Combined Score: 0.491
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.491 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.40
+
+12. Ham 'N' Eggs by A Tribe Called Quest
+   Combined Score: 0.482
+   Theme Match: 0.800 | Audio Features: 0.271
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.482 (conf: 0.50), Theme: 0.80, Audio: 0.27, Lyrics: 0.40
+
+13. TV Dinner by ZZ Top
+   Combined Score: 0.478
+   Theme Match: 0.800 | Audio Features: 0.288
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.478 (conf: 0.50), Theme: 0.80, Audio: 0.29, Lyrics: 0.36
+
+14. The Food - Live by Common
+   Combined Score: 0.465
+   Theme Match: 0.900 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.465 (conf: 0.50), Theme: 0.90, Audio: 0.30, Lyrics: 0.07
+
+15. Breakfast in America by Supertramp
+   Combined Score: 0.460
+   Theme Match: 0.700 | Audio Features: 0.387
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.460 (conf: 0.50), Theme: 0.70, Audio: 0.39, Lyrics: 0.32
+
+16. Ice Cream by MIKA
+   Combined Score: 0.458
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.458 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.24
+
+17. Rice & Beans by Blue Lab Beats & Ghetto Boy
+   Combined Score: 0.452
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.452 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.21
+
+18. Vegetables by The Beach Boys
+   Combined Score: 0.438
+   Theme Match: 0.800 | Audio Features: 0.125
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.438 (conf: 0.50), Theme: 0.80, Audio: 0.12, Lyrics: 0.40
+
+19. Rice & Beans by Blue Lab Beats
+   Combined Score: 0.435
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.435 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.12
+
+20. Fish & Chips by Fatboy Slim
+   Combined Score: 0.435
+   Theme Match: 0.800 | Audio Features: 0.300
+   Details: Ensemble: SimpleWeightedAverage, Score: 0.435 (conf: 0.50), Theme: 0.80, Audio: 0.30, Lyrics: 0.12
+
+📊 Average Score: 0.497
+🎯 Best Pick: Cheeseburger in Paradise by Jimmy Buffett
