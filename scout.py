@@ -25,7 +25,8 @@ from preference_forecaster import GroupPreferenceForecaster
 from ensemble_forecasting import EnsembleForecaster
 from lyrics_discovery import LyricsDiscoveryEngine
 from playlist_discovery import SpotifyPlaylistDiscovery
-from candidate_verification import CandidateVerifier
+from candidate_verification_nlp import NLPCandidateVerifier
+from scout_nlp_integration import ScoutNLPAnalyzer
 from spotify_playlist_creator import SpotifyPlaylistCreator
 
 logger = logging.getLogger(__name__)
@@ -36,7 +37,7 @@ class SongScout:
     def __init__(self, verbose: bool = False, enable_voter_preferences: bool = False, 
                  enable_historical_patterns: bool = False, enable_ensemble_models: bool = True,
                  use_legacy_scoring: bool = False, enable_lyrics_discovery: bool = True,
-                 enable_playlist_discovery: bool = True):
+                 enable_playlist_discovery: bool = True, use_nlp_processing: bool = True):
         self.forecaster = MusicForecaster()
         self.conn = get_db_connection()
         self.verbose = verbose
@@ -45,9 +46,11 @@ class SongScout:
         self.group_forecast = None
         self.ensemble_forecaster = None
         self.use_legacy_scoring = use_legacy_scoring
+        self.use_nlp_processing = use_nlp_processing
         self.lyrics_discovery = None
         self.playlist_discovery = None
         self.candidate_verifier = None
+        self.nlp_analyzer = None
         
         # Initialize voter preference modeling if requested
         if enable_voter_preferences:
@@ -130,14 +133,34 @@ class SongScout:
         
         # Initialize candidate verification (always enabled for quality control)
         if self.verbose:
-            print("🔍 Initializing candidate verification system...")
+            verification_type = "NLP-based" if use_nlp_processing else "legacy regex"
+            print(f"🔍 Initializing {verification_type} candidate verification system...")
         try:
-            self.candidate_verifier = CandidateVerifier()
+            if use_nlp_processing:
+                self.candidate_verifier = NLPCandidateVerifier()
+                self.nlp_analyzer = ScoutNLPAnalyzer()
+            else:
+                # Fallback to old system if NLP disabled
+                from candidate_verification import CandidateVerifier
+                self.candidate_verifier = CandidateVerifier()
+            
             if self.verbose:
-                print(f"   ✅ Candidate verification initialized")
+                system_type = "NLP" if use_nlp_processing else "legacy"
+                print(f"   ✅ {system_type} candidate verification initialized")
         except Exception as e:
             if self.verbose:
                 print(f"   ❌ Candidate verification initialization failed: {e}")
+                if use_nlp_processing:
+                    print("   🔄 Falling back to legacy verification...")
+                    try:
+                        from candidate_verification import CandidateVerifier
+                        self.candidate_verifier = CandidateVerifier()
+                        self.use_nlp_processing = False
+                        if self.verbose:
+                            print("   ✅ Legacy verification initialized as fallback")
+                    except Exception as fallback_error:
+                        if self.verbose:
+                            print(f"   ❌ Fallback also failed: {fallback_error}")
             self.candidate_verifier = None
         
         # Song discovery databases
@@ -315,11 +338,18 @@ class SongScout:
         # Apply candidate verification for quality control
         if self.candidate_verifier:
             pre_verification_count = len(candidates)
-            candidates = self.candidate_verifier.validate_candidate_list(
-                candidates, 
-                verify_external=True, 
-                verbose=self.verbose
-            )
+            if self.use_nlp_processing and hasattr(self.candidate_verifier, 'validate_candidate_list_nlp'):
+                candidates = self.candidate_verifier.validate_candidate_list_nlp(
+                    candidates, 
+                    verify_external=True, 
+                    verbose=self.verbose
+                )
+            else:
+                candidates = self.candidate_verifier.validate_candidate_list(
+                    candidates, 
+                    verify_external=True, 
+                    verbose=self.verbose
+                )
             if self.verbose and len(candidates) != pre_verification_count:
                 removed_count = pre_verification_count - len(candidates)
                 print(f"   🔍 Verification removed {removed_count} invalid/duplicate candidates")
@@ -648,17 +678,77 @@ Example format:
         
         return candidates
 
+    def _extract_theme_keywords_with_llm(self, theme: str, description: str = "") -> List[str]:
+        """Use LLM to generate comprehensive keywords for theme matching"""
+        
+        if not self.forecaster.anthropic_client:
+            # Fallback to simple extraction if no LLM available
+            theme_text = f"{theme} {description}".lower()
+            keywords = re.findall(r'\w+', theme_text)
+            return [k for k in keywords 
+                   if len(k) > 2 and k not in ['song', 'songs', 'about', 'with', 'the', 'what', 'that', 'this', 'have', 'been', 'will', 'they', 'from', 'were', 'not', 'sure', 'didn', 'author']][:15]
+        
+        try:
+            prompt = f"""Given the Music League theme: "{theme}"
+{f'Description: "{description}"' if description else ''}
+
+Generate a comprehensive list of keywords that could appear in song titles or lyrics that would strongly suggest the song matches this theme. Include:
+
+1. Direct theme words (e.g., for food themes: "pizza", "hamburger", "jambalaya")
+2. Related concepts (e.g., for food: "hungry", "cooking", "restaurant", "feast")
+3. Specific items/examples that fit the theme
+4. Action words related to the theme
+5. Cultural/genre-specific terms if relevant
+
+Provide 15-25 relevant keywords as a JSON array. Focus on words that would actually appear in song titles or lyrics.
+
+Example for "Songs about colors": ["red", "blue", "green", "yellow", "purple", "black", "white", "rainbow", "golden", "silver", "crimson", "azure", "emerald", "violet", "scarlet"]
+
+JSON array of keywords:"""
+
+            response = self.forecaster.anthropic_client.messages.create(
+                model="claude-3-5-sonnet-20241022",
+                max_tokens=500,
+                messages=[{"role": "user", "content": prompt}],
+                timeout=15.0
+            )
+            
+            response_text = response.content[0].text.strip()
+            
+            # Extract JSON array from response
+            json_match = re.search(r'\[.*?\]', response_text, re.DOTALL)
+            if json_match:
+                keywords_json = json.loads(json_match.group(0))
+                if isinstance(keywords_json, list) and all(isinstance(k, str) for k in keywords_json):
+                    return [k.lower().strip() for k in keywords_json if k.strip()]
+            
+        except Exception as e:
+            if self.verbose:
+                print(f"   ⚠️ LLM keyword generation failed: {e}")
+        
+        # Fallback to simple extraction
+        theme_text = f"{theme} {description}".lower()
+        keywords = re.findall(r'\w+', theme_text)
+        return [k for k in keywords 
+               if len(k) > 2 and k not in ['song', 'songs', 'about', 'with', 'the', 'what', 'that', 'this', 'have', 'been', 'will', 'they', 'from', 'were', 'not', 'sure', 'didn', 'author']][:15]
+
     def _discover_by_keywords(self, theme: str, description: str, era: Optional[str], 
                             genre: Optional[str]) -> List[Dict[str, Any]]:
         """Discover songs by searching for theme keywords in titles"""
         candidates = []
         
-        # Extract keywords from theme and description
-        theme_text = f"{theme} {description}".lower()
-        keywords = re.findall(r'\w+', theme_text)
-        # Filter out common words and keep meaningful terms
-        meaningful_keywords = [k for k in keywords 
-                             if len(k) > 2 and k not in ['song', 'songs', 'about', 'with', 'the', 'what', 'that', 'this', 'have', 'been', 'will', 'they', 'from', 'were', 'not', 'sure', 'didn', 'author']]
+        # Generate comprehensive keywords using NLP or LLM
+        if self.use_nlp_processing and self.nlp_analyzer:
+            # Use NLP semantic analysis for keyword generation
+            theme_analysis = self.nlp_analyzer.analyze_theme_semantically(theme, description)
+            meaningful_keywords = self.nlp_analyzer.generate_discovery_keywords_nlp(theme_analysis)
+            if self.verbose:
+                print(f"   🧠 NLP generated {len(meaningful_keywords)} semantic keywords")
+        else:
+            # Fallback to LLM keyword generation
+            meaningful_keywords = self._extract_theme_keywords_with_llm(theme, description)
+            if self.verbose:
+                print(f"   🤖 LLM generated {len(meaningful_keywords)} keywords")
         
         cursor = self.conn.cursor()
         
