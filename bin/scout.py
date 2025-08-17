@@ -304,7 +304,8 @@ class SongScout:
         
         # Strategy 9: Playlist-based discovery (NEW!)
         if self.playlist_discovery:
-            playlist_candidates = self._discover_via_playlists(theme, description, target_count // 3)
+            playlist_candidates = self._discover_via_playlists(theme, description, target_count // 3,
+                                                             exclude_mainstream, era, genre)
             candidates.extend(self._dedupe_candidates(playlist_candidates, seen_songs))
         
         # Apply mainstream filtering if requested
@@ -610,7 +611,9 @@ Example format:
         
         return candidates
 
-    def _discover_via_playlists(self, theme: str, description: str, target_count: int) -> List[Dict[str, Any]]:
+    def _discover_via_playlists(self, theme: str, description: str, target_count: int,
+                              exclude_mainstream: bool = False, era: str = None, 
+                              genre: str = None) -> List[Dict[str, Any]]:
         """Discover candidates through Spotify playlist analysis"""
         candidates = []
         
@@ -621,10 +624,24 @@ Example format:
             if self.verbose:
                 print(f"   📋 Searching public playlists for theme matches...")
             
-            # Search for playlists that match the theme
+            # Build smart search query based on options
             search_query = f"{theme} {description}".strip()
+            
+            # Modify search query based on options
+            if exclude_mainstream:
+                # Add underground/alternative terms to search
+                search_query += " indie alternative underground deep cuts"
+            
+            if era:
+                # Add era terms to search
+                search_query += f" {era}"
+                
+            if genre:
+                # Add genre to search
+                search_query += f" {genre}"
             playlist_candidates = self.playlist_discovery.discover_candidates_from_playlists(
-                search_query, max_candidates=target_count, max_playlists=5
+                search_query, max_candidates=target_count, max_playlists=5,
+                exclude_mainstream=exclude_mainstream, era=era, genre=genre
             )
             
             if self.verbose:
