@@ -454,7 +454,7 @@ Example format:
             
             try:
                 response = self.forecaster.anthropic_client.messages.create(
-                    model="claude-3-5-sonnet-20241022",  # Use Sonnet for sophisticated musical knowledge
+                    model="claude-3-5-sonnet-latest",  # Use latest Sonnet for sophisticated musical knowledge
                     max_tokens=2000,
                     messages=[{"role": "user", "content": prompt}],
                     timeout=30.0  # 30 second timeout
@@ -687,7 +687,7 @@ Example for "Songs about colors": ["red", "blue", "green", "yellow", "purple", "
 JSON array of keywords:"""
 
             response = self.forecaster.anthropic_client.messages.create(
-                model="claude-3-5-sonnet-20241022",
+                model="claude-3-5-sonnet-latest",
                 max_tokens=500,
                 messages=[{"role": "user", "content": prompt}],
                 timeout=15.0

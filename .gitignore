@@ -28,4 +28,19 @@ cookies.pkl
 Thumbs.db
 
 # Logs
-*.logdata/spotify-data/
+*.log
+
+# Python packaging
+*.egg-info/
+build/
+dist/
+
+# Generated reports (exclude generated content)
+reports/*.txt
+reports/*.csv
+reports/*.json
+reports/*.html
+!reports/README.md
+
+# Data directory
+data/

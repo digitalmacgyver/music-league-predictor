@@ -13,19 +13,31 @@ A comprehensive web scraper for Music League that handles Spotify SSO authentica
 - **Flexible Filtering**: Can filter leagues by name or scrape all leagues
 - **Detailed Reports**: Generates various reports from collected data
 
-## Installation
+## Quick Start
 
-1. Clone or download this repository
-
-2. Install Python dependencies:
+1. Clone this repository
+2. Create and activate a virtual environment:
 ```bash
-pip install -r requirements.txt
+python3 -m venv venv
+source venv/bin/activate
 ```
 
-3. Install Playwright browsers:
+3. Install the package in editable mode (this sets up all dependencies and paths):
+```bash
+pip install -e .
+```
+
+4. Install Playwright browsers:
 ```bash
 playwright install chromium
 ```
+
+**Important**: Always activate the virtual environment before running any scripts:
+```bash
+source venv/bin/activate
+```
+
+The virtual environment automatically configures Python paths for the lib/ modules.
 
 ## Configuration
 
@@ -43,77 +55,64 @@ Edit `config.py` to customize:
 First time only - create the database schema:
 
 ```bash
-python setup_db.py
+./bin/setup_db.py
 ```
 
 This creates `data/music_league.db` with all necessary tables and views.
 
-### 2. Authentication & Scraping
+### 2. Run the Scout (Song Recommendation Engine)
 
-#### Option A: Automatic (Recommended)
 ```bash
-./run.py
+./bin/scout.py "Songs about Food" -n 20 --verbose
 ```
-This handles authentication and scraping automatically.
 
-#### Option B: Manual Steps
+### 3. Run the Web Scraper
+
+```bash
+./bin/scraper.py
+```
+
+### 4. Generate Reports
+
+```bash
+./bin/reports.py
+```
+
+### 5. Authentication & Scraping
 
 **Authenticate (first time or when session expires):**
 ```bash
-./login.py
+./bin/login.py
 ```
 - Browser window opens to Music League login
 - Complete Spotify SSO authentication manually
 - Press Enter when on completed leagues page
 - Session saved for future use
 
-**Run scraper:**
+### 6. Project Structure
+
+- **bin/**: Executable scripts (scout.py, scraper.py, reports.py, setup tools)
+- **lib/**: Core library modules (forecasting, NLP, database utilities)  
+- **debug/**: Debug and testing scripts
+- **reports/**: Generated reports and analytics
+- **data/**: Database files and scraped content
+
+## Configuration
+
+Set up your API credentials in `.env` file:
 ```bash
-./scraper.py
+SPOTIFY_CLIENT_ID=your_spotify_client_id
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+ANTHROPIC_API_KEY=your_anthropic_api_key
 ```
-- Uses saved session cookies
-- No authentication prompts
-- Clear error messages if session expired
-
-### 3. Generate Reports
-
-After scraping, generate reports from the collected data:
-
-```bash
-python reports.py
-```
-
-Available reports:
-1. **All Songs**: Complete list of submitted songs
-2. **Distinct Songs**: Unique songs with submission counts
-3. **Best Songs**: Top 5 songs by vote total
-4. **Worst Songs**: Bottom 5 songs by vote total
-5. **Database Statistics**: Overview of collected data
 
 ## Database Schema
 
-The scraper creates the following tables:
-
+The system uses these main tables:
 - **leagues**: League information (id, title, url)
-- **rounds**: Round details (id, league_id, number, title, description)
+- **rounds**: Round details (id, league_id, number, title, description)  
 - **songs**: Song submissions (id, round_id, title, artist, album, submitter, votes)
 - **votes**: Individual votes (song_id, voter, points, comment)
-- **scraping_progress**: Tracks scraping status for resumability
-
-## Project Structure
-
-```
-music_league/
-├── scraper.py          # Main scraping logic
-├── setup_db.py         # Database schema creation
-├── config.py           # Configuration settings
-├── reports.py          # Report generation
-├── requirements.txt    # Python dependencies
-├── data/              # Created on first run
-│   ├── music_league.db    # SQLite database
-│   ├── session_state.json # Saved authentication
-│   └── scraper.log        # Execution logs
-```
 
 ## Error Handling
 

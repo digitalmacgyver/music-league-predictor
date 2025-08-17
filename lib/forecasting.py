@@ -187,7 +187,7 @@ class MusicForecaster:
         
         try:
             response = self.anthropic_client.messages.create(
-                model="claude-3-5-sonnet-20241022",  # Using Sonnet for sophisticated theme analysis
+                model="claude-3-5-sonnet-latest",  # Using latest Sonnet for sophisticated theme analysis
                 max_tokens=1000,
                 messages=[{"role": "user", "content": prompt}]
             )
@@ -319,7 +319,7 @@ Rate the overall match from 0.0 to 1.0, where:
 Respond with just the score (0.0-1.0) followed by a concise explanation of your reasoning."""
 
             response = self.anthropic_client.messages.create(
-                model="claude-3-5-sonnet-20241022",  # Using Sonnet for critical analysis
+                model="claude-3-5-sonnet-latest",  # Using latest Sonnet for critical analysis
                 max_tokens=200,
                 messages=[{"role": "user", "content": prompt}]
             )
