@@ -499,6 +499,15 @@ Example format:
                     if not song_title or not artist:
                         continue
                     
+                    # Filter out obviously malformed artist names
+                    if (len(artist) <= 2 or 
+                        artist.startswith('"') or 
+                        artist.endswith('"') or
+                        any(char in artist for char in ['[', ']', '{', '}'])):
+                        if self.verbose:
+                            print(f"     ❌ Skipping malformed artist name: '{artist}' for '{song_title}'")
+                        continue
+                    
                     # Check if this song exists in our database
                     cursor.execute("""
                         SELECT s.title, s.artist, AVG(s.final_score) as avg_score
@@ -537,6 +546,7 @@ Example format:
             except json.JSONDecodeError as e:
                 if self.verbose:
                     print(f"   ❌ Failed to parse LLM JSON response: {e}")
+                    print(f"   📄 Raw JSON text: {json_text[:200]}...")  # Show first 200 chars
                 
         except Exception as e:
             if self.verbose:
