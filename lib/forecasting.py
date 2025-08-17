@@ -31,6 +31,7 @@ from lyrics_analysis import LyricsThemeAnalyzer
 from nlp_text_processor import MusicTextProcessor
 from release_date_verifier import ReleaseDateVerifier
 from spotify_utils import SpotifyUtils
+from cached_llm_client import CachedAnthropicClient
 
 # Load environment variables
 load_dotenv()
@@ -79,11 +80,15 @@ class SongMatch:
 class MusicForecaster:
     """Phase 1: LLM-Enhanced Theme Matching System"""
     
-    def __init__(self):
-        # Initialize APIs
+    def __init__(self, verbose: bool = False):
+        # Initialize APIs with caching
         self.anthropic_client = None
+        self.cached_client = None
         if os.getenv('ANTHROPIC_API_KEY'):
+            # Keep original client for compatibility
             self.anthropic_client = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+            # Add cached client for new calls
+            self.cached_client = CachedAnthropicClient(verbose=verbose)
         
         self.spotify = None
         if os.getenv('SPOTIFY_CLIENT_ID') and os.getenv('SPOTIFY_CLIENT_SECRET'):
@@ -170,7 +175,7 @@ class MusicForecaster:
 
     def analyze_theme_with_llm(self, theme_title: str, theme_description: str) -> ThemeAnalysis:
         """Use Claude to analyze round theme and predict successful song characteristics"""
-        if not self.anthropic_client:
+        if not self.cached_client:
             logger.warning("Anthropic API not available, using fallback analysis")
             return self._fallback_theme_analysis(theme_title, theme_description)
         
@@ -198,13 +203,12 @@ class MusicForecaster:
         """
         
         try:
-            response = self.anthropic_client.messages.create(
+            response_text = self.cached_client.create_message_simple(
+                prompt=prompt,
                 model="claude-3-5-sonnet-latest",  # Using latest Sonnet for sophisticated theme analysis
                 max_tokens=1000,
-                messages=[{"role": "user", "content": prompt}]
+                temperature=0.7
             )
-            
-            response_text = response.content[0].text
             
             # Handle JSON wrapped in markdown code blocks
             json_match = re.search(r'```json\s*(\{.*?\})\s*```', response_text, re.DOTALL)
@@ -330,13 +334,12 @@ Rate the overall match from 0.0 to 1.0, where:
 
 Respond with just the score (0.0-1.0) followed by a concise explanation of your reasoning."""
 
-            response = self.anthropic_client.messages.create(
+            response_text = self.cached_client.create_message_simple(
+                prompt=prompt,
                 model="claude-3-5-sonnet-latest",  # Using latest Sonnet for critical analysis
                 max_tokens=200,
-                messages=[{"role": "user", "content": prompt}]
-            )
-            
-            response_text = response.content[0].text.strip()
+                temperature=0.3  # Lower temperature for scoring consistency
+            ).strip()
             
             # Extract score with more robust parsing
             score_pattern = r'(?:^|\s)([0-1]\.?\d*|1\.0+)(?:\s|$)'

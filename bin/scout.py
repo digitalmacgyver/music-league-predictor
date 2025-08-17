@@ -36,7 +36,7 @@ class SongScout:
     def __init__(self, verbose: bool = False, enable_historical_patterns: bool = False, 
                  enable_lyrics_discovery: bool = True, enable_playlist_discovery: bool = True, 
                  use_nlp_processing: bool = True):
-        self.forecaster = MusicForecaster()
+        self.forecaster = MusicForecaster(verbose=verbose)
         self.conn = get_db_connection()
         self.verbose = verbose
         self.preference_forecaster = None
