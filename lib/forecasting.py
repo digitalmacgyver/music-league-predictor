@@ -28,6 +28,9 @@ from setup_db import get_db_connection
 # Old fallback system replaced by enhanced_audio_features.py
 from enhanced_audio_features import EnhancedAudioFeaturesProvider
 from lyrics_analysis import LyricsThemeAnalyzer
+from nlp_text_processor import MusicTextProcessor
+from release_date_verifier import ReleaseDateVerifier
+from spotify_utils import SpotifyUtils
 
 # Load environment variables
 load_dotenv()
@@ -102,6 +105,15 @@ class MusicForecaster:
         
         # Initialize enhanced audio features system
         self.enhanced_audio_provider = EnhancedAudioFeaturesProvider()
+        
+        # Initialize NLP text processor for normalization
+        self.text_processor = MusicTextProcessor()
+        
+        # Initialize release date verifier
+        self.release_date_verifier = ReleaseDateVerifier(self.spotify)
+        
+        # Cache existing Spotify track IDs for UUID-based filtering
+        self.existing_spotify_ids = SpotifyUtils.get_existing_spotify_ids(self.conn)
         
         # Initialize lyrics analysis (optional)
         self.lyrics_analyzer = None
@@ -453,21 +465,68 @@ Respond with just the score (0.0-1.0) followed by a concise explanation of your 
         """Remove songs that have already been submitted in previous rounds"""
         cursor = self.conn.cursor()
         
+        # Get all existing songs from database with normalized names for comparison
+        cursor.execute("SELECT title, artist FROM songs")
+        existing_songs = cursor.fetchall()
+        
+        # Create a set of normalized existing songs for fast lookup
+        normalized_existing = set()
+        for db_song in existing_songs:
+            norm_title = self.text_processor.normalize_for_matching(db_song['title'], 'title').lower()
+            norm_artist = self.text_processor.normalize_for_matching(db_song['artist'], 'artist').lower()
+            normalized_existing.add(f"{norm_title}|{norm_artist}")
+        
         filtered_songs = []
         for song in candidate_songs:
-            # Check if this song (title + artist combo) already exists
-            cursor.execute("""
-                SELECT COUNT(*) as count FROM songs 
-                WHERE LOWER(title) = LOWER(?) AND LOWER(artist) = LOWER(?)
-            """, (song['title'], song['artist']))
+            # Normalize candidate song for comparison
+            norm_title = self.text_processor.normalize_for_matching(song['title'], 'title').lower()
+            norm_artist = self.text_processor.normalize_for_matching(song['artist'], 'artist').lower()
+            candidate_key = f"{norm_title}|{norm_artist}"
             
-            result = cursor.fetchone()
-            if result['count'] == 0:
+            if candidate_key not in normalized_existing:
                 filtered_songs.append(song)
             else:
                 logger.info(f"Filtering out previous submission: {song['title']} by {song['artist']}")
         
         return filtered_songs
+    
+    def filter_by_era(self, candidate_songs: List[Dict[str, str]], target_era: str) -> List[Dict[str, str]]:
+        """Filter songs to only include those from the specified era"""
+        if not target_era:
+            return candidate_songs
+        
+        logger.info(f"Filtering {len(candidate_songs)} candidates for {target_era} era...")
+        verified_songs = self.release_date_verifier.bulk_verify_era(candidate_songs, target_era)
+        
+        filtered_count = len(candidate_songs) - len(verified_songs)
+        if filtered_count > 0:
+            logger.info(f"Era filtering removed {filtered_count} songs not from {target_era}")
+        
+        return verified_songs
+    
+    def filter_by_spotify_uuid(self, candidate_songs: List[Dict[str, str]]) -> List[Dict[str, str]]:
+        """Filter out songs using Spotify track ID matching (bulletproof duplicate detection)"""
+        if not self.spotify:
+            logger.warning("Spotify client not available for UUID filtering, falling back to title/artist filtering")
+            return self.filter_previous_submissions(candidate_songs)
+        
+        # First, enrich candidates with Spotify track IDs
+        enriched_candidates = SpotifyUtils.enrich_candidates_with_spotify_ids(candidate_songs, self.spotify)
+        
+        # Filter out candidates that match existing Spotify track IDs
+        filtered_candidates = []
+        for candidate in enriched_candidates:
+            spotify_id = candidate.get('spotify_track_id')
+            if spotify_id and spotify_id in self.existing_spotify_ids:
+                logger.info(f"UUID filtering out duplicate: {candidate['title']} by {candidate['artist']} (Spotify ID: {spotify_id})")
+            elif spotify_id:
+                filtered_candidates.append(candidate)
+                logger.debug(f"UUID verified new song: {candidate['title']} by {candidate['artist']} (Spotify ID: {spotify_id})")
+            else:
+                logger.warning(f"No Spotify ID found for: {candidate['title']} by {candidate['artist']} - excluding from recommendations")
+        
+        logger.info(f"UUID filtering: {len(candidate_songs)} → {len(filtered_candidates)} candidates (removed {len(candidate_songs) - len(filtered_candidates)} duplicates/unfindable)")
+        return filtered_candidates
 
     def predict_song_success(self, round_id: str, candidate_songs: List[Dict[str, str]]) -> List[SongMatch]:
         """Predict how well candidate songs would perform in a given round"""

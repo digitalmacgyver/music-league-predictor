@@ -993,12 +993,12 @@ JSON array of keywords:"""
         return unique_candidates
 
     def score_and_rank_with_ensemble(self, theme: str, description: str, candidates: List[Dict[str, Any]],
-                                   min_score: float = 0.0) -> List[SongMatch]:
+                                   min_score: float = 0.0, era: str = None) -> List[SongMatch]:
         """Score candidates using ensemble models for enhanced accuracy"""
         
         if not self.ensemble_forecaster:
             # Fallback to regular scoring
-            return self.score_and_rank(theme, description, candidates, min_score)
+            return self.score_and_rank(theme, description, candidates, min_score, era)
         
         if self.verbose:
             print(f"🤖 Scoring {len(candidates)} candidates with ensemble models...")
@@ -1011,8 +1011,12 @@ JSON array of keywords:"""
                 'artist': candidate['artist']
             })
         
-        # Filter out previous submissions
-        songs = self.forecaster.filter_previous_submissions(songs)
+        # Filter out previous submissions using UUID-based matching
+        songs = self.forecaster.filter_by_spotify_uuid(songs)
+        
+        # Filter by era if specified
+        if era:
+            songs = self.forecaster.filter_by_era(songs, era)
         
         if not songs:
             if self.verbose:
@@ -1040,7 +1044,7 @@ JSON array of keywords:"""
             if self.verbose:
                 print(f"   ❌ Ensemble prediction failed: {e}")
             # Fallback to regular scoring
-            return self.score_and_rank(theme, description, candidates, min_score, voter)
+            return self.score_and_rank(theme, description, candidates, min_score, era)
         
         # Convert to SongMatch format and filter by minimum score
         predictions = []
@@ -1079,7 +1083,7 @@ JSON array of keywords:"""
         return predictions
 
     def score_and_rank(self, theme: str, description: str, candidates: List[Dict[str, Any]],
-                      min_score: float = 0.0) -> List[SongMatch]:
+                      min_score: float = 0.0, era: str = None) -> List[SongMatch]:
         """Score candidates using the forecasting system and rank them"""
         
         if self.verbose:
@@ -1105,8 +1109,12 @@ JSON array of keywords:"""
                 'theme_relevance': theme_relevance
             })
         
-        # Filter out songs that have already been submitted
-        candidate_songs = self.forecaster.filter_previous_submissions(candidate_songs)
+        # Filter out songs that have already been submitted using UUID-based matching
+        candidate_songs = self.forecaster.filter_by_spotify_uuid(candidate_songs)
+        
+        # Filter by era if specified
+        if era:
+            candidate_songs = self.forecaster.filter_by_era(candidate_songs, era)
         
         if not candidate_songs:
             if self.verbose:
@@ -1259,19 +1267,32 @@ def apply_artist_diversity_filter(recommendations: List[SongMatch], target_count
     
     return filtered_recommendations
 
-def iterative_search_for_recommendations(scout, args, target_count: int, max_iterations: int = 3) -> List[SongMatch]:
-    """Iteratively search for recommendations until we have enough"""
+def iterative_search_for_recommendations(scout, args, target_count: int, max_iterations: int = 8) -> List[SongMatch]:
+    """Iteratively search for recommendations until we have enough, with intelligent over-gathering"""
     
     all_recommendations = []
     iteration = 1
-    candidate_multiplier = 3
+    base_multiplier = 5  # Start with aggressive over-gathering
     
     while len(all_recommendations) < target_count and iteration <= max_iterations:
-        if args.verbose:
-            print(f"🔄 Search iteration {iteration} (need {target_count - len(all_recommendations)} more songs)")
+        remaining_needed = target_count - len(all_recommendations)
         
-        # Increase search breadth with each iteration
-        search_count = max((target_count - len(all_recommendations)) * candidate_multiplier, 50)
+        if args.verbose:
+            print(f"🔄 Search iteration {iteration} (need {remaining_needed} more songs)")
+        
+        # Intelligent candidate gathering: dramatically over-gather to account for filtering
+        if iteration == 1:
+            # First iteration: gather many candidates assuming high filtering rate
+            search_count = max(remaining_needed * base_multiplier * 4, 200)
+        elif iteration <= 3:
+            # Early iterations: moderate over-gathering
+            search_count = max(remaining_needed * base_multiplier * 2, 100)
+        else:
+            # Later iterations: cast an even wider net
+            search_count = max(remaining_needed * base_multiplier * 6, 300)
+        
+        if args.verbose:
+            print(f"   🎯 Gathering {search_count} candidates (multiplier: {search_count // remaining_needed}x)")
         
         # Discover candidates
         candidates = scout.discover_candidates(
@@ -1285,18 +1306,25 @@ def iterative_search_for_recommendations(scout, args, target_count: int, max_ite
         
         if not candidates:
             if args.verbose:
-                print(f"   No new candidates found in iteration {iteration}")
+                print(f"   ❌ No new candidates found in iteration {iteration}")
             break
+        
+        if args.verbose:
+            print(f"   📋 Found {len(candidates)} raw candidates")
         
         # Score and rank candidates using ensemble models
         new_recommendations = scout.score_and_rank_with_ensemble(
             theme=args.theme,
             description=args.description,
             candidates=candidates,
-            min_score=args.min_score
+            min_score=args.min_score,
+            era=args.era
         )
         
-        # Filter out songs we already have
+        if args.verbose:
+            print(f"   📊 Scored candidates → {len(new_recommendations)} passed scoring")
+        
+        # Filter out songs we already have in this session
         existing_songs = {(rec.title.lower(), rec.artist.lower()) for rec in all_recommendations}
         unique_new_recs = [
             rec for rec in new_recommendations 
@@ -1307,10 +1335,15 @@ def iterative_search_for_recommendations(scout, args, target_count: int, max_ite
         all_recommendations.extend(unique_new_recs)
         
         if args.verbose:
-            print(f"   Added {len(unique_new_recs)} new unique recommendations")
+            print(f"   ✅ Added {len(unique_new_recs)} new unique recommendations")
+            print(f"   📈 Total progress: {len(all_recommendations)}/{target_count} songs")
         
-        # Increase multiplier for next iteration to cast a wider net
-        candidate_multiplier += 2
+        # If we're getting very few new results, dramatically increase search scope
+        if len(unique_new_recs) < remaining_needed * 0.1:  # Less than 10% of what we need
+            base_multiplier += 3
+            if args.verbose:
+                print(f"   🔍 Low yield detected, increasing search multiplier to {base_multiplier}")
+        
         iteration += 1
     
     # Sort all recommendations by score
