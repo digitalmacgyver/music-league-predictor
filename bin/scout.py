@@ -1395,7 +1395,7 @@ Examples (NLP analysis, ensemble models and discovery enabled by default):
     parser.add_argument('--no-playlist-discovery', action='store_true',
                        help='Disable Spotify playlist-based candidate discovery (enabled by default)')
     parser.add_argument('--allow-artist-duplicates', action='store_true',
-                       help='Allow multiple songs from the same artist in recommendations (default: limited to 1+floor(N/10) per artist)')
+                       help='Allow multiple songs from the same artist in recommendations (default: limited to ceiling(N/10) per artist)')
     parser.add_argument('--create-playlist', action='store_true',
                        help='Create a Spotify playlist from the recommendations (requires Spotify user authorization)')
     parser.add_argument('--playlist-public', action='store_true',
