@@ -287,6 +287,10 @@ class NLPCandidateVerifier:
                 normalized_title = self.text_processor.normalize_for_matching(title, 'title')
                 normalized_artist = self.text_processor.normalize_for_matching(artist, 'artist')
                 
+                # Debug: Log normalization changes
+                if verbose and (artist != normalized_artist or len(normalized_artist) < 3):
+                    print(f"   🚨 DEBUG NORMALIZATION: '{title}' by '{artist}' -> '{normalized_title}' by '{normalized_artist}'")
+                
                 validated_candidates.append({
                     **candidate,
                     'title': normalized_title,

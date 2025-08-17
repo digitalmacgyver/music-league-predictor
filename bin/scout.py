@@ -336,6 +336,18 @@ class SongScout:
         
         if self.verbose:
             print(f"   Found {len(candidates)} verified candidates from all strategies")
+            
+            # Debug: Check for problematic artist names in candidates
+            problematic_count = 0
+            for candidate in candidates:
+                artist = candidate.get('artist', '')
+                if not artist or len(artist) < 3:
+                    problematic_count += 1
+                    if problematic_count <= 3:  # Only show first 3 to avoid spam
+                        print(f"   🚨 DEBUG CANDIDATE: '{candidate.get('title', '')}' by '{artist}' (len: {len(artist)}) from {candidate.get('source', 'unknown')}")
+            
+            if problematic_count > 3:
+                print(f"   🚨 DEBUG: Found {problematic_count} total candidates with short/empty artist names")
         
         return candidates[:target_count]  # Limit to prevent overwhelming the scoring system
 
@@ -1163,6 +1175,13 @@ JSON array of keywords:"""
                     reasoning += f", Historical: {historical_adjustment:.2f} ({tendency} group)"
                 if spotify_features:
                     reasoning += f" (Energy: {spotify_features.energy:.2f}, Valence: {spotify_features.valence:.2f})"
+                
+                # Debug logging for artist names
+                if self.verbose and (not song['artist'] or len(song['artist']) < 3):
+                    print(f"   🚨 DEBUG: Short/empty artist name detected!")
+                    print(f"       Title: '{song['title']}'")
+                    print(f"       Artist: '{song['artist']}' (length: {len(song.get('artist', ''))})")
+                    print(f"       Source: {song.get('source', 'unknown')}")
                 
                 predictions.append(SongMatch(
                     song_id=i,
