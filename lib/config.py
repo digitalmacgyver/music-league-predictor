@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 # Base configuration
-BASE_DIR = Path(__file__).parent.resolve()
+BASE_DIR = Path(__file__).parent.parent.resolve()  # Project root
 DATA_DIR = BASE_DIR / "data"
 DATA_DIR.mkdir(exist_ok=True)
 

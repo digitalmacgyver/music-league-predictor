@@ -141,6 +141,14 @@ users (
 - **data/**: Raw data files, database files, and scraped content
 - **venv/**: Python virtual environment (configured with PYTHONPATH for lib/)
 
+### Database Locations
+All databases are stored in the `data/` directory:
+- **music_league.db**: Main database containing all scraped Music League data (leagues, rounds, songs, votes)
+- **audio_features.db**: Spotify audio features database for song analysis
+- **session_state.json**: Authentication session state for the scraper
+
+Note: The `lib/config.py` file manages all database paths with `BASE_DIR` pointing to the project root.
+
 ### Code Organization Rules
 
 #### bin/ Directory - Main Executables
