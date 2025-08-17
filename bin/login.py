@@ -1,4 +1,4 @@
-#!/usr/bin/env ./venv/bin/python3
+#!/usr/bin/env python3
 """
 Standalone authentication script for Music League
 Handles Spotify SSO login and saves session cookies for scraper.py to use

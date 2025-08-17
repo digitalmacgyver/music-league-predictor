@@ -1,4 +1,4 @@
-#!/usr/bin/env ./venv/bin/python3
+#!/usr/bin/env python3
 """
 Simplified Spotify authentication helper with built-in server
 """

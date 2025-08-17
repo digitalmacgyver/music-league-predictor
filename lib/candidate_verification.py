@@ -121,12 +121,24 @@ class CandidateVerifier:
         try:
             # Try exact search first
             query = f'track:"{title}" artist:"{artist}"'
-            results = self.spotify.search(q=query, type='track', limit=5)
+            exact_results = self.spotify.search(q=query, type='track', limit=5)
             
-            if not results['tracks']['items']:
-                # Try looser search
-                query = f'{title} {artist}'
-                results = self.spotify.search(q=query, type='track', limit=10)
+            # Try looser search regardless (we'll check both sets of results)
+            query = f'{title} {artist}'
+            loose_results = self.spotify.search(q=query, type='track', limit=10)
+            
+            # Combine results, prioritizing exact search results
+            all_tracks = []
+            if exact_results['tracks']['items']:
+                all_tracks.extend(exact_results['tracks']['items'])
+            if loose_results['tracks']['items']:
+                # Add loose results that aren't already in exact results
+                exact_ids = {track['id'] for track in exact_results['tracks']['items']}
+                all_tracks.extend([track for track in loose_results['tracks']['items'] 
+                                 if track['id'] not in exact_ids])
+            
+            # Create a results structure matching expected format
+            results = {'tracks': {'items': all_tracks}}
             
             if not results['tracks']['items']:
                 return CandidateValidation(
@@ -154,7 +166,7 @@ class CandidateVerifier:
                 # Only accept exact matches or very close matches (not just substrings)
                 title_match = 1.0 if track_title == norm_title else 0.0
                 
-                # For title, allow some flexibility for remastered versions, etc.
+                # For title, allow some flexibility for remastered versions, common prefixes, etc.
                 if title_match == 0.0:
                     # Check if one is a subset with common suffixes/prefixes
                     if (norm_title in track_title and 
@@ -162,6 +174,22 @@ class CandidateVerifier:
                         title_match = 0.9
                     elif (track_title in norm_title and len(track_title) >= len(norm_title) * 0.8):
                         title_match = 0.8
+                    # Handle common title variations (missing/extra prefixes)
+                    else:
+                        # Remove common prefixes and try again
+                        common_prefixes = ["it's ", "its ", "the ", "a ", "an "]
+                        title_no_prefix = norm_title
+                        track_no_prefix = track_title
+                        
+                        for prefix in common_prefixes:
+                            if title_no_prefix.startswith(prefix):
+                                title_no_prefix = title_no_prefix[len(prefix):]
+                            if track_no_prefix.startswith(prefix):
+                                track_no_prefix = track_no_prefix[len(prefix):]
+                        
+                        # Check if they match without prefixes
+                        if title_no_prefix == track_no_prefix and len(title_no_prefix) > 3:
+                            title_match = 0.85  # High confidence for prefix-only differences
                 
                 # Artist matching - be strict, no substring matching unless very close
                 artist_match = 1.0 if track_artist == norm_artist else 0.0

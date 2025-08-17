@@ -1,4 +1,4 @@
-#!/usr/bin/env ./venv/bin/python3
+#!/usr/bin/env python3
 """
 Spotify API Setup Guide and Credential Tester
 

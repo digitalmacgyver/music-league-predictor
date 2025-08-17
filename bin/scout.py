@@ -1,4 +1,4 @@
-#!/usr/bin/env ./venv/bin/python3
+#!/usr/bin/env python3
 """
 Scout: Music League Song Recommendation Engine
 

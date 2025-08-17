@@ -133,12 +133,30 @@ users (
 
 ## Development Guidelines
 
-### Code Organization
-- **Core scripts**: Keep main user workflows in root directory (login, scraper, scout, reports)
-- **Debug scripts**: All troubleshooting, testing, and ad-hoc analysis scripts go in `debug/` directory
-- **Libraries**: Core functionality modules stay in root (forecasting.py, voter_preferences.py, etc.)
+### Project Structure
+- **bin/**: Main executable scripts (scout.py, scraper.py, reports.py, setup tools)
+- **lib/**: Core library modules and components (forecasting, NLP, database utilities)
+- **debug/**: Troubleshooting, testing, and ad-hoc analysis scripts
+- **reports/**: Generated reports and analytical outputs
+- **data/**: Raw data files, database files, and scraped content
+- **venv/**: Python virtual environment (configured with PYTHONPATH for lib/)
 
-### Debug Directory Usage
+### Code Organization Rules
+
+#### bin/ Directory - Main Executables
+Place scripts that users run directly:
+- Primary applications (scout.py, scraper.py, reports.py)
+- Setup and authentication tools (setup_*.py, login.py, validate_*.py)
+- Utility scripts supporting main workflows
+
+#### lib/ Directory - Library Modules  
+Place reusable code modules:
+- Core algorithms and data processing (forecasting.py, nlp_text_processor.py)
+- Database and configuration utilities (setup_db.py, config.py)
+- Integration libraries (spotify_playlist_creator.py)
+- Analysis engines (lyrics_analysis.py, ensemble_forecasting.py)
+
+#### debug/ Directory Usage
 When creating scripts for:
 - Debugging specific issues (e.g., `debug_spotify.py`)
 - One-time analysis tasks (e.g., `analyze_bt26_voters.py`)
@@ -156,6 +174,9 @@ When generating reports and analyses:
 - One-time research findings
 
 **ALWAYS save them in the `reports/` directory** to organize all analytical outputs separately from core documentation.
+
+### CLAUDE.md Maintenance
+**IMPORTANT**: Whenever CLAUDE.md is modified, the assistant must immediately re-read the entire file to incorporate any new instructions or guidelines. This ensures all subsequent actions follow the latest project guidelines.
 
 ## Success Metrics
 - Complete data capture from all 27 Bard's Tale leagues

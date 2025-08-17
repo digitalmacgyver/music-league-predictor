@@ -1,4 +1,4 @@
-#!/usr/bin/env ./venv/bin/python3
+#!/usr/bin/env python3
 """
 Simple OAuth callback server for Spotify authentication
 Handles the redirect and captures the authorization code

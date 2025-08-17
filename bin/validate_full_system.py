@@ -1,4 +1,4 @@
-#!/usr/bin/env ./venv/bin/python3
+#!/usr/bin/env python3
 """
 Comprehensive validation of the improved semantic analysis system
 Tests multiple themes and song types to demonstrate sophistication
