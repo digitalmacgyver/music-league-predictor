@@ -22,6 +22,7 @@ from anthropic import Anthropic
 from dotenv import load_dotenv
 
 from setup_db import get_db_connection
+from cached_llm_client import CachedAnthropicClient
 
 load_dotenv()
 logger = logging.getLogger(__name__)
@@ -271,16 +272,18 @@ class LyricsFetcher:
 class LyricsAnalyzer:
     """LLM-based analysis of lyrics vs themes"""
     
-    def __init__(self):
+    def __init__(self, verbose: bool = False):
         self.anthropic_client = None
+        self.cached_client = None
         if os.getenv('ANTHROPIC_API_KEY'):
             self.anthropic_client = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+            self.cached_client = CachedAnthropicClient(verbose=verbose)
     
     def analyze_lyrics_theme_match(self, lyrics: str, theme_title: str, 
                                   theme_description: str = "") -> LyricsAnalysis:
         """Analyze how well lyrics match a theme using LLM"""
         
-        if not self.anthropic_client:
+        if not self.cached_client:
             return self._fallback_analysis(lyrics, theme_title)
         
         # Truncate lyrics if too long (to fit in context window)
@@ -314,13 +317,12 @@ class LyricsAnalyzer:
         """
         
         try:
-            response = self.anthropic_client.messages.create(
+            response_text = self.cached_client.create_message_simple(
+                prompt=prompt,
                 model="claude-3-5-sonnet-latest",
                 max_tokens=500,
-                messages=[{"role": "user", "content": prompt}]
+                temperature=0.7
             )
-            
-            response_text = response.content[0].text
             
             # Parse JSON response
             json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
@@ -360,9 +362,9 @@ class LyricsAnalyzer:
 class LyricsThemeAnalyzer:
     """Main class combining lyrics fetching and analysis"""
     
-    def __init__(self, enable_scraping: bool = False):
+    def __init__(self, enable_scraping: bool = False, verbose: bool = False):
         self.fetcher = LyricsFetcher()
-        self.analyzer = LyricsAnalyzer()
+        self.analyzer = LyricsAnalyzer(verbose=verbose)
         self.enable_scraping = enable_scraping
     
     def analyze_song_lyrics(self, title: str, artist: str, theme_title: str,

@@ -6,8 +6,16 @@ Wraps Anthropic API calls with caching functionality.
 """
 
 import os
+import sys
 import logging
+from pathlib import Path
 from typing import Dict, Any, Optional, List
+
+# Add lib directory to path if not already there
+lib_dir = Path(__file__).parent
+if str(lib_dir) not in sys.path:
+    sys.path.insert(0, str(lib_dir))
+
 from anthropic import Anthropic
 from llm_cache import get_llm_cache
 

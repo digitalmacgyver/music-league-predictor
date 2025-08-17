@@ -4,16 +4,21 @@ Debug the theme analysis to see what Opus is returning
 """
 
 import os
+import sys
+from pathlib import Path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lib'))
+
 import json
 from anthropic import Anthropic
 from dotenv import load_dotenv
+from cached_llm_client import CachedAnthropicClient
 
 load_dotenv()
 
 def debug_theme_analysis():
     """Debug what Opus returns for theme analysis"""
     
-    client = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+    cached_client = CachedAnthropicClient(verbose=True)
     
     theme_title = "Ominous rock"
     theme_description = "Rock songs that sound dark, foreboding, or threatening"
@@ -48,13 +53,12 @@ def debug_theme_analysis():
     print()
     
     try:
-        response = client.messages.create(
+        response_text = cached_client.create_message_simple(
+            prompt=prompt,
             model="claude-3-opus-20240229",
             max_tokens=1000,
-            messages=[{"role": "user", "content": prompt}]
+            temperature=0.7
         )
-        
-        response_text = response.content[0].text
         print("Raw Opus Response:")
         print("-" * 30)
         print(response_text)

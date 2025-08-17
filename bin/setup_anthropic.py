@@ -5,10 +5,14 @@ For Claude Max subscribers to get API access
 """
 
 import os
+import sys
 import webbrowser
 from pathlib import Path
 import json
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lib'))
+
 from anthropic import Anthropic
+from cached_llm_client import CachedAnthropicClient
 import logging
 
 logger = logging.getLogger(__name__)
@@ -71,40 +75,34 @@ def test_anthropic_key(api_key):
     print("=" * 50)
     
     try:
-        # Initialize client
-        client = Anthropic(api_key=api_key)
+        # Initialize cached client
+        cached_client = CachedAnthropicClient(verbose=True)
         
         # Test with a simple request
         print("Testing API connection...")
-        response = client.messages.create(
+        response_text = cached_client.create_message_simple(
+            prompt="Respond with exactly: API test successful",
             model="claude-3-5-haiku-20241022",
             max_tokens=50,
-            messages=[{
-                "role": "user", 
-                "content": "Respond with exactly: API test successful"
-            }]
+            temperature=0.0
         )
         
-        if response and response.content:
-            response_text = response.content[0].text.strip()
-            print(f"✅ Success! Response: '{response_text}'")
+        if response_text:
+            print(f"✅ Success! Response: '{response_text.strip()}'")
             
             # Test theme analysis (what we'll actually use)
             print("\nTesting theme analysis...")
-            theme_response = client.messages.create(
+            theme_text = cached_client.create_message_simple(
+                prompt="""Analyze this Music League theme: "Songs about travel"
+                
+                Respond in JSON format:
+                {"emotional_tone": "adventurous", "energy_level": "medium", "success_factors": ["movement", "journey"]}""",
                 model="claude-3-5-haiku-20241022",
                 max_tokens=200,
-                messages=[{
-                    "role": "user",
-                    "content": """Analyze this Music League theme: "Songs about travel"
-                    
-                    Respond in JSON format:
-                    {"emotional_tone": "adventurous", "energy_level": "medium", "success_factors": ["movement", "journey"]}"""
-                }]
+                temperature=0.7
             )
             
-            if theme_response and theme_response.content:
-                theme_text = theme_response.content[0].text.strip()
+            if theme_text:
                 print(f"✅ Theme analysis works!")
                 print(f"   Sample response: {theme_text[:100]}...")
                 return True

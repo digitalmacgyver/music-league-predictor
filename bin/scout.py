@@ -27,6 +27,7 @@ from playlist_discovery import SpotifyPlaylistDiscovery
 from candidate_verification_nlp import NLPCandidateVerifier
 from scout_nlp_integration import ScoutNLPAnalyzer
 from spotify_playlist_creator import SpotifyPlaylistCreator
+from cached_llm_client import CachedAnthropicClient
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +40,7 @@ class SongScout:
         self.forecaster = MusicForecaster(verbose=verbose)
         self.conn = get_db_connection()
         self.verbose = verbose
+        self.cached_client = CachedAnthropicClient(verbose=verbose)
         self.preference_forecaster = None
         self.group_forecast = None
         self.ensemble_forecaster = None
@@ -466,18 +468,16 @@ Example format:
             start_time = time.time()
             
             try:
-                response = self.forecaster.anthropic_client.messages.create(
+                response_text = self.cached_client.create_message_simple(
+                    prompt=prompt,
                     model="claude-3-5-sonnet-latest",  # Use latest Sonnet for sophisticated musical knowledge
                     max_tokens=2000,
-                    messages=[{"role": "user", "content": prompt}],
-                    timeout=30.0  # 30 second timeout
+                    temperature=0.7
                 )
             except Exception as e:
                 if self.verbose:
                     print(f"   ❌ LLM discovery failed: {e}")
                 return candidates
-            
-            response_text = response.content[0].text
             
             # Extract JSON from response (handle markdown code blocks)
             
@@ -725,14 +725,12 @@ Example for "Songs about colors": ["red", "blue", "green", "yellow", "purple", "
 
 JSON array of keywords:"""
 
-            response = self.forecaster.anthropic_client.messages.create(
+            response_text = self.cached_client.create_message_simple(
+                prompt=prompt,
                 model="claude-3-5-sonnet-latest",
                 max_tokens=500,
-                messages=[{"role": "user", "content": prompt}],
-                timeout=15.0
-            )
-            
-            response_text = response.content[0].text.strip()
+                temperature=0.5
+            ).strip()
             
             # Extract JSON array from response
             json_match = re.search(r'\[.*?\]', response_text, re.DOTALL)

@@ -16,6 +16,7 @@ from collections import defaultdict
 
 from lyrics_analysis import LyricsThemeAnalyzer
 from setup_db import get_db_connection
+from cached_llm_client import CachedAnthropicClient
 
 logger = logging.getLogger(__name__)
 
@@ -33,9 +34,10 @@ class LyricalCandidate:
 class LyricsDiscoveryEngine:
     """Discovers songs through lyrical content analysis"""
     
-    def __init__(self, enable_scraping: bool = False):
+    def __init__(self, enable_scraping: bool = False, verbose: bool = False):
         self.lyrics_analyzer = LyricsThemeAnalyzer(enable_scraping=enable_scraping)
         self.conn = get_db_connection()
+        self.cached_client = CachedAnthropicClient(verbose=verbose)
         
         # Initialize lyrics knowledge base
         self._setup_lyrics_knowledge_base()
@@ -224,14 +226,15 @@ class LyricsDiscoveryEngine:
             3. Songs where lyrics tell stories or convey concepts related to the theme
             """
             
-            response = self.lyrics_analyzer.analyzer.anthropic_client.messages.create(
+            response_text = self.cached_client.create_message_simple(
+                prompt=prompt,
                 model="claude-3-5-sonnet-latest",
                 max_tokens=1000,
-                messages=[{"role": "user", "content": prompt}]
+                temperature=0.7
             )
             
             # Parse LLM response for song suggestions
-            suggestions = self._parse_llm_song_suggestions(response.content[0].text)
+            suggestions = self._parse_llm_song_suggestions(response_text)
             
             for suggestion in suggestions[:limit]:
                 candidates.append(LyricalCandidate(

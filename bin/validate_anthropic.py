@@ -4,9 +4,13 @@ Quick Anthropic API key validator
 """
 
 import os
+import sys
 from pathlib import Path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lib'))
+
 from dotenv import load_dotenv
 from anthropic import Anthropic
+from cached_llm_client import CachedAnthropicClient
 
 def main():
     """Validate existing Anthropic API key"""
@@ -31,22 +35,17 @@ def main():
     try:
         # Test API key
         print("Testing API connection...")
-        client = Anthropic(api_key=api_key)
+        cached_client = CachedAnthropicClient(verbose=True)
         
-        response = client.messages.create(
+        response_text = cached_client.create_message_simple(
+            prompt="Say 'API working' and nothing else",
             model="claude-3-5-haiku-20241022",
             max_tokens=50,
-            messages=[{"role": "user", "content": "Say 'API working' and nothing else"}]
+            temperature=0.0
         )
         
-        if response and response.content:
-            response_text = response.content[0].text.strip()
-            print(f"✅ API works! Response: '{response_text}'")
-            
-            # Test usage tracking
-            print(f"✅ Model: {response.model}")
-            print(f"✅ Input tokens: {response.usage.input_tokens}")
-            print(f"✅ Output tokens: {response.usage.output_tokens}")
+        if response_text:
+            print(f"✅ API works! Response: '{response_text.strip()}'")
             
             print("\n🎉 Anthropic API is fully functional!")
             print("Your forecasting system now has advanced theme analysis.")
