@@ -1176,17 +1176,17 @@ JSON array of keywords:"""
         """Clean up resources and show verification stats"""
         if self.candidate_verifier and self.verbose:
             stats = self.candidate_verifier.get_statistics()
-            if stats['total_candidates'] > 0:
+            if stats.get('total_candidates', 0) > 0:
                 print(f"\n🔍 Candidate Verification Summary:")
-                print(f"   Total candidates processed: {stats['total_candidates']}")
-                if stats['spotify_verified'] > 0:
-                    print(f"   Spotify verified: {stats['spotify_verified']}")
-                if stats['spotify_corrected'] > 0:
-                    print(f"   Spotify corrected: {stats['spotify_corrected']}")
-                if stats['duplicates_removed'] > 0:
-                    print(f"   Duplicates removed: {stats['duplicates_removed']}")
-                if stats['invalid_removed'] > 0:
-                    print(f"   Invalid candidates removed: {stats['invalid_removed']}")
+                print(f"   Total candidates processed: {stats.get('total_candidates', 0)}")
+                if stats.get('spotify_verified', 0) > 0:
+                    print(f"   Spotify verified: {stats.get('spotify_verified', 0)}")
+                if stats.get('spotify_corrected', 0) > 0:
+                    print(f"   Spotify corrected: {stats.get('spotify_corrected', 0)}")
+                if stats.get('duplicates_removed', 0) > 0:
+                    print(f"   Duplicates removed: {stats.get('duplicates_removed', 0)}")
+                if stats.get('invalid_removed', 0) > 0:
+                    print(f"   Invalid candidates removed: {stats.get('invalid_removed', 0)}")
         
         if self.forecaster:
             self.forecaster.close()
