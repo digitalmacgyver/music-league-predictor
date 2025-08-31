@@ -30,6 +30,7 @@ from music_league.spotify_playlist_creator import SpotifyPlaylistCreator
 from music_league.cached_llm_client import CachedAnthropicClient
 from music_league.genre_mapper import GenreMapper
 from music_league.mainstream_detector import MainstreamDetector
+from music_league.dynamic_mainstream_detector import DynamicMainstreamDetector
 
 logger = logging.getLogger(__name__)
 
@@ -62,19 +63,9 @@ class SongScout:
                 print(f"⚠️  Genre mapper initialization failed: {e}")
             self.genre_mapper = None
         
-        # Initialize enhanced mainstream detector
-        try:
-            # Share Spotify client if available
-            spotify_client = None
-            if self.playlist_discovery and hasattr(self.playlist_discovery, 'spotify'):
-                spotify_client = self.playlist_discovery.spotify
-            self.mainstream_detector = MainstreamDetector(spotify_client=spotify_client)
-            if self.verbose:
-                print("🚫 Enhanced mainstream detector initialized")
-        except Exception as e:
-            if self.verbose:
-                print(f"⚠️  Mainstream detector initialization failed: {e}")
-            self.mainstream_detector = None
+        # Initialize dynamic mainstream detector (will be set up after playlist discovery)
+        self.mainstream_detector = None
+        self.dynamic_detector = None
         
         
         # Initialize historical pattern analysis if requested
@@ -134,6 +125,29 @@ class SongScout:
                 self.playlist_discovery = SpotifyPlaylistDiscovery()
                 if self.verbose:
                     print(f"   ✅ Playlist discovery initialized")
+                
+                # Initialize mainstream detectors with Spotify client
+                try:
+                    # Try dynamic detector first (uses live Spotify data)
+                    if self.playlist_discovery and hasattr(self.playlist_discovery, 'spotify'):
+                        self.dynamic_detector = DynamicMainstreamDetector(
+                            spotify_client=self.playlist_discovery.spotify
+                        )
+                        if self.verbose:
+                            print("   📊 Dynamic mainstream detector initialized (using Spotify data)")
+                    
+                    # Also initialize static detector as fallback
+                    self.mainstream_detector = MainstreamDetector(
+                        spotify_client=self.playlist_discovery.spotify if self.playlist_discovery else None
+                    )
+                    if self.verbose and not self.dynamic_detector:
+                        print("   🚫 Static mainstream detector initialized (fallback)")
+                except Exception as detector_error:
+                    if self.verbose:
+                        print(f"   ⚠️  Mainstream detector initialization failed: {detector_error}")
+                    self.mainstream_detector = None
+                    self.dynamic_detector = None
+                    
             except Exception as e:
                 if self.verbose:
                     print(f"   ❌ Playlist discovery initialization failed: {e}")
@@ -414,10 +428,10 @@ class SongScout:
         return candidates[:target_count]  # Limit to prevent overwhelming the scoring system
 
     def _filter_mainstream_songs(self, candidates: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Filter out extremely popular/mainstream songs using enhanced detector"""
+        """Filter out extremely popular/mainstream songs using dynamic or static detector"""
         
-        # Fall back to old method if detector not available
-        if not self.mainstream_detector:
+        # Fall back to old method if no detectors available
+        if not self.dynamic_detector and not self.mainstream_detector:
             return self._filter_mainstream_songs_legacy(candidates)
         
         filtered_candidates = []
@@ -428,10 +442,24 @@ class SongScout:
             artist = candidate.get('artist', '')
             spotify_id = candidate.get('spotify_id')
             
-            # Use enhanced mainstream detection
-            is_mainstream, reason = self.mainstream_detector.is_mainstream(
-                title, artist, spotify_id=spotify_id, check_spotify=True
-            )
+            # Try dynamic detector first (uses real Spotify data)
+            if self.dynamic_detector:
+                is_mainstream, reason, score = self.dynamic_detector.is_mainstream(
+                    title, artist, spotify_id=spotify_id, threshold=0.65
+                )
+                if self.verbose and spotify_id:
+                    # Add score to reason for transparency
+                    reason = f"{reason} (score: {score:.2f})"
+            # Fall back to static detector
+            elif self.mainstream_detector:
+                is_mainstream, reason = self.mainstream_detector.is_mainstream(
+                    title, artist, spotify_id=spotify_id, check_spotify=True
+                )
+                score = None
+            else:
+                is_mainstream = False
+                reason = "No detector available"
+                score = None
             
             if not is_mainstream:
                 filtered_candidates.append(candidate)
