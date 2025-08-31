@@ -29,6 +29,7 @@ from music_league.scout_nlp_integration import ScoutNLPAnalyzer
 from music_league.spotify_playlist_creator import SpotifyPlaylistCreator
 from music_league.cached_llm_client import CachedAnthropicClient
 from music_league.genre_mapper import GenreMapper
+from music_league.mainstream_detector import MainstreamDetector
 
 logger = logging.getLogger(__name__)
 
@@ -60,6 +61,20 @@ class SongScout:
             if self.verbose:
                 print(f"⚠️  Genre mapper initialization failed: {e}")
             self.genre_mapper = None
+        
+        # Initialize enhanced mainstream detector
+        try:
+            # Share Spotify client if available
+            spotify_client = None
+            if self.playlist_discovery and hasattr(self.playlist_discovery, 'spotify'):
+                spotify_client = self.playlist_discovery.spotify
+            self.mainstream_detector = MainstreamDetector(spotify_client=spotify_client)
+            if self.verbose:
+                print("🚫 Enhanced mainstream detector initialized")
+        except Exception as e:
+            if self.verbose:
+                print(f"⚠️  Mainstream detector initialization failed: {e}")
+            self.mainstream_detector = None
         
         
         # Initialize historical pattern analysis if requested
@@ -399,7 +414,43 @@ class SongScout:
         return candidates[:target_count]  # Limit to prevent overwhelming the scoring system
 
     def _filter_mainstream_songs(self, candidates: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Filter out extremely popular/mainstream songs"""
+        """Filter out extremely popular/mainstream songs using enhanced detector"""
+        
+        # Fall back to old method if detector not available
+        if not self.mainstream_detector:
+            return self._filter_mainstream_songs_legacy(candidates)
+        
+        filtered_candidates = []
+        excluded_songs = []
+        
+        for candidate in candidates:
+            title = candidate.get('title', '')
+            artist = candidate.get('artist', '')
+            spotify_id = candidate.get('spotify_id')
+            
+            # Use enhanced mainstream detection
+            is_mainstream, reason = self.mainstream_detector.is_mainstream(
+                title, artist, spotify_id=spotify_id, check_spotify=True
+            )
+            
+            if not is_mainstream:
+                filtered_candidates.append(candidate)
+            else:
+                excluded_songs.append((title, artist, reason))
+        
+        # Report exclusions in verbose mode
+        if self.verbose and excluded_songs:
+            print(f"\n   🚫 Excluded {len(excluded_songs)} mainstream songs:")
+            for title, artist, reason in excluded_songs[:10]:  # Show first 10
+                print(f"      • {title} by {artist}")
+                print(f"        Reason: {reason}")
+            if len(excluded_songs) > 10:
+                print(f"      ... and {len(excluded_songs) - 10} more")
+        
+        return filtered_candidates
+    
+    def _filter_mainstream_songs_legacy(self, candidates: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Legacy mainstream filtering (fallback)"""
         filtered_candidates = []
         
         for candidate in candidates:
