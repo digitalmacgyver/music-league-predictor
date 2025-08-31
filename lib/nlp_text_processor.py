@@ -304,8 +304,24 @@ class MusicTextProcessor:
     
     def _remove_music_suffixes(self, text: str) -> str:
         """Remove common music suffixes for matching"""
-        suffix_pattern = r'\s*[-\(\[]?\s*(' + '|'.join(self.music_stop_words) + r')[^)]*[\)\]]?$'
-        return re.sub(suffix_pattern, '', text, flags=re.IGNORECASE)
+        # Only remove music suffixes that are:
+        # 1. At the end of the text (word boundary)
+        # 2. Enclosed in brackets/parentheses, OR
+        # 3. Preceded by delimiter and at end
+        
+        # Pattern 1: Remove bracketed suffixes like "(Remastered)", "[Live]", "- Demo"
+        bracketed_pattern = r'\s*[-–—]\s*\([^)]*(' + '|'.join(self.music_stop_words) + r')[^)]*\)$'
+        bracketed_pattern += r'|\s*\([^)]*(' + '|'.join(self.music_stop_words) + r')[^)]*\)$'
+        bracketed_pattern += r'|\s*\[[^\]]*(' + '|'.join(self.music_stop_words) + r')[^\]]*\]$'
+        
+        # Pattern 2: Remove dash/hyphen suffixes like "- Remastered", "– Live Version"
+        dash_pattern = r'\s*[-–—]\s*(' + '|'.join(self.music_stop_words) + r')(\s+\w+)*$'
+        
+        # Apply patterns
+        text = re.sub(bracketed_pattern, '', text, flags=re.IGNORECASE)
+        text = re.sub(dash_pattern, '', text, flags=re.IGNORECASE)
+        
+        return text.strip()
     
     def _fallback_fuzzy_match(self, query_title: str, query_artist: str, 
                             candidates: List[Tuple[str, str]]) -> List[MatchResult]:
