@@ -10,7 +10,7 @@ import logging
 from pathlib import Path
 from playwright.async_api import async_playwright
 
-from config import *
+from music_league.config import *
 
 # Set up logging
 logging.basicConfig(

@@ -13,7 +13,7 @@ import logging
 from typing import List, Dict, Any, Optional
 from dataclasses import dataclass
 
-from nlp_text_processor import MusicTextProcessor, ConceptualAnalysis
+from music_league.nlp_text_processor import MusicTextProcessor, ConceptualAnalysis
 from candidate_verification_nlp import NLPCandidateVerifier
 
 logger = logging.getLogger(__name__)

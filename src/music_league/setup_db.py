@@ -6,7 +6,7 @@ Database setup and schema creation for Music League data
 import sqlite3
 from pathlib import Path
 import logging
-from config import DATABASE_PATH
+from music_league.config import DATABASE_PATH
 
 logger = logging.getLogger(__name__)
 

@@ -17,7 +17,7 @@ from ensemble_models import (
     EnsembleManager, PredictionComponent, EnsemblePrediction,
     WeightedEnsemble, StackedEnsemble, DynamicWeightedEnsemble, VotingEnsemble
 )
-from setup_db import get_db_connection
+from music_league.setup_db import get_db_connection
 
 logger = logging.getLogger(__name__)
 

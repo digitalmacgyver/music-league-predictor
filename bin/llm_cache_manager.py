@@ -8,14 +8,13 @@ Provides tools to manage, analyze, and maintain the LLM response cache.
 import sys
 import os
 from pathlib import Path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lib'))
 
 import argparse
 from datetime import datetime, timedelta
 from collections import Counter, defaultdict
 import json
 
-from llm_cache import LLMCache
+from music_league.llm_cache import LLMCache
 
 def print_histogram(data: dict, title: str, max_width: int = 40):
     """Print a text histogram"""

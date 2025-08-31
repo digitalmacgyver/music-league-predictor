@@ -17,7 +17,7 @@ if str(lib_dir) not in sys.path:
     sys.path.insert(0, str(lib_dir))
 
 from anthropic import Anthropic
-from llm_cache import get_llm_cache
+from music_league.llm_cache import get_llm_cache
 
 logger = logging.getLogger(__name__)
 

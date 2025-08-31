@@ -6,7 +6,6 @@ Quick Anthropic API key validator
 import os
 import sys
 from pathlib import Path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lib'))
 
 from dotenv import load_dotenv
 
@@ -32,7 +31,7 @@ def main():
     
     # Try to import and test the cached client
     try:
-        from cached_llm_client import CachedAnthropicClient
+        from music_league.cached_llm_client import CachedAnthropicClient
         print("✅ CachedAnthropicClient module imports successfully")
         
         # Test API key

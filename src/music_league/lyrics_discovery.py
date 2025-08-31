@@ -14,9 +14,9 @@ from dataclasses import dataclass
 import re
 from collections import defaultdict
 
-from lyrics_analysis import LyricsThemeAnalyzer
-from setup_db import get_db_connection
-from cached_llm_client import CachedAnthropicClient
+from music_league.lyrics_analysis import LyricsThemeAnalyzer
+from music_league.setup_db import get_db_connection
+from music_league.cached_llm_client import CachedAnthropicClient
 
 logger = logging.getLogger(__name__)
 

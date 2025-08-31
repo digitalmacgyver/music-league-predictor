@@ -21,8 +21,8 @@ from bs4 import BeautifulSoup
 from anthropic import Anthropic
 from dotenv import load_dotenv
 
-from setup_db import get_db_connection
-from cached_llm_client import CachedAnthropicClient
+from music_league.setup_db import get_db_connection
+from music_league.cached_llm_client import CachedAnthropicClient
 
 load_dotenv()
 logger = logging.getLogger(__name__)

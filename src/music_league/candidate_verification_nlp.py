@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-from nlp_text_processor import MusicTextProcessor, MatchResult
+from music_league.nlp_text_processor import MusicTextProcessor, MatchResult
 
 load_dotenv()
 logger = logging.getLogger(__name__)

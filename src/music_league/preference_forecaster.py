@@ -11,7 +11,7 @@ Predicts how group preferences will evolve based on:
 
 import numpy as np
 import pandas as pd
-from setup_db import get_db_connection
+from music_league.setup_db import get_db_connection
 from historical_patterns import HistoricalPatternAnalyzer
 import re
 from collections import defaultdict

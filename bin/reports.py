@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 import tabulate
 import pandas as pd
-from config import DATABASE_PATH
+from music_league.config import DATABASE_PATH
 
 
 def get_db_connection():

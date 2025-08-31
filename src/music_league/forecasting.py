@@ -23,15 +23,15 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from dotenv import load_dotenv
 
-from config import DATABASE_PATH
-from setup_db import get_db_connection
+from music_league.config import DATABASE_PATH
+from music_league.setup_db import get_db_connection
 # Old fallback system replaced by enhanced_audio_features.py
-from enhanced_audio_features import EnhancedAudioFeaturesProvider
-from lyrics_analysis import LyricsThemeAnalyzer
-from nlp_text_processor import MusicTextProcessor
-from release_date_verifier import ReleaseDateVerifier
-from spotify_utils import SpotifyUtils
-from cached_llm_client import CachedAnthropicClient
+from music_league.enhanced_audio_features import EnhancedAudioFeaturesProvider
+from music_league.lyrics_analysis import LyricsThemeAnalyzer
+from music_league.nlp_text_processor import MusicTextProcessor
+from music_league.release_date_verifier import ReleaseDateVerifier
+from music_league.spotify_utils import SpotifyUtils
+from music_league.cached_llm_client import CachedAnthropicClient
 
 # Load environment variables
 load_dotenv()

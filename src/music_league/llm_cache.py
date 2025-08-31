@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 from typing import Dict, Any, Optional, Tuple
 import diskcache
 from pathlib import Path
-from config import BASE_DIR
+from music_league.config import BASE_DIR
 
 logger = logging.getLogger(__name__)
 

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=64.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -45,11 +45,11 @@ scraper = "bin.scraper:main"
 reports = "bin.reports:main"
 
 [tool.setuptools]
-packages = ["lib", "bin"]
-package-dir = {"lib" = "lib", "bin" = "bin"}
+packages = ["music_league"]
+package-dir = {"" = "src"}
 
 [tool.setuptools.package-data]
-lib = ["*.json", "*.txt", "*.md"]
+music_league = ["*.json", "*.txt", "*.md", "data/*"]
 
 [tool.black]
 line-length = 100

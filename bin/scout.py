@@ -18,16 +18,17 @@ import traceback
 from typing import List, Dict, Any, Optional, Tuple
 from dataclasses import asdict
 
-from forecasting import MusicForecaster, SongMatch
-from setup_db import get_db_connection
-from preference_forecaster import GroupPreferenceForecaster
-from ensemble_forecasting import EnsembleForecaster
-from lyrics_discovery import LyricsDiscoveryEngine
-from playlist_discovery import SpotifyPlaylistDiscovery
-from candidate_verification_nlp import NLPCandidateVerifier
-from scout_nlp_integration import ScoutNLPAnalyzer
-from spotify_playlist_creator import SpotifyPlaylistCreator
-from cached_llm_client import CachedAnthropicClient
+from music_league.forecasting import MusicForecaster, SongMatch
+from music_league.setup_db import get_db_connection
+from music_league.preference_forecaster import GroupPreferenceForecaster
+from music_league.ensemble_forecasting import EnsembleForecaster
+from music_league.lyrics_discovery import LyricsDiscoveryEngine
+from music_league.playlist_discovery import SpotifyPlaylistDiscovery
+from music_league.candidate_verification_nlp import NLPCandidateVerifier
+from music_league.scout_nlp_integration import ScoutNLPAnalyzer
+from music_league.spotify_playlist_creator import SpotifyPlaylistCreator
+from music_league.cached_llm_client import CachedAnthropicClient
+from music_league.genre_mapper import GenreMapper
 
 logger = logging.getLogger(__name__)
 
@@ -49,6 +50,16 @@ class SongScout:
         self.playlist_discovery = None
         self.candidate_verifier = None
         self.nlp_analyzer = None
+        
+        # Initialize genre mapper for intelligent genre filtering
+        try:
+            self.genre_mapper = GenreMapper(verbose=verbose)
+            if self.verbose:
+                print("🎸 Genre mapper initialized for intelligent filtering")
+        except Exception as e:
+            if self.verbose:
+                print(f"⚠️  Genre mapper initialization failed: {e}")
+            self.genre_mapper = None
         
         
         # Initialize historical pattern analysis if requested
@@ -258,6 +269,7 @@ class SongScout:
 
     def discover_candidates(self, theme: str, description: str = "", 
                           era: Optional[str] = None, genre: Optional[str] = None,
+                          genre_distance: float = 0.3,
                           exclude_mainstream: bool = False,
                           target_count: int = 50) -> List[Dict[str, Any]]:
         """Discover candidate songs using multiple strategies"""
@@ -317,6 +329,38 @@ class SongScout:
             if self.verbose:
                 filtered_count = pre_filter_count - len(candidates)
                 print(f"   Filtered out {filtered_count} mainstream songs")
+        
+        # Apply genre filtering if requested
+        if genre and self.genre_mapper:
+            pre_filter_count = len(candidates)
+            filtered_candidates = []
+            rejected_by_genre = []
+            
+            for candidate in candidates:
+                artist = candidate.get('artist', '')
+                if artist and self.genre_mapper.matches_genre(artist, genre, max_distance=genre_distance):
+                    filtered_candidates.append(candidate)
+                    if self.verbose:
+                        # Get genre info for verbose output
+                        artist_genres = self.genre_mapper.get_artist_genres(artist)
+                        if artist_genres:
+                            print(f"   ✅ Genre match: {artist} ({', '.join(artist_genres[:3])}) → {genre}")
+                else:
+                    rejected_by_genre.append(candidate)
+            
+            candidates = filtered_candidates
+            
+            if self.verbose:
+                print(f"   🎸 Genre filter ({genre}, distance≤{genre_distance}):")
+                print(f"      Accepted: {len(filtered_candidates)} songs")
+                print(f"      Rejected: {len(rejected_by_genre)} songs")
+                if rejected_by_genre and len(rejected_by_genre) <= 5:
+                    print(f"      Sample rejections:")
+                    for rej in rejected_by_genre[:5]:
+                        artist = rej.get('artist', '')
+                        artist_genres = self.genre_mapper.get_artist_genres(artist) if artist else []
+                        genre_str = ', '.join(artist_genres[:3]) if artist_genres else 'unknown'
+                        print(f"        ❌ {artist} ({genre_str})")
         
         # Apply candidate verification for quality control
         if self.candidate_verifier:
@@ -1315,6 +1359,7 @@ def iterative_search_for_recommendations(scout, args, target_count: int, max_ite
             description=args.description,
             era=args.era,
             genre=args.genre,
+            genre_distance=args.genre_distance if hasattr(args, 'genre_distance') else 0.3,
             exclude_mainstream=args.exclude_mainstream,
             target_count=search_count
         )
@@ -1426,10 +1471,11 @@ def main():
 Examples (NLP analysis, ensemble models and discovery enabled by default):
   ./scout.py "Songs about travel"
   ./scout.py "Summer songs" --number 15 --era 80s
-  ./scout.py "Sad songs" --genre rock --min-score 0.5 --historical-patterns
+  ./scout.py "Sad songs" --genre rock --genre-distance 0.2 --min-score 0.5
+  ./scout.py "British Invasion" --genre rock --genre-distance 0.15 --verbose
   ./scout.py "Songs with colors" --description "Songs that mention colors" --verbose
   ./scout.py "Love songs" --exclude-mainstream --number 10
-  ./scout.py "Epic rock anthems" --historical-patterns --verbose
+  ./scout.py "Epic rock anthems" --genre metal --genre-distance 0.3 --verbose
   ./scout.py "Songs about heartbreak" --verbose  # Lyrics discovery enabled by default
   ./scout.py "Simple search" --no-lyrics-discovery  # Disable lyrics discovery
   ./scout.py "Rock songs" --number 20 --allow-artist-duplicates  # Allow multiple songs per artist
@@ -1449,8 +1495,14 @@ Examples (NLP analysis, ensemble models and discovery enabled by default):
     parser.add_argument('--era', choices=['60s', '70s', '80s', '90s', '00s', '10s', '20s'],
                        help='Focus on songs from a specific era')
     parser.add_argument('--genre', 
-                       choices=['rock', 'pop', 'country', 'hip-hop', 'electronic', 'folk', 'jazz', 'classical'],
-                       help='Focus on songs from a specific genre')
+                       help='Filter songs by genre (e.g., rock, pop, folk, jazz, punk, metal, etc.)')
+    parser.add_argument('--genre-distance', type=float, default=0.3,
+                       help='''Maximum genre distance for filtering (0.0-1.0, default: 0.3)
+                       0.0 = exact genre match only
+                       0.15 = include subgenres (rock → hard rock)
+                       0.3 = include related genres (rock → punk, alternative)
+                       0.5 = include loosely related (rock → blues)
+                       1.0 = no filtering''')
     parser.add_argument('--exclude-artists', 
                        help='Comma-separated list of artists to exclude')
     parser.add_argument('--exclude-mainstream', action='store_true',

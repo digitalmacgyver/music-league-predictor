@@ -15,7 +15,7 @@ from dataclasses import dataclass
 import re
 from pathlib import Path
 
-from setup_db import get_db_connection
+from music_league.setup_db import get_db_connection
 
 logger = logging.getLogger(__name__)
 

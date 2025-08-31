@@ -9,10 +9,9 @@ import sys
 import webbrowser
 from pathlib import Path
 import json
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lib'))
 
 from anthropic import Anthropic
-from cached_llm_client import CachedAnthropicClient
+from music_league.cached_llm_client import CachedAnthropicClient
 import logging
 
 logger = logging.getLogger(__name__)

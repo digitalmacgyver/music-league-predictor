@@ -15,7 +15,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import TruncatedSVD
 from sklearn.preprocessing import StandardScaler
 
-from setup_db import get_db_connection
+from music_league.setup_db import get_db_connection
 
 logger = logging.getLogger(__name__)
 

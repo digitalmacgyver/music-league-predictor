@@ -6,7 +6,7 @@ Monitor scraping progress
 import sqlite3
 import time
 from pathlib import Path
-from config import DATABASE_PATH
+from music_league.config import DATABASE_PATH
 
 def get_stats():
     """Get current database statistics"""

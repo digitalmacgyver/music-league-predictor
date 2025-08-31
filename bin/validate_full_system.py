@@ -5,7 +5,7 @@ Tests multiple themes and song types to demonstrate sophistication
 """
 
 import logging
-from forecasting import MusicForecaster
+from music_league.forecasting import MusicForecaster
 
 def validate_semantic_analysis():
     """Test the system with diverse themes and songs"""

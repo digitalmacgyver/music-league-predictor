@@ -9,7 +9,7 @@ Analyzes performance patterns, voter composition changes, and preference evoluti
 import sqlite3
 import pandas as pd
 import numpy as np
-from setup_db import get_db_connection
+from music_league.setup_db import get_db_connection
 from itertools import combinations
 import re
 from collections import defaultdict, Counter

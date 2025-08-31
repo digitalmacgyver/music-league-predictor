@@ -31,8 +31,8 @@ from bs4 import BeautifulSoup
 from tenacity import retry, stop_after_attempt, wait_exponential
 from tqdm import tqdm
 
-from config import *
-from setup_db import get_db_connection
+from music_league.config import *
+from music_league.setup_db import get_db_connection
 
 # Set up logging
 logging.basicConfig(

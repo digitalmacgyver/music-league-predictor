@@ -17,7 +17,7 @@ import spotipy
 from datetime import datetime
 import json
 import os
-from config import BASE_DIR
+from music_league.config import BASE_DIR
 
 logger = logging.getLogger(__name__)
 
