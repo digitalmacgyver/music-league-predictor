@@ -1732,6 +1732,16 @@ Examples (NLP analysis, ensemble models and discovery enabled by default):
     except KeyboardInterrupt:
         print("\n⚠️  Interrupted by user")
         return 1
+    except SystemExit as e:
+        # Handle graceful exit from API overload
+        if "API overload" in str(e):
+            print("\n🚫 Exiting due to API overload")
+            print("💡 Tips:")
+            print("   • Try again in 10-30 minutes")
+            print("   • Run during off-peak hours (early morning/late night)")
+            print("   • Use smaller --number values to reduce API calls")
+            print("   • Enable caching to reuse previous API responses")
+        return 1
     except Exception as e:
         print(f"❌ Error: {e}")
         if args.verbose:

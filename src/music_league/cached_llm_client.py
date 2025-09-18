@@ -8,6 +8,8 @@ Wraps Anthropic API calls with caching functionality.
 import os
 import sys
 import logging
+import time
+import random
 from pathlib import Path
 from typing import Dict, Any, Optional, List
 
@@ -16,7 +18,7 @@ lib_dir = Path(__file__).parent
 if str(lib_dir) not in sys.path:
     sys.path.insert(0, str(lib_dir))
 
-from anthropic import Anthropic
+from anthropic import Anthropic, APIStatusError
 from music_league.llm_cache import get_llm_cache
 
 logger = logging.getLogger(__name__)
@@ -36,6 +38,13 @@ class CachedAnthropicClient:
         self.client = Anthropic(api_key=self.api_key) if self.api_key else None
         self.cache = get_llm_cache(verbose=verbose)
         self.verbose = verbose
+        
+        # Configuration for 529 handling
+        self.max_retries_529 = 3  # Max retries for overload errors
+        self.base_wait_529 = 30  # Base wait time in seconds for 529 errors
+        self.max_wait_529 = 300  # Max wait time (5 minutes)
+        self.consecutive_529_errors = 0  # Track consecutive overload errors
+        self.last_529_time = None  # Track when we last saw a 529
     
     def create_message(self, 
                       messages: List[Dict[str, str]], 
@@ -76,17 +85,69 @@ class CachedAnthropicClient:
             if cached_response is not None:
                 return cached_response
         
-        # Make actual API call
+        # Make actual API call with retry logic for 529 errors
         if self.verbose:
             logger.info(f"🌐 Making Anthropic API call (model: {model})")
         
-        response = self.client.messages.create(
-            messages=messages,
-            model=model,
-            max_tokens=max_tokens,
-            temperature=temperature,
-            **kwargs
-        )
+        retries = 0
+        while retries <= self.max_retries_529:
+            try:
+                response = self.client.messages.create(
+                    messages=messages,
+                    model=model,
+                    max_tokens=max_tokens,
+                    temperature=temperature,
+                    **kwargs
+                )
+                
+                # Reset 529 tracking on success
+                if self.consecutive_529_errors > 0:
+                    if self.verbose:
+                        logger.info("✅ API recovered from overload state")
+                self.consecutive_529_errors = 0
+                self.last_529_time = None
+                break
+                
+            except APIStatusError as e:
+                if e.status_code == 529:
+                    self.consecutive_529_errors += 1
+                    self.last_529_time = time.time()
+                    
+                    if retries >= self.max_retries_529:
+                        # Give up after max retries
+                        logger.error(f"🚨 Anthropic API is overloaded (529 error). Tried {self.max_retries_529} times.")
+                        logger.error("💡 The service is experiencing high load. Please try again later.")
+                        logger.error("💡 Consider running during off-peak hours or reducing request rate.")
+                        raise SystemExit("Exiting due to persistent API overload. Please try again later.")
+                    
+                    # Calculate exponential backoff with jitter
+                    wait_time = min(
+                        self.base_wait_529 * (2 ** retries) + random.uniform(0, 10),
+                        self.max_wait_529
+                    )
+                    
+                    logger.warning(f"⚠️  API overloaded (529). Waiting {wait_time:.1f} seconds before retry {retries + 1}/{self.max_retries_529}")
+                    
+                    if self.consecutive_529_errors >= 3:
+                        logger.warning("🔄 Multiple consecutive overload errors detected. Consider pausing execution.")
+                    
+                    time.sleep(wait_time)
+                    retries += 1
+                    
+                elif e.status_code == 503:
+                    # Service unavailable - also use backoff
+                    wait_time = 10 * (retries + 1)
+                    logger.warning(f"⚠️  Service unavailable (503). Waiting {wait_time} seconds...")
+                    time.sleep(wait_time)
+                    retries += 1
+                    if retries > 3:
+                        raise
+                else:
+                    # Other errors - don't retry
+                    raise
+            except Exception as e:
+                # Non-API errors
+                raise
         
         # Convert response to dict for caching
         response_dict = {

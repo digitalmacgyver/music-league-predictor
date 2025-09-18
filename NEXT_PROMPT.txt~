@@ -1,0 +1,9 @@
+--
+
+Are we storing floats in json? Does this lead to floating point percision errors?
+
+Should we be using a fixed format floating point type, or a string, or a rational type multiplied by 100, or what?
+
+--
+
+
