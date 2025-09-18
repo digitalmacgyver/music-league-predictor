@@ -18,7 +18,7 @@ lib_dir = Path(__file__).parent
 if str(lib_dir) not in sys.path:
     sys.path.insert(0, str(lib_dir))
 
-from anthropic import Anthropic, APIStatusError
+from anthropic import Anthropic, APIStatusError, APIError, RateLimitError
 from music_league.llm_cache import get_llm_cache
 
 logger = logging.getLogger(__name__)
@@ -35,7 +35,11 @@ class CachedAnthropicClient:
             verbose: Enable verbose cache logging
         """
         self.api_key = api_key or os.getenv('ANTHROPIC_API_KEY')
-        self.client = Anthropic(api_key=self.api_key) if self.api_key else None
+        # Disable Anthropic's built-in retries - we'll handle them ourselves
+        self.client = Anthropic(
+            api_key=self.api_key,
+            max_retries=0  # Disable SDK retries
+        ) if self.api_key else None
         self.cache = get_llm_cache(verbose=verbose)
         self.verbose = verbose
         
@@ -92,12 +96,16 @@ class CachedAnthropicClient:
         retries = 0
         while retries <= self.max_retries_529:
             try:
+                # Ensure no SDK-level retries
+                kwargs_no_retry = kwargs.copy()
+                kwargs_no_retry['max_retries'] = 0
+                
                 response = self.client.messages.create(
                     messages=messages,
                     model=model,
                     max_tokens=max_tokens,
                     temperature=temperature,
-                    **kwargs
+                    **kwargs_no_retry
                 )
                 
                 # Reset 529 tracking on success

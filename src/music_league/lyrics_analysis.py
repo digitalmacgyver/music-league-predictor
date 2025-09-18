@@ -18,7 +18,8 @@ from dataclasses import dataclass
 from urllib.parse import quote
 import requests
 from bs4 import BeautifulSoup
-from anthropic import Anthropic
+# Don't use Anthropic directly - use our cached wrapper instead
+# from anthropic import Anthropic  # REMOVED - use CachedAnthropicClient
 from dotenv import load_dotenv
 
 from music_league.setup_db import get_db_connection
@@ -273,11 +274,13 @@ class LyricsAnalyzer:
     """LLM-based analysis of lyrics vs themes"""
     
     def __init__(self, verbose: bool = False):
-        self.anthropic_client = None
+        self.anthropic_client = None  # Deprecated - for compatibility
         self.cached_client = None
         if os.getenv('ANTHROPIC_API_KEY'):
-            self.anthropic_client = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+            # Only use cached client (handles retries and 529 errors properly)
             self.cached_client = CachedAnthropicClient(verbose=verbose)
+            # Set anthropic_client to cached_client for compatibility
+            self.anthropic_client = self.cached_client
     
     def analyze_lyrics_theme_match(self, lyrics: str, theme_title: str, 
                                   theme_description: str = "") -> LyricsAnalysis:

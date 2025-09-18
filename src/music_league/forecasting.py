@@ -16,7 +16,8 @@ from dataclasses import dataclass, asdict
 
 import pandas as pd
 import numpy as np
-from anthropic import Anthropic
+# Don't use Anthropic directly - use our cached wrapper instead
+# from anthropic import Anthropic  # REMOVED - use CachedAnthropicClient
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -81,14 +82,14 @@ class MusicForecaster:
     """Phase 1: LLM-Enhanced Theme Matching System"""
     
     def __init__(self, verbose: bool = False):
-        # Initialize APIs with caching
-        self.anthropic_client = None
+        # Initialize APIs with caching - only use cached client
+        self.anthropic_client = None  # Deprecated - for compatibility only
         self.cached_client = None
         if os.getenv('ANTHROPIC_API_KEY'):
-            # Keep original client for compatibility
-            self.anthropic_client = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
-            # Add cached client for new calls
+            # Only use cached client (handles retries and 529 errors properly)
             self.cached_client = CachedAnthropicClient(verbose=verbose)
+            # Set anthropic_client to cached_client for compatibility
+            self.anthropic_client = self.cached_client
         
         self.spotify = None
         if os.getenv('SPOTIFY_CLIENT_ID') and os.getenv('SPOTIFY_CLIENT_SECRET'):
