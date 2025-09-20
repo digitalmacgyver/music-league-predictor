@@ -274,13 +274,12 @@ class LyricsAnalyzer:
     """LLM-based analysis of lyrics vs themes"""
     
     def __init__(self, verbose: bool = False):
-        self.anthropic_client = None  # Deprecated - for compatibility
+        self.anthropic_client = None  # Deprecated - keep None to force cached_client usage
         self.cached_client = None
         if os.getenv('ANTHROPIC_API_KEY'):
             # Only use cached client (handles retries and 529 errors properly)
             self.cached_client = CachedAnthropicClient(verbose=verbose)
-            # Set anthropic_client to cached_client for compatibility
-            self.anthropic_client = self.cached_client
+            # DON'T set anthropic_client - this forces code to use cached_client
     
     def analyze_lyrics_theme_match(self, lyrics: str, theme_title: str, 
                                   theme_description: str = "") -> LyricsAnalysis:

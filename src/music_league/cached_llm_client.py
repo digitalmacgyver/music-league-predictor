@@ -96,16 +96,13 @@ class CachedAnthropicClient:
         retries = 0
         while retries <= self.max_retries_529:
             try:
-                # Ensure no SDK-level retries
-                kwargs_no_retry = kwargs.copy()
-                kwargs_no_retry['max_retries'] = 0
-                
+                # Don't pass max_retries to messages.create - it's set at client level
                 response = self.client.messages.create(
                     messages=messages,
                     model=model,
                     max_tokens=max_tokens,
                     temperature=temperature,
-                    **kwargs_no_retry
+                    **kwargs
                 )
                 
                 # Reset 529 tracking on success

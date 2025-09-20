@@ -14,7 +14,7 @@ from typing import List, Dict, Any, Optional
 from dataclasses import dataclass
 
 from music_league.nlp_text_processor import MusicTextProcessor, ConceptualAnalysis
-from candidate_verification_nlp import NLPCandidateVerifier
+from music_league.candidate_verification_nlp import NLPCandidateVerifier
 
 logger = logging.getLogger(__name__)
 
@@ -72,7 +72,27 @@ class ScoutNLPAnalyzer:
         """
         # Extract semantic concepts from theme
         full_theme_text = f"{theme_title} {theme_description}".strip()
+        
+        # Check if theme is specifically ABOUT music formats (like "Album Art")
+        from music_league.music_league_stopwords import is_theme_about_music_format
+        is_format_theme = is_theme_about_music_format(full_theme_text)
+        
+        # If it's about music formats, temporarily bypass meta-term filtering
+        # to preserve keywords like "album" in "Album Art"
+        if is_format_theme:
+            # Save original meta-terms and reduce filtering for this analysis
+            orig_meta_terms = self.text_processor.music_league_meta_terms
+            # Keep only the most generic meta-terms, allow music-specific ones
+            self.text_processor.music_league_meta_terms = {
+                'song', 'songs', 'theme', 'week', 'submit', 'good', 'great',
+                'this', 'that', 'these', 'those', 'will', 'would', 'should'
+            }
+        
         concepts = self.text_processor.extract_semantic_concepts(full_theme_text, 'theme')
+        
+        # Restore meta-terms if we modified them
+        if is_format_theme:
+            self.text_processor.music_league_meta_terms = orig_meta_terms
         
         # Identify genre/mood patterns
         genre_hints = []

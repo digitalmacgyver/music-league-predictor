@@ -83,13 +83,12 @@ class MusicForecaster:
     
     def __init__(self, verbose: bool = False):
         # Initialize APIs with caching - only use cached client
-        self.anthropic_client = None  # Deprecated - for compatibility only
+        self.anthropic_client = None  # Deprecated - keep None to force cached_client usage
         self.cached_client = None
         if os.getenv('ANTHROPIC_API_KEY'):
             # Only use cached client (handles retries and 529 errors properly)
             self.cached_client = CachedAnthropicClient(verbose=verbose)
-            # Set anthropic_client to cached_client for compatibility
-            self.anthropic_client = self.cached_client
+            # DON'T set anthropic_client - this forces code to use cached_client
         
         self.spotify = None
         if os.getenv('SPOTIFY_CLIENT_ID') and os.getenv('SPOTIFY_CLIENT_SECRET'):

@@ -76,13 +76,17 @@ class MusicTextProcessor:
         self.stemmer = PorterStemmer() if NLTK_AVAILABLE else None
         self.stop_words = set(stopwords.words('english')) if NLTK_AVAILABLE else set()
         
-        # Music-specific stop words and noise terms
-        self.music_stop_words = {
+        # Music-specific format terms (for cleaning song titles)
+        self.music_format_terms = {
             'remaster', 'remastered', 'live', 'remix', 'acoustic', 'demo', 
             'single', 'version', 'radio', 'edit', 'explicit', 'deluxe',
             'extended', 'instrumental', 'karaoke', 'clean', 'dirty',
             'uncensored', 'album', 'ep', 'bonus', 'track', 'stereo', 'mono'
         }
+        
+        # Music League meta-terms to filter from theme analysis
+        from music_league.music_league_stopwords import MUSIC_LEAGUE_META_TERMS
+        self.music_league_meta_terms = MUSIC_LEAGUE_META_TERMS
         
         # Common title/artist prefixes that should be normalized
         self.common_prefixes = {
@@ -116,10 +120,11 @@ class MusicTextProcessor:
         # Tokenize and extract meaningful terms
         if NLTK_AVAILABLE:
             tokens = word_tokenize(text_clean.lower())
-            # Remove stop words but keep music-relevant terms
+            # Remove stop words AND Music League meta-terms
             meaningful_tokens = [
                 token for token in tokens 
-                if (token not in self.stop_words or token in self.music_stop_words)
+                if token not in self.stop_words
+                and token not in self.music_league_meta_terms
                 and len(token) > 2
                 and token.isalpha()
             ]
@@ -310,12 +315,12 @@ class MusicTextProcessor:
         # 3. Preceded by delimiter and at end
         
         # Pattern 1: Remove bracketed suffixes like "(Remastered)", "[Live]", "- Demo"
-        bracketed_pattern = r'\s*[-–—]\s*\([^)]*(' + '|'.join(self.music_stop_words) + r')[^)]*\)$'
-        bracketed_pattern += r'|\s*\([^)]*(' + '|'.join(self.music_stop_words) + r')[^)]*\)$'
-        bracketed_pattern += r'|\s*\[[^\]]*(' + '|'.join(self.music_stop_words) + r')[^\]]*\]$'
+        bracketed_pattern = r'\s*[-–—]\s*\([^)]*(' + '|'.join(self.music_format_terms) + r')[^)]*\)$'
+        bracketed_pattern += r'|\s*\([^)]*(' + '|'.join(self.music_format_terms) + r')[^)]*\)$'
+        bracketed_pattern += r'|\s*\[[^\]]*(' + '|'.join(self.music_format_terms) + r')[^\]]*\]$'
         
         # Pattern 2: Remove dash/hyphen suffixes like "- Remastered", "– Live Version"
-        dash_pattern = r'\s*[-–—]\s*(' + '|'.join(self.music_stop_words) + r')(\s+\w+)*$'
+        dash_pattern = r'\s*[-–—]\s*(' + '|'.join(self.music_format_terms) + r')(\s+\w+)*$'
         
         # Apply patterns
         text = re.sub(bracketed_pattern, '', text, flags=re.IGNORECASE)
